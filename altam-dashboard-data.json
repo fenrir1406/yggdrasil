@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "as_of": "2025-02-28",
+    "as_of_label": "Feb 28, 2025 \u00b7 16:00 EST",
+    "fx_note": "All AUM/earnings in USD. FRE = Fee-Related Earnings. DE = Distributable Earnings. SRE = Spread-Related Earnings. PII = Principal Investment Income.",
+    "schema_version": 2
+  },
+  "executive_read": "Fee-related earnings quality is diverging from headline AUM growth. The names compounding fee-paying AUM on perpetual capital \u2014 ARES, OWL \u2014 carry premium EV/FRE multiples that are increasingly defensible; the names leaning on episodic realisations and carry \u2014 CG, TPG \u2014 trade cheap for a reason. The structural story remains the migration of credit and insurance balance sheets onto alt-AM platforms: APO and KKR are now as much spread businesses as fee businesses, and that is where the next leg of earnings durability is being built. Watch SBC creep at ARES, where stock comp is inflating reported FRE margin faster than peers, and watch the wealth channel, where redemption queues are normalising everywhere except OWL.",
+  "bottom_line": "On a quality-adjusted basis we would rank the group: perpetual-capital compounders (ARES, OWL) and insurance-levered platforms (APO, KKR) ahead of realisation-dependent managers (CG, TPG). Valuation already reflects much of this \u2014 the mispricing, if any, sits in CG trading below closed-deal takeout comps while carrying the lowest earnings quality, a classic value-trap signature rather than a clean entry. This is an analytical judgement, not a recommendation.",
+  "peers": [
+    {"ticker":"BX","name":"Blackstone","aum":1019,"fpaum":745,"perp_pct":42,"fre":5.12,"freMgn":58,"evFre":26.4,"aumGrowth":8.2,"shortInt":1.2,"vol":8.4,"sentiment":72,"analystBuy":18,"analystHold":4,"analystSell":1,"price":132.4,"chg1d":0.8,"chg1w":-1.2,"chg3m":6.4,"chgEarn":12.1,"flag":"Fee step-up on BREIT; short interest near 1yr low","sre":0.82,"pii":1.24,"de":6.18,"sbc":0.31,"comp":1.42,"ani":4.87},
+    {"ticker":"APO","name":"Apollo","aum":651,"fpaum":498,"perp_pct":61,"fre":4.44,"freMgn":55,"evFre":22.1,"aumGrowth":11.4,"shortInt":2.1,"vol":6.1,"sentiment":68,"analystBuy":20,"analystHold":3,"analystSell":0,"price":118.2,"chg1d":-0.4,"chg1w":2.1,"chg3m":14.2,"chgEarn":18.3,"flag":"Athene flows accelerating; SRE beats consensus 3Q straight","sre":1.91,"pii":0.88,"de":7.23,"sbc":0.19,"comp":1.28,"ani":5.32},
+    {"ticker":"KKR","name":"KKR","aum":578,"fpaum":421,"perp_pct":38,"fre":3.87,"freMgn":61,"evFre":24.8,"aumGrowth":9.6,"shortInt":1.8,"vol":5.7,"sentiment":74,"analystBuy":19,"analystHold":3,"analystSell":1,"price":108.6,"chg1d":1.1,"chg1w":0.8,"chg3m":9.8,"chgEarn":14.7,"flag":"Asia-Pacific infra fund final close; GP credit +40% YoY","sre":0.61,"pii":1.12,"de":5.60,"sbc":0.28,"comp":1.15,"ani":4.32},
+    {"ticker":"ARES","name":"Ares Management","aum":428,"fpaum":311,"perp_pct":68,"fre":3.21,"freMgn":48,"evFre":31.2,"aumGrowth":16.8,"shortInt":0.9,"vol":3.8,"sentiment":78,"analystBuy":17,"analystHold":5,"analystSell":0,"price":144.8,"chg1d":0.3,"chg1w":1.4,"chg3m":18.4,"chgEarn":22.6,"flag":"Alt credit fundraising record; wealth flows +$4B QoQ","sre":0.12,"pii":0.42,"de":3.75,"sbc":0.44,"comp":1.68,"ani":3.31},
+    {"ticker":"OWL","name":"Blue Owl","aum":235,"fpaum":187,"perp_pct":91,"fre":1.88,"freMgn":52,"evFre":29.6,"aumGrowth":22.1,"shortInt":1.4,"vol":4.2,"sentiment":65,"analystBuy":14,"analystHold":6,"analystSell":2,"price":19.4,"chg1d":-1.2,"chg1w":-3.4,"chg3m":4.1,"chgEarn":8.2,"flag":"GP stakes valuation pressure; Dyal deployment slower than guided","sre":0.0,"pii":0.28,"de":2.16,"sbc":0.52,"comp":0.72,"ani":1.64},
+    {"ticker":"TPG","name":"TPG","aum":224,"fpaum":168,"perp_pct":29,"fre":1.42,"freMgn":44,"evFre":21.8,"aumGrowth":12.3,"shortInt":3.2,"vol":5.1,"sentiment":59,"analystBuy":12,"analystHold":7,"analystSell":2,"price":44.2,"chg1d":-0.6,"chg1w":-2.1,"chg3m":-3.2,"chgEarn":2.4,"flag":"Rise fund III fundraising behind schedule; mgmt cautious","sre":0.08,"pii":0.32,"de":1.82,"sbc":0.38,"comp":0.86,"ani":1.44},
+    {"ticker":"CG","name":"Carlyle","aum":426,"fpaum":298,"perp_pct":24,"fre":2.14,"freMgn":38,"evFre":18.4,"aumGrowth":6.1,"shortInt":4.1,"vol":7.2,"sentiment":48,"analystBuy":10,"analystHold":8,"analystSell":4,"price":48.6,"chg1d":-1.8,"chg1w":-4.2,"chg3m":-8.4,"chgEarn":-6.2,"flag":"Mgmt turnover; flagship PE fundraise stalled; activist pressure","sre":0.22,"pii":0.58,"de":2.92,"sbc":0.61,"comp":1.44,"ani":2.31},
+    {"ticker":"HLI","name":"Houlihan Lokey","aum":0,"fpaum":0,"perp_pct":0,"fre":1.08,"freMgn":22,"evFre":16.2,"aumGrowth":0,"shortInt":1.6,"vol":2.4,"sentiment":62,"analystBuy":8,"analystHold":6,"analystSell":1,"price":128.4,"chg1d":0.2,"chg1w":1.1,"chg3m":5.2,"chgEarn":9.4,"flag":"M&A advisory rebound; restructuring revenue fading","sre":0.0,"pii":0.0,"de":1.08,"sbc":0.18,"comp":0.72,"ani":0.90},
+    {"ticker":"STEP","name":"StepStone","aum":152,"fpaum":98,"perp_pct":12,"fre":0.72,"freMgn":34,"evFre":19.8,"aumGrowth":14.2,"shortInt":2.8,"vol":1.8,"sentiment":61,"analystBuy":7,"analystHold":5,"analystSell":1,"price":52.4,"chg1d":0.4,"chg1w":0.8,"chg3m":7.8,"chgEarn":11.2,"flag":"Secondaries growth strong; takeout speculation in buy-side chatter","sre":0.0,"pii":0.12,"de":0.84,"sbc":0.24,"comp":0.38,"ani":0.60}
+  ],
+  "insurance": [
+    {"ticker":"APO","platform":"Athene / Athora","ga_assets":340,"spread_aum_pct":52,"net_spread_bps":148,"sre_ltm":1.91,"sre_growth":18.4,"capital_note":"Core of the bull case \u2014 permanent spread liabilities funding credit origination","posture":"Engine"},
+    {"ticker":"KKR","platform":"Global Atlantic","ga_assets":183,"spread_aum_pct":32,"net_spread_bps":131,"sre_ltm":0.61,"sre_growth":24.1,"capital_note":"Bought in full 2024; scaling annuity flows, levered to rate-sell window","posture":"Scaling"},
+    {"ticker":"BX","platform":"Corebridge / partner SMAs","ga_assets":215,"spread_aum_pct":21,"net_spread_bps":0,"sre_ltm":0.82,"sre_growth":11.2,"capital_note":"Capital-light insurance \u2014 manages assets, does not own the balance sheet","posture":"Asset-light"},
+    {"ticker":"ARES","platform":"Aspida","ga_assets":24,"spread_aum_pct":8,"net_spread_bps":119,"sre_ltm":0.12,"sre_growth":42.0,"capital_note":"Early-stage; small base, fastest growth, optionality not yet priced","posture":"Emerging"},
+    {"ticker":"CG","platform":"Fortitude (minority)","ga_assets":58,"spread_aum_pct":14,"net_spread_bps":104,"sre_ltm":0.22,"sre_growth":6.0,"capital_note":"Minority economics; less strategic control than peers","posture":"Minority"}
+  ],
+  "wealthFlows": {
+    "quarterly": [
+      {"period":"Q2 '23","BX":5.2,"APO":3.8,"ARES":4.4,"OWL":2.1,"KKR":1.8,"organic":10.4,"inorganic":6.9},
+      {"period":"Q3 '23","BX":6.1,"APO":4.2,"ARES":5.1,"OWL":2.6,"KKR":2.1,"organic":12.1,"inorganic":8.0},
+      {"period":"Q4 '23","BX":5.6,"APO":4.6,"ARES":5.8,"OWL":3.0,"KKR":2.4,"organic":11.8,"inorganic":9.6},
+      {"period":"Q1 '24","BX":6.8,"APO":5.1,"ARES":6.4,"OWL":3.4,"KKR":2.8,"organic":13.8,"inorganic":10.7},
+      {"period":"Q2 '24","BX":7.2,"APO":5.6,"ARES":7.1,"OWL":3.8,"KKR":3.1,"organic":15.4,"inorganic":11.4},
+      {"period":"Q3 '24","BX":8.1,"APO":6.2,"ARES":8.4,"OWL":4.2,"KKR":3.6,"organic":17.8,"inorganic":12.7}
+    ]
+  },
+  "redemptions": [
+    {"vehicle":"BX \u2014 BREIT","q1":4.2,"q2":3.1,"q3":2.4,"q4":1.8,"trend":"improving"},
+    {"vehicle":"APO \u2014 BCRED","q1":2.1,"q2":1.8,"q3":1.4,"q4":1.1,"trend":"improving"},
+    {"vehicle":"ARES \u2014 ASIF","q1":0.8,"q2":0.6,"q3":0.5,"q4":0.4,"trend":"stable"},
+    {"vehicle":"OWL \u2014 OBIC","q1":1.4,"q2":1.6,"q3":1.9,"q4":2.2,"trend":"worsening"}
+  ],
+  "ma": [
+    {"acquirer":"BlackRock","target":"GIP","value":12.5,"strategy":"Infrastructure","evFre":28.4,"epsImpact":"+4.2%","accretive":true,"closed":true,"signal":"Strategic \u2014 scale in infra before rate cuts","date":"Jan '24"},
+    {"acquirer":"BlackRock","target":"Preqin","value":3.2,"strategy":"Data/Analytics","evFre":38.1,"epsImpact":"+1.8%","accretive":true,"closed":true,"signal":"Data moat \u2014 lock in LP data before competitors","date":"Mar '24"},
+    {"acquirer":"TPG","target":"Angelo Gordon","value":2.7,"strategy":"Credit","evFre":16.2,"epsImpact":"+3.1%","accretive":true,"closed":true,"signal":"Credit buildout; compensates for PE fundraise weakness","date":"Nov '23"},
+    {"acquirer":"Franklin","target":"Putnam","value":0.9,"strategy":"Trad. AM","evFre":8.4,"epsImpact":"-0.4%","accretive":false,"closed":true,"signal":"Defensive scale play; synergies hard to realise","date":"Jan '24"},
+    {"acquirer":"KKR","target":null,"value":null,"strategy":"Insurance/Credit","evFre":null,"epsImpact":"est. +2-4%","accretive":true,"closed":false,"signal":"CFO flagged 'balance sheet optionality' on Q3 call; scout teams active in Japan","date":"Rumour"},
+    {"acquirer":"CG","target":null,"value":null,"strategy":"Credit","evFre":null,"epsImpact":"est. +1-3%","accretive":true,"closed":false,"signal":"New CIO hired from Apollo credit; 3 senior credit MDs poached in 6 months","date":"Rumour"},
+    {"acquirer":"ARES","target":null,"value":null,"strategy":"Europe/RE","evFre":null,"epsImpact":"est. +2-5%","accretive":true,"closed":false,"signal":"IR team added European RE language to investor day deck for first time","date":"Rumour"}
+  ]
+}
