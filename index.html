@@ -381,3 +381,49 @@
   if(FR_DATA_URL){fetch(FR_DATA_URL,{cache:'no-store'}).then(function(r){return r.json();}).then(boot).catch(function(){boot(FALLBACK);});}else{boot(FALLBACK);}
 })();
 </script>
+
+<script>
+     (function(){
+            // Post height to parent window so the embedding iframe can auto-resize.
+            // Sends both a generic numeric payload and a recognizable typed payload.
+            function postHeight(){
+                     try {
+                                var h = Math.max(
+                                             document.documentElement.scrollHeight,
+                                             document.body ? document.body.scrollHeight : 0,
+                                             document.documentElement.offsetHeight,
+                                             document.body ? document.body.offsetHeight : 0
+                                           );
+                                if (window.parent && window.parent !== window) {
+                                             window.parent.postMessage({ type: 'fr-altam-height', height: h }, '*');
+                                }
+                     } catch(e) {}
+            }
+            // Initial + on load
+            if (document.readyState === 'complete') {
+                     postHeight();
+            } else {
+                     window.addEventListener('load', postHeight);
+                     document.addEventListener('DOMContentLoaded', postHeight);
+            }
+            // On window resize
+            window.addEventListener('resize', postHeight);
+            // Watch for any DOM size changes (charts render async, tab toggles, etc.)
+            try {
+                     var ro = new ResizeObserver(function(){ postHeight(); });
+                     ro.observe(document.documentElement);
+                     if (document.body) ro.observe(document.body);
+            } catch(e) {}
+       // Also poll periodically for a short window after load to catch late renders
+            var ticks = 0;
+            var poll = setInterval(function(){
+                     postHeight();
+                     if (++ticks > 20) clearInterval(poll); // ~10s of polling at 500ms
+            }, 500);
+            // Respond to parent's explicit ping
+            window.addEventListener('message', function(ev){
+                     if (ev && ev.data && ev.data === 'fr-altam-ping') postHeight();
+            });
+     })();
+</script>
+</script>
