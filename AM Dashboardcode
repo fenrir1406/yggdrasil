@@ -1,0 +1,505 @@
+<!-- ============================================================
+     FENRIR RESEARCH · ALT-AM DISPATCH DASHBOARD
+     Paste into a single WordPress Gutenberg "Custom HTML" block.
+     Self-contained: no frameworks, no external fonts.
+
+     TO REFRESH DATA: edit only the JSON file at FR_DATA_URL below
+     (host on GitHub raw, gist, or WP media). This block never changes.
+     If the fetch fails, it falls back to the embedded snapshot.
+     ============================================================ -->
+
+<div class="fr-altam fr-dark" id="fr-altam-root">
+<style>
+/* ---- scope everything to .fr-altam so nothing leaks into the theme ---- */
+.fr-altam{
+  --fr-bg:#14181f; --fr-surface:#1b2029; --fr-border:#2a313d;
+  --fr-ink:#e8e6df; --fr-dim:#8a93a3; --fr-faint:#5c6470;
+  --fr-steel:#4a7bc4; --fr-cool:#1a6b9a; --fr-gold:#b8862d;
+  --fr-warm:#c0392b; --fr-green:#3ecf8e; --fr-red:#e8615f;
+  max-width:1100px; margin:0 auto; background:var(--fr-bg);
+  color:var(--fr-ink); font-family:Georgia,'Times New Roman',serif;
+  border:1px solid var(--fr-border); border-radius:2px; overflow:hidden;
+}
+.fr-altam *{box-sizing:border-box;}
+.fr-altam .mono{font-family:'Courier New',Courier,monospace;}
+/* header */
+.fr-altam .fr-head{padding:24px 32px;border-bottom:1px solid var(--fr-border);
+  display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;}
+.fr-altam .fr-eyebrow{font-family:'Courier New',monospace;font-size:10px;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--fr-gold);margin-bottom:6px;}
+.fr-altam .fr-title{font-size:28px;font-weight:bold;letter-spacing:-0.02em;color:var(--fr-ink);margin:0;}
+.fr-altam .fr-sub{font-size:13px;color:var(--fr-dim);margin-top:4px;}
+.fr-altam .fr-updated{text-align:right;}
+.fr-altam .fr-updated .lbl{font-family:'Courier New',monospace;font-size:10px;
+  letter-spacing:0.1em;color:var(--fr-dim);text-transform:uppercase;}
+.fr-altam .fr-updated .val{font-size:13px;color:var(--fr-ink);font-weight:bold;}
+/* exec read */
+.fr-altam .fr-exec{padding:20px 32px;border-bottom:1px solid var(--fr-border);
+  background:var(--fr-surface);}
+.fr-altam .fr-exec .k{font-family:'Courier New',monospace;font-size:10px;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--fr-gold);margin-bottom:8px;}
+.fr-altam .fr-exec p{font-size:15px;line-height:1.7;text-align:justify;hyphens:auto;margin:0;color:var(--fr-ink);}
+/* tabs */
+.fr-altam .fr-tabs{display:flex;gap:0;border-bottom:1px solid var(--fr-border);
+  background:var(--fr-surface);overflow-x:auto;}
+.fr-altam .fr-tab{padding:14px 20px;border:none;background:transparent;
+  color:var(--fr-dim);cursor:pointer;font-family:'Courier New',monospace;
+  font-size:11px;letter-spacing:0.05em;white-space:nowrap;border-bottom:2px solid transparent;}
+.fr-altam .fr-tab:hover{color:var(--fr-ink);}
+.fr-altam .fr-tab.active{color:var(--fr-gold);font-weight:bold;border-bottom-color:var(--fr-gold);}
+/* panels */
+.fr-altam .fr-panel{padding:24px 32px;display:none;}
+.fr-altam .fr-panel.active{display:block;}
+.fr-altam .fr-panel-note{font-size:14px;line-height:1.65;color:var(--fr-dim);
+  text-align:justify;hyphens:auto;margin:0 0 18px;}
+/* callout */
+.fr-altam .fr-callout{border-left:3px solid var(--fr-steel);background:rgba(74,123,196,0.07);
+  padding:14px 18px;margin:18px 0;font-size:14px;line-height:1.65;text-align:justify;color:var(--fr-ink);}
+.fr-altam .fr-callout strong{color:var(--fr-gold);}
+/* tables */
+.fr-altam .tbl-wrap{overflow-x:auto;}
+.fr-altam table{width:100%;border-collapse:collapse;font-size:13px;}
+.fr-altam th{font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.05em;
+  text-transform:uppercase;color:var(--fr-dim);text-align:left;padding:9px 10px;
+  border-bottom:1px solid var(--fr-border);white-space:nowrap;cursor:default;background:var(--fr-surface);}
+.fr-altam th.sortable{cursor:pointer;user-select:none;}
+.fr-altam th.sortable:hover{color:var(--fr-ink);}
+.fr-altam th.sorted{color:var(--fr-gold);}
+.fr-altam td{padding:10px;border-bottom:1px solid var(--fr-border);color:var(--fr-ink);vertical-align:middle;}
+.fr-altam tr:nth-child(even) td{background:rgba(255,255,255,0.015);}
+.fr-altam .tk{font-family:'Courier New',monospace;font-weight:bold;color:var(--fr-gold);font-size:13px;}
+.fr-altam .tk-name{font-size:10px;color:var(--fr-dim);}
+.fr-altam .pos{color:var(--fr-green);font-weight:bold;}
+.fr-altam .neg{color:var(--fr-red);font-weight:bold;}
+.fr-altam .flag{font-size:12px;color:var(--fr-dim);max-width:300px;}
+/* pills */
+.fr-altam .pill{font-family:'Courier New',monospace;font-size:10px;padding:2px 7px;
+  border-radius:2px;border:1px solid;white-space:nowrap;display:inline-block;}
+.fr-altam .pill-pos{background:rgba(62,207,142,0.12);color:var(--fr-green);border-color:rgba(62,207,142,0.3);}
+.fr-altam .pill-neg{background:rgba(232,97,95,0.12);color:var(--fr-red);border-color:rgba(232,97,95,0.3);}
+.fr-altam .pill-neu{background:rgba(74,123,196,0.12);color:var(--fr-steel);border-color:rgba(74,123,196,0.3);}
+.fr-altam .pill-warn{background:rgba(184,134,45,0.12);color:var(--fr-gold);border-color:rgba(184,134,45,0.3);}
+/* mini bars */
+.fr-altam .barcell{display:flex;align-items:center;gap:6px;min-width:90px;}
+.fr-altam .bartrack{flex:1;height:4px;background:var(--fr-border);border-radius:2px;}
+.fr-altam .barfill{height:100%;border-radius:2px;}
+.fr-altam .barval{font-size:11px;font-weight:bold;min-width:30px;}
+/* chart cards grid */
+.fr-altam .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fr-altam .card{background:var(--fr-surface);border:1px solid var(--fr-border);
+  border-radius:2px;padding:16px;}
+.fr-altam .card-title{font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--fr-dim);margin-bottom:12px;}
+.fr-altam .card-foot{font-size:10px;color:var(--fr-dim);margin-top:8px;line-height:1.5;}
+/* controls */
+.fr-altam .ctl{padding:6px 14px;border-radius:2px;border:1px solid var(--fr-border);
+  background:var(--fr-surface);color:var(--fr-dim);cursor:pointer;
+  font-family:'Courier New',monospace;font-size:11px;font-weight:bold;}
+.fr-altam .ctl.on{border-color:var(--fr-gold);color:var(--fr-gold);background:rgba(184,134,45,0.1);}
+.fr-altam .ctl-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.fr-altam .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--fr-dim);align-items:center;}
+.fr-altam .lg-dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:middle;}
+/* svg text */
+.fr-altam svg text{font-family:'Courier New',monospace;}
+/* disclaimer */
+.fr-altam .fr-foot{padding:18px 32px;border-top:1px solid var(--fr-border);
+  font-size:11px;color:var(--fr-dim);line-height:1.6;background:var(--fr-surface);}
+.fr-altam .fr-foot .brand{color:var(--fr-gold);font-family:'Courier New',monospace;letter-spacing:0.1em;}
+.fr-altam .stale{display:inline-block;margin-left:8px;font-family:'Courier New',monospace;
+  font-size:10px;padding:1px 6px;border-radius:2px;background:rgba(184,134,45,0.15);color:var(--fr-gold);}
+/* responsive */
+@media(max-width:720px){
+  .fr-altam .grid2{grid-template-columns:1fr;}
+  .fr-altam .fr-head,.fr-altam .fr-exec,.fr-altam .fr-panel,.fr-altam .fr-foot{padding-left:16px;padding-right:16px;}
+  .fr-altam .fr-tab{padding:12px 14px;}
+}
+</style>
+
+<!-- HEADER -->
+<div class="fr-head">
+  <div>
+    <div class="fr-eyebrow">Fenrir Research · Dispatch · US Alternative Asset Managers</div>
+    <h2 class="fr-title">Alt-AM Signal Dashboard</h2>
+    <div class="fr-sub mono">BX · APO · KKR · ARES · OWL · TPG · CG · HLI · STEP</div>
+  </div>
+  <div class="fr-updated">
+    <div class="lbl">Data as of</div>
+    <div class="val" id="fr-asof">—</div>
+  </div>
+</div>
+
+<!-- EXECUTIVE READ -->
+<div class="fr-exec">
+  <div class="k">The Read — This Period</div>
+  <p id="fr-exec-text">Loading…</p>
+</div>
+
+<!-- TABS -->
+<div class="fr-tabs" id="fr-tabs">
+  <button class="fr-tab active" data-tab="signals">01 · Signal Dashboard</button>
+  <button class="fr-tab" data-tab="quality">02 · Quality &amp; Valuation</button>
+  <button class="fr-tab" data-tab="insurance">03 · Insurance Balance Sheet</button>
+  <button class="fr-tab" data-tab="wealth">04 · Wealth Channel</button>
+  <button class="fr-tab" data-tab="earnings">05 · Earnings Quality &amp; SBC</button>
+  <button class="fr-tab" data-tab="ma">06 · M&amp;A Tracker</button>
+</div>
+
+<!-- PANELS -->
+<div class="fr-panel active" data-panel="signals">
+  <p class="fr-panel-note">Cross-sectional snapshot of price action, fee-earnings multiples, growth, positioning and buy-side sentiment. Click any column header to sort. All figures illustrative.</p>
+  <div class="legend" style="margin-bottom:14px;">
+    <span><span class="pill pill-pos">Bullish</span></span>
+    <span><span class="pill pill-neu">Watch</span></span>
+    <span><span class="pill pill-warn">Caution</span></span>
+    <span><span class="pill pill-neg">Bearish</span></span>
+  </div>
+  <div class="tbl-wrap"><table id="fr-signal-tbl"></table></div>
+</div>
+
+<div class="fr-panel" data-panel="quality">
+  <p class="fr-panel-note">The structural quality question for this group is not how fast AUM grows but how durable the fee stream is. We proxy durability with the share of fee-paying AUM that is perpetual or permanent capital, and plot it against the multiple the market is paying on fee-related earnings.</p>
+  <div class="fr-callout"><strong>Why this matters.</strong> A high EV/FRE multiple is only expensive if the underlying fee stream is episodic. Names in the upper-right — high perpetual capital, high multiple — are paying up for durability, which is defensible. Names in the lower-right — high multiple, low perpetual capital — carry the most re-rating risk. The lower-left is where value-trap candidates cluster: cheap, but cheap because the earnings are realisation-dependent.</div>
+  <div class="card">
+    <div class="card-title">Perpetual-Capital % (x) vs EV/FRE Multiple (y) — bubble size = fee-paying AUM</div>
+    <div id="fr-scatter"></div>
+    <div class="card-foot">Perpetual / permanent capital includes insurance-linked, non-traded perpetual vehicles and other locked structures as % of fee-paying AUM. Illustrative.</div>
+  </div>
+  <div class="tbl-wrap" style="margin-top:16px;"><table id="fr-quality-tbl"></table></div>
+</div>
+
+<div class="fr-panel" data-panel="insurance">
+  <p class="fr-panel-note">The defining structural shift in the group is the migration of insurance and spread balance sheets onto alt-AM platforms. Permanent insurance liabilities fund credit origination, converting episodic fundraising into a perpetual spread-earnings engine. This is increasingly the whole bull case for APO and KKR.</p>
+  <div class="fr-callout"><strong>The spread engine.</strong> Spread-related earnings (SRE) are far more annuity-like than carry, and they scale with general-account assets. APO/Athene is the mature template; KKR/Global Atlantic is scaling into it; ARES/Aspida is the small-base, fastest-growth optionality the market has not fully priced. BX runs the asset-light variant — it manages insurance assets without owning the liabilities, capturing fees but not spread.</div>
+  <div class="tbl-wrap"><table id="fr-ins-tbl"></table></div>
+  <div class="grid2" style="margin-top:16px;">
+    <div class="card">
+      <div class="card-title">General-Account Assets ($B)</div>
+      <div id="fr-ins-ga"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">SRE Growth YoY (%) — smaller bases growing fastest</div>
+      <div id="fr-ins-gr"></div>
+    </div>
+  </div>
+</div>
+
+<div class="fr-panel" data-panel="wealth">
+  <p class="fr-panel-note">The wealth / private-bank channel is the primary organic growth vector for the group. We track net flows by manager, the organic-vs-inorganic split, and — critically — redemption queues in semi-liquid vehicles, the early-warning indicator for the channel.</p>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Net Wealth-Channel Flows by Manager ($B, quarterly)</div>
+      <div id="fr-wealth-chart"></div>
+      <div class="legend" id="fr-wealth-legend" style="margin-top:10px;"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Redemption Queue (% of NAV) — semi-liquid vehicles</div>
+      <div class="tbl-wrap"><table id="fr-redeem-tbl"></table></div>
+    </div>
+  </div>
+</div>
+
+<div class="fr-panel" data-panel="earnings">
+  <p class="fr-panel-note">Earnings quality across the group hinges on two things: the mix of fee-related vs market-dependent earnings, and the degree to which stock-based compensation is inflating reported margins. Both are management-defined adjustments and reward scrutiny.</p>
+  <div class="fr-callout"><strong>SBC creep.</strong> Stock comp is typically excluded from FRE and DE by management, which flatters reported margins relative to GAAP. The cleaner comparable is SBC-adjusted FRE margin. Where SBC runs high as a share of after-tax earnings, reported margins overstate true economics — ARES carries the highest ratio in the group and the trend bears watching.</div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Earnings Mix: FRE / SRE / PII ($B LTM)</div>
+      <div id="fr-mix-chart"></div>
+      <div class="legend" style="margin-top:10px;">
+        <span><span class="lg-dot" style="background:#3ecf8e;"></span>FRE</span>
+        <span><span class="lg-dot" style="background:#4a7bc4;"></span>SRE (spread)</span>
+        <span><span class="lg-dot" style="background:#b8862d;"></span>PII (principal inv.)</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">DE Decomposition &amp; SBC Load ($B LTM)</div>
+      <div class="tbl-wrap"><table id="fr-de-tbl"></table></div>
+      <div class="card-foot">SBC excluded from FRE/DE by management; inflates reported margin vs GAAP. SBC/ANI flags names where comp dilution is most material.</div>
+    </div>
+  </div>
+</div>
+
+<div class="fr-panel" data-panel="ma">
+  <p class="fr-panel-note">Consolidation is the second-order theme: scale, data, credit and insurance capability are being bought. We track closed deals on EV/FRE paid, and classify unconfirmed signals — earnings-call language, senior-MD poaching, IR-deck changes — as signals, not confirmed intelligence.</p>
+  <div class="ctl-row">
+    <button class="ctl on" id="fr-ma-toggle">Rumours: ON</button>
+    <span style="font-size:11px;color:var(--fr-dim);">Toggle unconfirmed deal signals</span>
+  </div>
+  <div class="tbl-wrap"><table id="fr-ma-tbl"></table></div>
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title">EV/FRE: closed-deal comps vs current trading</div>
+    <div id="fr-ma-chart"></div>
+    <div class="card-foot">CG trades below closed-deal comps — potential takeout value, but lowest earnings quality (see Tab 02). ARES/OWL at premium — acquirers, not targets. Illustrative.</div>
+  </div>
+</div>
+
+<!-- BOTTOM LINE + DISCLAIMER -->
+<div class="fr-exec" style="border-top:1px solid var(--fr-border);border-bottom:none;">
+  <div class="k">Bottom Line</div>
+  <p id="fr-bottom-text">—</p>
+</div>
+<div class="fr-foot">
+  <span class="brand">FENRIR RESEARCH</span> — a division of Yggdrasil Ledger.
+  This analysis is for informational purposes only. Not investment advice. All figures are illustrative and all
+  estimates are analytical judgements. Data refreshed periodically from filings, earnings calls and channel checks.
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  /* ====== CONFIG: point this at your hosted JSON to enable refresh ====== */
+  var FR_DATA_URL = "https://raw.githubusercontent.com/fenrir1406/yggdrasil/refs/heads/main/altam-dashboard-data.json"; /* e.g. "https://raw.githubusercontent.com/you/repo/main/altam-dashboard-data.json" */
+
+  /* ====== EMBEDDED FALLBACK SNAPSHOT (used if fetch fails/empty) ====== */
+  var FALLBACK = {"meta":{"as_of":"2025-02-28","as_of_label":"Feb 28, 2025 \u00b7 16:00 EST","fx_note":"All AUM/earnings in USD. FRE = Fee-Related Earnings. DE = Distributable Earnings. SRE = Spread-Related Earnings. PII = Principal Investment Income.","schema_version":2},"executive_read":"Fee-related earnings quality is diverging from headline AUM growth. The names compounding fee-paying AUM on perpetual capital \u2014 ARES, OWL \u2014 carry premium EV/FRE multiples that are increasingly defensible; the names leaning on episodic realisations and carry \u2014 CG, TPG \u2014 trade cheap for a reason. The structural story remains the migration of credit and insurance balance sheets onto alt-AM platforms: APO and KKR are now as much spread businesses as fee businesses, and that is where the next leg of earnings durability is being built. Watch SBC creep at ARES, where stock comp is inflating reported FRE margin faster than peers, and watch the wealth channel, where redemption queues are normalising everywhere except OWL.","bottom_line":"On a quality-adjusted basis we would rank the group: perpetual-capital compounders (ARES, OWL) and insurance-levered platforms (APO, KKR) ahead of realisation-dependent managers (CG, TPG). Valuation already reflects much of this \u2014 the mispricing, if any, sits in CG trading below closed-deal takeout comps while carrying the lowest earnings quality, a classic value-trap signature rather than a clean entry. This is an analytical judgement, not a recommendation.","peers":[{"ticker":"BX","name":"Blackstone","aum":1019,"fpaum":745,"perp_pct":42,"fre":5.12,"freMgn":58,"evFre":26.4,"aumGrowth":8.2,"shortInt":1.2,"vol":8.4,"sentiment":72,"analystBuy":18,"analystHold":4,"analystSell":1,"price":132.4,"chg1d":0.8,"chg1w":-1.2,"chg3m":6.4,"chgEarn":12.1,"flag":"Fee step-up on BREIT; short interest near 1yr low","sre":0.82,"pii":1.24,"de":6.18,"sbc":0.31,"comp":1.42,"ani":4.87},{"ticker":"APO","name":"Apollo","aum":651,"fpaum":498,"perp_pct":61,"fre":4.44,"freMgn":55,"evFre":22.1,"aumGrowth":11.4,"shortInt":2.1,"vol":6.1,"sentiment":68,"analystBuy":20,"analystHold":3,"analystSell":0,"price":118.2,"chg1d":-0.4,"chg1w":2.1,"chg3m":14.2,"chgEarn":18.3,"flag":"Athene flows accelerating; SRE beats consensus 3Q straight","sre":1.91,"pii":0.88,"de":7.23,"sbc":0.19,"comp":1.28,"ani":5.32},{"ticker":"KKR","name":"KKR","aum":578,"fpaum":421,"perp_pct":38,"fre":3.87,"freMgn":61,"evFre":24.8,"aumGrowth":9.6,"shortInt":1.8,"vol":5.7,"sentiment":74,"analystBuy":19,"analystHold":3,"analystSell":1,"price":108.6,"chg1d":1.1,"chg1w":0.8,"chg3m":9.8,"chgEarn":14.7,"flag":"Asia-Pacific infra fund final close; GP credit +40% YoY","sre":0.61,"pii":1.12,"de":5.6,"sbc":0.28,"comp":1.15,"ani":4.32},{"ticker":"ARES","name":"Ares Management","aum":428,"fpaum":311,"perp_pct":68,"fre":3.21,"freMgn":48,"evFre":31.2,"aumGrowth":16.8,"shortInt":0.9,"vol":3.8,"sentiment":78,"analystBuy":17,"analystHold":5,"analystSell":0,"price":144.8,"chg1d":0.3,"chg1w":1.4,"chg3m":18.4,"chgEarn":22.6,"flag":"Alt credit fundraising record; wealth flows +$4B QoQ","sre":0.12,"pii":0.42,"de":3.75,"sbc":0.44,"comp":1.68,"ani":3.31},{"ticker":"OWL","name":"Blue Owl","aum":235,"fpaum":187,"perp_pct":91,"fre":1.88,"freMgn":52,"evFre":29.6,"aumGrowth":22.1,"shortInt":1.4,"vol":4.2,"sentiment":65,"analystBuy":14,"analystHold":6,"analystSell":2,"price":19.4,"chg1d":-1.2,"chg1w":-3.4,"chg3m":4.1,"chgEarn":8.2,"flag":"GP stakes valuation pressure; Dyal deployment slower than guided","sre":0.0,"pii":0.28,"de":2.16,"sbc":0.52,"comp":0.72,"ani":1.64},{"ticker":"TPG","name":"TPG","aum":224,"fpaum":168,"perp_pct":29,"fre":1.42,"freMgn":44,"evFre":21.8,"aumGrowth":12.3,"shortInt":3.2,"vol":5.1,"sentiment":59,"analystBuy":12,"analystHold":7,"analystSell":2,"price":44.2,"chg1d":-0.6,"chg1w":-2.1,"chg3m":-3.2,"chgEarn":2.4,"flag":"Rise fund III fundraising behind schedule; mgmt cautious","sre":0.08,"pii":0.32,"de":1.82,"sbc":0.38,"comp":0.86,"ani":1.44},{"ticker":"CG","name":"Carlyle","aum":426,"fpaum":298,"perp_pct":24,"fre":2.14,"freMgn":38,"evFre":18.4,"aumGrowth":6.1,"shortInt":4.1,"vol":7.2,"sentiment":48,"analystBuy":10,"analystHold":8,"analystSell":4,"price":48.6,"chg1d":-1.8,"chg1w":-4.2,"chg3m":-8.4,"chgEarn":-6.2,"flag":"Mgmt turnover; flagship PE fundraise stalled; activist pressure","sre":0.22,"pii":0.58,"de":2.92,"sbc":0.61,"comp":1.44,"ani":2.31},{"ticker":"HLI","name":"Houlihan Lokey","aum":0,"fpaum":0,"perp_pct":0,"fre":1.08,"freMgn":22,"evFre":16.2,"aumGrowth":0,"shortInt":1.6,"vol":2.4,"sentiment":62,"analystBuy":8,"analystHold":6,"analystSell":1,"price":128.4,"chg1d":0.2,"chg1w":1.1,"chg3m":5.2,"chgEarn":9.4,"flag":"M&A advisory rebound; restructuring revenue fading","sre":0.0,"pii":0.0,"de":1.08,"sbc":0.18,"comp":0.72,"ani":0.9},{"ticker":"STEP","name":"StepStone","aum":152,"fpaum":98,"perp_pct":12,"fre":0.72,"freMgn":34,"evFre":19.8,"aumGrowth":14.2,"shortInt":2.8,"vol":1.8,"sentiment":61,"analystBuy":7,"analystHold":5,"analystSell":1,"price":52.4,"chg1d":0.4,"chg1w":0.8,"chg3m":7.8,"chgEarn":11.2,"flag":"Secondaries growth strong; takeout speculation in buy-side chatter","sre":0.0,"pii":0.12,"de":0.84,"sbc":0.24,"comp":0.38,"ani":0.6}],"insurance":[{"ticker":"APO","platform":"Athene / Athora","ga_assets":340,"spread_aum_pct":52,"net_spread_bps":148,"sre_ltm":1.91,"sre_growth":18.4,"capital_note":"Core of the bull case \u2014 permanent spread liabilities funding credit origination","posture":"Engine"},{"ticker":"KKR","platform":"Global Atlantic","ga_assets":183,"spread_aum_pct":32,"net_spread_bps":131,"sre_ltm":0.61,"sre_growth":24.1,"capital_note":"Bought in full 2024; scaling annuity flows, levered to rate-sell window","posture":"Scaling"},{"ticker":"BX","platform":"Corebridge / partner SMAs","ga_assets":215,"spread_aum_pct":21,"net_spread_bps":0,"sre_ltm":0.82,"sre_growth":11.2,"capital_note":"Capital-light insurance \u2014 manages assets, does not own the balance sheet","posture":"Asset-light"},{"ticker":"ARES","platform":"Aspida","ga_assets":24,"spread_aum_pct":8,"net_spread_bps":119,"sre_ltm":0.12,"sre_growth":42.0,"capital_note":"Early-stage; small base, fastest growth, optionality not yet priced","posture":"Emerging"},{"ticker":"CG","platform":"Fortitude (minority)","ga_assets":58,"spread_aum_pct":14,"net_spread_bps":104,"sre_ltm":0.22,"sre_growth":6.0,"capital_note":"Minority economics; less strategic control than peers","posture":"Minority"}],"wealthFlows":{"quarterly":[{"period":"Q2 '23","BX":5.2,"APO":3.8,"ARES":4.4,"OWL":2.1,"KKR":1.8,"organic":10.4,"inorganic":6.9},{"period":"Q3 '23","BX":6.1,"APO":4.2,"ARES":5.1,"OWL":2.6,"KKR":2.1,"organic":12.1,"inorganic":8.0},{"period":"Q4 '23","BX":5.6,"APO":4.6,"ARES":5.8,"OWL":3.0,"KKR":2.4,"organic":11.8,"inorganic":9.6},{"period":"Q1 '24","BX":6.8,"APO":5.1,"ARES":6.4,"OWL":3.4,"KKR":2.8,"organic":13.8,"inorganic":10.7},{"period":"Q2 '24","BX":7.2,"APO":5.6,"ARES":7.1,"OWL":3.8,"KKR":3.1,"organic":15.4,"inorganic":11.4},{"period":"Q3 '24","BX":8.1,"APO":6.2,"ARES":8.4,"OWL":4.2,"KKR":3.6,"organic":17.8,"inorganic":12.7}]},"redemptions":[{"vehicle":"BX \u2014 BREIT","q1":4.2,"q2":3.1,"q3":2.4,"q4":1.8,"trend":"improving"},{"vehicle":"APO \u2014 BCRED","q1":2.1,"q2":1.8,"q3":1.4,"q4":1.1,"trend":"improving"},{"vehicle":"ARES \u2014 ASIF","q1":0.8,"q2":0.6,"q3":0.5,"q4":0.4,"trend":"stable"},{"vehicle":"OWL \u2014 OBIC","q1":1.4,"q2":1.6,"q3":1.9,"q4":2.2,"trend":"worsening"}],"ma":[{"acquirer":"BlackRock","target":"GIP","value":12.5,"strategy":"Infrastructure","evFre":28.4,"epsImpact":"+4.2%","accretive":true,"closed":true,"signal":"Strategic \u2014 scale in infra before rate cuts","date":"Jan '24"},{"acquirer":"BlackRock","target":"Preqin","value":3.2,"strategy":"Data/Analytics","evFre":38.1,"epsImpact":"+1.8%","accretive":true,"closed":true,"signal":"Data moat \u2014 lock in LP data before competitors","date":"Mar '24"},{"acquirer":"TPG","target":"Angelo Gordon","value":2.7,"strategy":"Credit","evFre":16.2,"epsImpact":"+3.1%","accretive":true,"closed":true,"signal":"Credit buildout; compensates for PE fundraise weakness","date":"Nov '23"},{"acquirer":"Franklin","target":"Putnam","value":0.9,"strategy":"Trad. AM","evFre":8.4,"epsImpact":"-0.4%","accretive":false,"closed":true,"signal":"Defensive scale play; synergies hard to realise","date":"Jan '24"},{"acquirer":"KKR","target":null,"value":null,"strategy":"Insurance/Credit","evFre":null,"epsImpact":"est. +2-4%","accretive":true,"closed":false,"signal":"CFO flagged 'balance sheet optionality' on Q3 call; scout teams active in Japan","date":"Rumour"},{"acquirer":"CG","target":null,"value":null,"strategy":"Credit","evFre":null,"epsImpact":"est. +1-3%","accretive":true,"closed":false,"signal":"New CIO hired from Apollo credit; 3 senior credit MDs poached in 6 months","date":"Rumour"},{"acquirer":"ARES","target":null,"value":null,"strategy":"Europe/RE","evFre":null,"epsImpact":"est. +2-5%","accretive":true,"closed":false,"signal":"IR team added European RE language to investor day deck for first time","date":"Rumour"}]};
+
+  var root = document.getElementById('fr-altam-root');
+  var COL = {green:'#3ecf8e',red:'#e8615f',gold:'#b8862d',steel:'#4a7bc4',cool:'#1a6b9a',
+             dim:'#8a93a3',border:'#2a313d',ink:'#e8e6df',surface:'#1b2029'};
+  var TKCOL = {BX:'#b8862d',APO:'#4a7bc4',ARES:'#3ecf8e',OWL:'#9b6ed8',KKR:'#e0915c',
+               TPG:'#e8615f',CG:'#c0392b',HLI:'#1a6b9a',STEP:'#6b8f71'};
+
+  /* ---- helpers ---- */
+  function fmt(n,d){ if(n==null) return '\u2014'; return Number(n).toFixed(d==null?1:d); }
+  function pctStr(n){ if(n==null) return '\u2014'; return (n>0?'+':'')+Number(n).toFixed(1)+'%'; }
+  function deltaCell(v,suf){ if(v==null) return '<span style="color:'+COL.dim+'">\u2014</span>';
+    var c=v>=0?'pos':'neg'; return '<span class="'+c+'">'+(v>0?'+':'')+fmt(v)+(suf||'')+'</span>'; }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function el(id){ return document.getElementById(id); }
+
+  /* ---- SVG mini chart builders (no libraries) ---- */
+  function svgEl(w,h){ return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" style="display:block;overflow:visible">'; }
+
+  function vBarChart(rows, opts){ /* rows: [{label,value,color}] vertical bars */
+    opts=opts||{}; var w=opts.w||440,h=opts.h||220,pad=opts.pad||28,top=14;
+    var max=Math.max.apply(null,rows.map(function(r){return r.value;}))||1;
+    var bw=(w-pad-8)/rows.length, gap=bw*0.32, plotH=h-pad-top;
+    var s=svgEl(w,h);
+    [0,0.5,1].forEach(function(f){ var y=top+plotH*(1-f);
+      s+='<line x1="'+pad+'" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="'+COL.border+'" stroke-width="1"/>';
+      s+='<text x="'+(pad-4)+'" y="'+(y+3)+'" fill="'+COL.dim+'" font-size="9" text-anchor="end">'+ (max*f).toFixed(0) +'</text>'; });
+    rows.forEach(function(r,i){ var bh=plotH*(r.value/max), x=pad+i*bw+gap/2, y=top+plotH-bh;
+      s+='<rect x="'+x+'" y="'+y+'" width="'+(bw-gap)+'" height="'+Math.max(bh,1)+'" fill="'+(r.color||COL.steel)+'" rx="1"/>';
+      s+='<text x="'+(x+(bw-gap)/2)+'" y="'+(y-4)+'" fill="'+COL.ink+'" font-size="9" text-anchor="middle">'+r.value+'</text>';
+      s+='<text x="'+(x+(bw-gap)/2)+'" y="'+(h-8)+'" fill="'+COL.dim+'" font-size="9" text-anchor="middle">'+esc(r.label)+'</text>'; });
+    return s+'</svg>';
+  }
+
+  function hBarChart(rows, opts){ /* horizontal bars [{label,value,color}] */
+    opts=opts||{}; var w=opts.w||440,labelW=opts.labelW||120,rowH=26,pad=8;
+    var h=rows.length*rowH+16, max=Math.max.apply(null,rows.map(function(r){return r.value;}))||1;
+    var plotW=w-labelW-44, ref=opts.ref;
+    var s=svgEl(w,h);
+    if(ref!=null){ var rx=labelW+plotW*(ref/max);
+      s+='<line x1="'+rx+'" y1="6" x2="'+rx+'" y2="'+(h-10)+'" stroke="'+COL.dim+'" stroke-dasharray="4 4" stroke-width="1"/>'; }
+    rows.forEach(function(r,i){ var y=8+i*rowH, bw=plotW*(r.value/max);
+      s+='<text x="'+(labelW-6)+'" y="'+(y+rowH/2)+'" fill="'+COL.dim+'" font-size="10" text-anchor="end" dominant-baseline="middle">'+esc(r.label)+'</text>';
+      s+='<rect x="'+labelW+'" y="'+(y+5)+'" width="'+Math.max(bw,1)+'" height="'+(rowH-12)+'" fill="'+(r.color||COL.steel)+'" rx="1"/>';
+      s+='<text x="'+(labelW+bw+5)+'" y="'+(y+rowH/2)+'" fill="'+COL.ink+'" font-size="10" dominant-baseline="middle">'+(opts.suffix?r.value+opts.suffix:r.value)+'</text>'; });
+    return s+'</svg>';
+  }
+
+  function stackedBar(data, keys, colors, opts){ /* data:[{label,..keys}] */
+    opts=opts||{}; var w=opts.w||440,h=opts.h||220,pad=28,top=14;
+    var totals=data.map(function(d){var t=0;keys.forEach(function(k){t+=d[k]||0;});return t;});
+    var max=Math.max.apply(null,totals)||1, bw=(w-pad-8)/data.length, gap=bw*0.4, plotH=h-pad-top;
+    var s=svgEl(w,h);
+    [0,0.5,1].forEach(function(f){var y=top+plotH*(1-f);
+      s+='<line x1="'+pad+'" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="'+COL.border+'"/>';
+      s+='<text x="'+(pad-4)+'" y="'+(y+3)+'" fill="'+COL.dim+'" font-size="9" text-anchor="end">'+(max*f).toFixed(1)+'</text>';});
+    data.forEach(function(d,i){ var x=pad+i*bw+gap/2, acc=0;
+      keys.forEach(function(k,ki){ var v=d[k]||0; if(v<=0)return; var bh=plotH*(v/max), y=top+plotH-acc-bh;
+        s+='<rect x="'+x+'" y="'+y+'" width="'+(bw-gap)+'" height="'+bh+'" fill="'+colors[ki]+'"/>'; acc+=bh; });
+      s+='<text x="'+(x+(bw-gap)/2)+'" y="'+(h-8)+'" fill="'+COL.dim+'" font-size="9" text-anchor="middle">'+esc(d.label)+'</text>'; });
+    return s+'</svg>';
+  }
+
+  function scatter(points, opts){ /* points:[{x,y,r,label,color}] */
+    opts=opts||{}; var w=opts.w||1000,h=opts.h||380,padL=48,padB=40,padT=16,padR=20;
+    var xmin=0,xmax=100,ymin=opts.ymin||15,ymax=opts.ymax||34;
+    var plotW=w-padL-padR, plotH=h-padB-padT;
+    function px(x){return padL+plotW*((x-xmin)/(xmax-xmin));}
+    function py(y){return padT+plotH*(1-(y-ymin)/(ymax-ymin));}
+    var s=svgEl(w,h);
+    /* grid + axes */
+    for(var gx=0;gx<=100;gx+=20){ var X=px(gx);
+      s+='<line x1="'+X+'" y1="'+padT+'" x2="'+X+'" y2="'+(padT+plotH)+'" stroke="'+COL.border+'" stroke-width="1"/>';
+      s+='<text x="'+X+'" y="'+(h-padB+16)+'" fill="'+COL.dim+'" font-size="10" text-anchor="middle">'+gx+'%</text>'; }
+    for(var gy=Math.ceil(ymin/5)*5;gy<=ymax;gy+=5){ var Y=py(gy);
+      s+='<line x1="'+padL+'" y1="'+Y+'" x2="'+(padL+plotW)+'" y2="'+Y+'" stroke="'+COL.border+'" stroke-width="1"/>';
+      s+='<text x="'+(padL-6)+'" y="'+(Y+3)+'" fill="'+COL.dim+'" font-size="10" text-anchor="end">'+gy+'x</text>'; }
+    /* quadrant divider at median-ish */
+    var mx=px(50); s+='<line x1="'+mx+'" y1="'+padT+'" x2="'+mx+'" y2="'+(padT+plotH)+'" stroke="'+COL.gold+'" stroke-dasharray="3 5" stroke-width="1" opacity="0.5"/>';
+    /* axis labels */
+    s+='<text x="'+(padL+plotW/2)+'" y="'+(h-2)+'" fill="'+COL.dim+'" font-size="10" text-anchor="middle">PERPETUAL / PERMANENT CAPITAL (% of fee-paying AUM)</text>';
+    s+='<text x="14" y="'+(padT+plotH/2)+'" fill="'+COL.dim+'" font-size="10" text-anchor="middle" transform="rotate(-90 14 '+(padT+plotH/2)+')">EV / FRE (x)</text>';
+    /* points */
+    points.forEach(function(p){ var X=px(p.x),Y=py(p.y),R=p.r;
+      s+='<circle cx="'+X+'" cy="'+Y+'" r="'+R+'" fill="'+p.color+'" opacity="0.35"/>';
+      s+='<circle cx="'+X+'" cy="'+Y+'" r="3" fill="'+p.color+'"/>';
+      s+='<text x="'+X+'" y="'+(Y-R-5)+'" fill="'+COL.ink+'" font-size="11" font-weight="bold" text-anchor="middle">'+esc(p.label)+'</text>'; });
+    return s+'</svg>';
+  }
+
+  /* ---- renderers ---- */
+  var DATA=null, sortKey='ticker', sortDir=1, maRumours=true;
+
+  function renderHeader(){
+    el('fr-asof').textContent = DATA.meta.as_of_label || DATA.meta.as_of || '\u2014';
+    el('fr-exec-text').textContent = DATA.executive_read || '';
+    el('fr-bottom-text').textContent = DATA.bottom_line || '';
+  }
+
+  function renderSignals(){
+    var cols=[['ticker','TICKER'],['price','PRICE'],['chg1d','1D'],['chg1w','1W'],['chg3m','3M'],
+      ['chgEarn','SINCE EARN'],['evFre','EV/FRE'],['freMgn','FRE MGN'],['aumGrowth','AUM GRW'],
+      ['shortInt','SHORT INT'],['sentiment','SENTIMENT'],['analystBuy','B/H/S']];
+    var rows=DATA.peers.slice().sort(function(a,b){var av=a[sortKey],bv=b[sortKey];
+      if(av==null)return 1; if(bv==null)return -1;
+      return (typeof av==='string'?av.localeCompare(bv):av-bv)*sortDir;});
+    var html='<thead><tr>';
+    cols.forEach(function(c){ html+='<th class="sortable'+(sortKey===c[0]?' sorted':'')+'" data-k="'+c[0]+'">'+c[1]+(sortKey===c[0]?(sortDir>0?' \u25b2':' \u25bc'):'')+'</th>'; });
+    html+='<th>ANALYST FLAGS</th></tr></thead><tbody>';
+    rows.forEach(function(d){
+      var sc=d.sentiment>=70?COL.green:d.sentiment>=55?COL.gold:COL.red;
+      var shc=d.shortInt>=3?COL.red:d.shortInt>=2?COL.gold:COL.green;
+      html+='<tr>';
+      html+='<td><span class="tk">'+d.ticker+'</span><br><span class="tk-name">'+esc(d.name)+'</span></td>';
+      html+='<td style="font-weight:bold">$'+fmt(d.price)+'</td>';
+      html+='<td>'+deltaCell(d.chg1d,'%')+'</td><td>'+deltaCell(d.chg1w,'%')+'</td>';
+      html+='<td>'+deltaCell(d.chg3m,'%')+'</td><td>'+deltaCell(d.chgEarn,'%')+'</td>';
+      html+='<td>'+fmt(d.evFre)+'x</td><td>'+d.freMgn+'%</td>';
+      html+='<td>'+deltaCell(d.aumGrowth,'%')+'</td>';
+      html+='<td><div class="barcell"><div class="bartrack"><div class="barfill" style="width:'+Math.min(d.shortInt/5*100,100)+'%;background:'+shc+'"></div></div><span class="barval" style="color:'+shc+'">'+d.shortInt+'%</span></div></td>';
+      html+='<td><div class="barcell"><div class="bartrack"><div class="barfill" style="width:'+d.sentiment+'%;background:'+sc+'"></div></div><span class="barval" style="color:'+sc+'">'+d.sentiment+'</span></div></td>';
+      html+='<td><span class="pos">'+d.analystBuy+'</span><span style="color:'+COL.dim+'">/</span><span style="color:'+COL.gold+'">'+d.analystHold+'</span><span style="color:'+COL.dim+'">/</span><span class="neg">'+d.analystSell+'</span></td>';
+      html+='<td class="flag">'+esc(d.flag)+'</td></tr>';
+    });
+    html+='</tbody>';
+    var t=el('fr-signal-tbl'); t.innerHTML=html;
+    Array.prototype.forEach.call(t.querySelectorAll('th.sortable'),function(th){
+      th.addEventListener('click',function(){var k=th.getAttribute('data-k');
+        if(sortKey===k)sortDir=-sortDir; else{sortKey=k;sortDir=-1;} renderSignals();});
+    });
+  }
+
+  function renderQuality(){
+    var p=DATA.peers.filter(function(d){return d.fpaum>0;});
+    var maxF=Math.max.apply(null,p.map(function(d){return d.fpaum;}));
+    var pts=p.map(function(d){return {x:d.perp_pct,y:d.evFre,r:8+22*Math.sqrt(d.fpaum/maxF),
+      label:d.ticker,color:TKCOL[d.ticker]||COL.steel};});
+    el('fr-scatter').innerHTML=scatter(pts,{w:1020,h:380,ymin:15,ymax:34});
+    var rows=p.slice().sort(function(a,b){return b.perp_pct-a.perp_pct;});
+    var h='<thead><tr><th>TICKER</th><th>PERP CAP %</th><th>EV/FRE</th><th>FRE MGN</th><th>FP-AUM $B</th><th>AUM GRW</th><th>QUALITY READ</th></tr></thead><tbody>';
+    rows.forEach(function(d){
+      var read,pill;
+      if(d.perp_pct>=55&&d.evFre>=24){read='Paying up for durability \u2014 defensible';pill='pill-pos';}
+      else if(d.evFre>=24&&d.perp_pct<40){read='Premium on episodic earnings \u2014 re-rating risk';pill='pill-warn';}
+      else if(d.evFre<20&&d.perp_pct<40){read='Cheap but realisation-dependent \u2014 value-trap watch';pill='pill-neg';}
+      else{read='Mid-quality \u2014 transitioning';pill='pill-neu';}
+      h+='<tr><td><span class="tk">'+d.ticker+'</span></td><td style="font-weight:bold">'+d.perp_pct+'%</td>'
+        +'<td>'+fmt(d.evFre)+'x</td><td>'+d.freMgn+'%</td><td>'+d.fpaum+'</td><td>'+deltaCell(d.aumGrowth,'%')+'</td>'
+        +'<td><span class="pill '+pill+'">'+read+'</span></td></tr>';
+    });
+    el('fr-quality-tbl').innerHTML=h+'</tbody>';
+  }
+
+  function renderInsurance(){
+    var ins=DATA.insurance;
+    var h='<thead><tr><th>TICKER</th><th>PLATFORM</th><th>GA ASSETS $B</th><th>SPREAD AUM %</th><th>NET SPREAD bps</th><th>SRE LTM $B</th><th>SRE GRW</th><th>POSTURE</th><th>NOTE</th></tr></thead><tbody>';
+    ins.forEach(function(d){
+      var pp=d.posture==='Engine'?'pill-pos':d.posture==='Scaling'||d.posture==='Emerging'?'pill-neu':d.posture==='Asset-light'?'pill-warn':'pill-neg';
+      h+='<tr><td><span class="tk">'+d.ticker+'</span></td><td>'+esc(d.platform)+'</td>'
+        +'<td style="font-weight:bold">$'+d.ga_assets+'</td><td>'+d.spread_aum_pct+'%</td>'
+        +'<td>'+(d.net_spread_bps?d.net_spread_bps:'\u2014')+'</td><td>'+fmt(d.sre_ltm,2)+'</td>'
+        +'<td>'+deltaCell(d.sre_growth,'%')+'</td><td><span class="pill '+pp+'">'+d.posture+'</span></td>'
+        +'<td class="flag">'+esc(d.capital_note)+'</td></tr>';
+    });
+    el('fr-ins-tbl').innerHTML=h+'</tbody>';
+    el('fr-ins-ga').innerHTML=hBarChart(ins.map(function(d){return {label:d.ticker,value:d.ga_assets,color:TKCOL[d.ticker]};}),{w:440,labelW:48});
+    el('fr-ins-gr').innerHTML=hBarChart(ins.map(function(d){return {label:d.ticker,value:d.sre_growth,color:TKCOL[d.ticker]};}),{w:440,labelW:48,suffix:'%'});
+  }
+
+  function renderWealth(){
+    var data=DATA.wealthFlows.quarterly;
+    var keys=['BX','APO','ARES','OWL','KKR'], colors=keys.map(function(k){return TKCOL[k];});
+    var rows=data.map(function(d){var o={label:d.period};keys.forEach(function(k){o[k]=d[k];});return o;});
+    el('fr-wealth-chart').innerHTML=stackedBar(rows,keys,colors,{w:440,h:220});
+    el('fr-wealth-legend').innerHTML=keys.map(function(k){return '<span><span class="lg-dot" style="background:'+TKCOL[k]+'"></span>'+k+'</span>';}).join('');
+    var r=DATA.redemptions;
+    var h='<thead><tr><th>VEHICLE</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>TREND</th></tr></thead><tbody>';
+    r.forEach(function(d){var pp=d.trend==='improving'?'pill-pos':d.trend==='stable'?'pill-neu':'pill-neg';
+      h+='<tr><td><span class="tk">'+esc(d.vehicle)+'</span></td><td>'+d.q1+'%</td><td>'+d.q2+'%</td><td>'+d.q3+'%</td><td>'+d.q4+'%</td><td><span class="pill '+pp+'">'+d.trend+'</span></td></tr>';});
+    el('fr-redeem-tbl').innerHTML=h+'</tbody>';
+  }
+
+  function renderEarnings(){
+    var p=DATA.peers.filter(function(d){return d.fre>0;});
+    var rows=p.map(function(d){return {label:d.ticker,FRE:d.fre,SRE:d.sre,PII:d.pii};});
+    el('fr-mix-chart').innerHTML=stackedBar(rows,['FRE','SRE','PII'],[COL.green,COL.steel,COL.gold],{w:440,h:220});
+    var de=DATA.peers.filter(function(d){return d.de>0;});
+    var h='<thead><tr><th>TK</th><th>FRE</th><th>CARRY/REAL.</th><th>DE</th><th>ANI</th><th>SBC*</th><th>SBC/ANI</th></tr></thead><tbody>';
+    de.forEach(function(d){var ratio=d.sbc/d.ani, rc=ratio>0.25?COL.red:COL.gold;
+      h+='<tr><td><span class="tk">'+d.ticker+'</span></td><td class="pos">'+fmt(d.fre,2)+'</td>'
+        +'<td style="color:'+COL.steel+'">'+fmt(d.de-d.fre,2)+'</td><td style="font-weight:bold">'+fmt(d.de,2)+'</td>'
+        +'<td>'+fmt(d.ani,2)+'</td><td class="neg">'+fmt(d.sbc,2)+'</td>'
+        +'<td style="color:'+rc+';font-weight:bold">'+(ratio*100).toFixed(1)+'%</td></tr>';});
+    el('fr-de-tbl').innerHTML=h+'</tbody>';
+  }
+
+  function renderMA(){
+    var rows=DATA.ma.filter(function(d){return maRumours||d.closed;});
+    var h='<thead><tr><th>STATUS</th><th>ACQUIRER</th><th>TARGET / TYPE</th><th>STRATEGY</th><th>VALUE</th><th>EV/FRE</th><th>EPS</th><th>SIGNAL</th></tr></thead><tbody>';
+    rows.forEach(function(d){
+      var stp=d.closed?'<span class="pill pill-pos">Closed</span>':'<span class="pill pill-warn">Signal</span>';
+      var epsp=d.accretive?'pill-pos':'pill-neg';
+      var tgt=d.target?esc(d.target):'<span style="color:'+COL.dim+';font-style:italic">Unknown \u2014 scouting</span>';
+      h+='<tr><td>'+stp+'</td><td style="color:'+COL.gold+';font-weight:bold">'+esc(d.acquirer)+'</td>'
+        +'<td>'+tgt+'</td><td style="color:'+COL.dim+';font-size:12px">'+esc(d.strategy)+'</td>'
+        +'<td>'+(d.value?'$'+d.value+'B':'\u2014')+'</td><td>'+(d.evFre?d.evFre+'x':'\u2014')+'</td>'
+        +'<td><span class="pill '+epsp+'">'+esc(d.epsImpact)+'</span></td>'
+        +'<td class="flag">'+esc(d.signal)+'</td></tr>';
+    });
+    el('fr-ma-tbl').innerHTML=h+'</tbody>';
+    /* comps chart: deal avg + current trading */
+    var closed=DATA.ma.filter(function(d){return d.closed&&d.evFre;});
+    var avg=closed.reduce(function(s,d){return s+d.evFre;},0)/closed.length;
+    var bars=[{label:'Deal avg',value:+avg.toFixed(1),color:COL.dim}];
+    ['BX','ARES','KKR','APO','OWL','CG'].forEach(function(tk){
+      var d=DATA.peers.filter(function(x){return x.ticker===tk;})[0];
+      if(d) bars.push({label:tk,value:d.evFre,color:TKCOL[tk]});});
+    el('fr-ma-chart').innerHTML=hBarChart(bars,{w:600,labelW:90,suffix:'x',ref:+avg.toFixed(1)});
+  }
+
+  function renderAll(){ renderHeader(); renderSignals(); renderQuality(); renderInsurance();
+    renderWealth(); renderEarnings(); renderMA(); }
+
+  /* ---- tabs ---- */
+  Array.prototype.forEach.call(document.querySelectorAll('.fr-altam .fr-tab'),function(btn){
+    btn.addEventListener('click',function(){
+      Array.prototype.forEach.call(document.querySelectorAll('.fr-altam .fr-tab'),function(b){b.classList.remove('active');});
+      Array.prototype.forEach.call(document.querySelectorAll('.fr-altam .fr-panel'),function(p){p.classList.remove('active');});
+      btn.classList.add('active');
+      document.querySelector('.fr-altam .fr-panel[data-panel="'+btn.getAttribute('data-tab')+'"]').classList.add('active');
+    });
+  });
+  el('fr-ma-toggle').addEventListener('click',function(){maRumours=!maRumours;
+    this.textContent='Rumours: '+(maRumours?'ON':'OFF'); this.classList.toggle('on',maRumours); renderMA();});
+
+  /* ---- staleness check ---- */
+  function flagStale(){
+    try{ var d=new Date(DATA.meta.as_of); var days=(Date.now()-d.getTime())/86400000;
+      if(days>100){ var asof=el('fr-asof'); var s=document.createElement('span');
+        s.className='stale'; s.textContent='\u26a0 '+Math.round(days)+'d old'; asof.parentNode.appendChild(s); } }catch(e){}
+  }
+
+  /* ---- load: try remote, fall back to embedded ---- */
+  function boot(d){ DATA=d; renderAll(); flagStale(); }
+  if(FR_DATA_URL){
+    fetch(FR_DATA_URL,{cache:'no-store'}).then(function(r){return r.json();})
+      .then(function(j){boot(j);})
+      .catch(function(){boot(FALLBACK);});
+  } else { boot(FALLBACK); }
+})();
+</script>
