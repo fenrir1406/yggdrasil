@@ -406,21 +406,23 @@
                      window.addEventListener('load', postHeight);
                      document.addEventListener('DOMContentLoaded', postHeight);
             }
-            // On window resize
-            window.addEventListener('resize', postHeight);
-            // Watch for any DOM size changes (charts render async, tab toggles, etc.)
-            try {
-                     var ro = new ResizeObserver(function(){ postHeight(); });
-                     ro.observe(document.documentElement);
-                     if (document.body) ro.observe(document.body);
-            } catch(e) {}
-       // Also poll periodically for a short window after load to catch late renders
-            var ticks = 0;
-            var poll = setInterval(function(){
-                     postHeight();
-                     if (++ticks > 20) clearInterval(poll); // ~10s of polling at 500ms
-            }, 500);
-            // Respond to parent's explicit ping
+      // Resend only when dashboard content actually changes (debounced, not live).
+                // No window-resize listener, no polling, no ResizeObserver — static behavior.
+                var _t;
+                function _schedule(){ clearTimeout(_t); _t = setTimeout(postHeight, 150); }
+                try {
+                             if (window.MutationObserver) {
+                                            var _mo = new MutationObserver(_schedule);
+                                            var _attach = function(){
+                                                             if (document.body) _mo.observe(document.body, {
+                                                                                childList: true, subtree: true, characterData: true, attributes: true
+                                                             });
+                                            };
+                                            if (document.body) _attach();
+                                            else document.addEventListener('DOMContentLoaded', _attach);
+                             }
+                } catch(e) {}
+          // Respond to parent's explicit ping
             window.addEventListener('message', function(ev){
                      if (ev && ev.data && ev.data === 'fr-altam-ping') postHeight();
             });
