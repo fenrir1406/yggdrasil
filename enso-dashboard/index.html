@@ -730,4 +730,13 @@ if(HAS_CHART){
 
 }
 })();
+// Report height to parent (for iframe auto-resize)
+function postHeight(){
+  var h = document.querySelector('.enso-d').scrollHeight;
+  if(window.parent) window.parent.postMessage({ ensoDashHeight: h }, "*");
+}
+window.addEventListener('load', function(){ setTimeout(postHeight, 300); });
+window.addEventListener('resize', postHeight);
+// also report after the data loads and tabs change
+document.addEventListener('click', function(){ setTimeout(postHeight, 100); });
 </script>
