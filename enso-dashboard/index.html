@@ -730,13 +730,48 @@ if(HAS_CHART){
 
 }
 })();
-// Report height to parent (for iframe auto-resize)
-function postHeight(){
-  var h = document.querySelector('.enso-d').scrollHeight;
-  if(window.parent) window.parent.postMessage({ ensoDashHeight: h }, "*");
-}
-window.addEventListener('load', function(){ setTimeout(postHeight, 300); });
-window.addEventListener('resize', postHeight);
-// also report after the data loads and tabs change
-document.addEventListener('click', function(){ setTimeout(postHeight, 100); });
+     (function(){
+            // Post height to parent window so the embedding iframe can auto-resize.
+            // Sends both a generic numeric payload and a recognizable typed payload.
+            function postHeight(){
+                     try {
+                                var h = Math.max(
+                                             document.documentElement.scrollHeight,
+                                             document.body ? document.body.scrollHeight : 0,
+                                             document.documentElement.offsetHeight,
+                                             document.body ? document.body.offsetHeight : 0
+                                           );
+                                if (window.parent && window.parent !== window) {
+                                             window.parent.postMessage({ type: 'fr-altam-height', height: h }, '*');
+                                }
+                     } catch(e) {}
+            }
+            // Initial + on load
+            if (document.readyState === 'complete') {
+                     postHeight();
+            } else {
+                     window.addEventListener('load', postHeight);
+                     document.addEventListener('DOMContentLoaded', postHeight);
+            }
+      // Resend only when dashboard content actually changes (debounced, not live).
+                // No window-resize listener, no polling, no ResizeObserver — static behavior.
+                var _t;
+                function _schedule(){ clearTimeout(_t); _t = setTimeout(postHeight, 150); }
+                try {
+                             if (window.MutationObserver) {
+                                            var _mo = new MutationObserver(_schedule);
+                                            var _attach = function(){
+                                                             if (document.body) _mo.observe(document.body, {
+                                                                                childList: true, subtree: true, characterData: true, attributes: true
+                                                             });
+                                            };
+                                            if (document.body) _attach();
+                                            else document.addEventListener('DOMContentLoaded', _attach);
+                             }
+                } catch(e) {}
+          // Respond to parent's explicit ping
+            window.addEventListener('message', function(ev){
+                     if (ev && ev.data && ev.data === 'fr-altam-ping') postHeight();
+            });
+     })();
 </script>
