@@ -1,0 +1,733 @@
+<style>
+.enso-d{
+  --bg:#0f141c; --panel:#161d28; --panel2:#1c2533; --line:#2a3340;
+  --steel:#5b8fc9; --warm:#e25c4a; --cool:#3d9bd4; --neutral:#5fb37e;
+  --gold:#e0992f; --purple:#9b7bd4; --txt:#e6ebf2; --mid:#8b97a8; --dim:#5c6675;
+  font-family:Georgia,serif; color:var(--txt); max-width:1080px; margin:0 auto;
+  background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
+}
+.enso-d *,.enso-d *::before,.enso-d *::after{box-sizing:border-box}
+
+/* Masthead */
+.d-mast{background:linear-gradient(135deg,#0c1119,#18222f);padding:24px 26px;border-bottom:2px solid var(--warm)}
+.d-mast-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+.d-eyebrow{font-family:'Courier New',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin:0 0 8px}
+.d-title{font-size:clamp(20px,3vw,28px);font-weight:700;color:#fff;margin:0;line-height:1.15}
+.d-asof{font-family:'Courier New',monospace;font-size:10px;background:rgba(91,143,201,0.15);color:var(--steel);padding:5px 12px;border-radius:3px;white-space:nowrap;letter-spacing:1px}
+.d-mast-sub{font-size:13px;color:var(--mid);margin:10px 0 0;font-style:italic;max-width:760px}
+
+/* Command header (persistent) */
+.d-cmd{background:var(--panel);padding:22px 26px;border-bottom:1px solid var(--line)}
+.d-cmd-tag{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);margin:0 0 14px}
+.d-hero{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin:0 0 16px}
+.d-state{background:var(--panel2);border-radius:8px;padding:18px;border-left:4px solid var(--cool)}
+.d-state-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin:0 0 8px}
+.d-state-v{font-size:26px;font-weight:700;color:#fff;line-height:1.1;margin:0 0 8px}
+.d-state-d{font-size:13px;color:var(--mid);line-height:1.55;margin:0}
+.d-gauge-wrap{background:var(--panel2);border-radius:8px;padding:16px;display:flex;flex-direction:column;justify-content:center}
+.d-gl{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);text-align:center;margin:0 0 4px}
+.d-gauge-box{position:relative;height:130px}
+.d-gauge-val{text-align:center;font-size:13px;color:var(--steel);font-weight:700;margin:6px 0 0;font-family:'Courier New',monospace}
+.d-metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 16px}
+.d-metric{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:13px 12px;text-align:center;border-top:3px solid var(--dim)}
+.d-metric.pos{border-top-color:var(--warm)} .d-metric.neu{border-top-color:var(--neutral)}
+.d-ml{font-family:'Courier New',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin:0 0 5px}
+.d-mv{font-size:21px;font-weight:700;color:#fff;line-height:1;margin:0;font-family:'Courier New',monospace}
+.d-ms{font-size:10px;color:var(--dim);margin:5px 0 0}
+.d-cyc-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin:0 0 10px}
+.d-cyc{display:flex;gap:5px;margin:0 0 16px}
+.d-cyc-p{flex:1;text-align:center;padding:11px 6px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)}
+.d-cyc-p.active{background:var(--warm);border-color:var(--warm)}
+.d-cyc-n{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:var(--txt);display:block}
+.d-cyc-p.active .d-cyc-n{color:#fff}
+.d-cyc-s{font-size:9px;color:var(--dim);display:block;margin-top:3px}
+.d-cyc-p.active .d-cyc-s{color:rgba(255,255,255,0.85)}
+.d-narr{background:rgba(61,155,212,0.08);border-left:4px solid var(--cool);padding:16px 20px;border-radius:0 6px 6px 0;font-size:15px;line-height:1.65;color:var(--txt)}
+.d-narr-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--cool);display:block;margin:0 0 6px}
+
+/* Top-level section tabs */
+.d-sectabs{display:flex;gap:4px;background:var(--panel2);padding:10px 16px;flex-wrap:wrap;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.d-sectab{font-family:'Courier New',monospace;font-size:12px;font-weight:700;letter-spacing:0.5px;padding:9px 16px;background:transparent;border:1px solid var(--line);border-radius:6px;color:var(--mid);cursor:pointer;transition:all .15s}
+.d-sectab:hover{background:var(--panel);color:var(--txt)}
+.d-sectab.active{background:var(--warm);color:#fff;border-color:var(--warm)}
+
+/* Section panels */
+.d-section{display:none;padding:24px 26px}
+.d-section.active{display:block}
+.d-sec-head{display:flex;align-items:baseline;gap:12px;margin:0 0 4px;padding-bottom:12px;border-bottom:2px solid var(--steel);flex-wrap:wrap}
+.d-sec-num{font-family:'Courier New',monospace;font-size:12px;font-weight:700;color:#fff;background:var(--steel);padding:3px 9px;border-radius:3px;letter-spacing:1px}
+.d-sec-title{font-size:clamp(17px,2.4vw,22px);font-weight:700;color:#fff;margin:0}
+.d-sec-q{font-size:13px;color:var(--mid);font-style:italic;margin:0;flex-basis:100%}
+.d-sec-intro{font-size:14px;color:var(--mid);line-height:1.6;margin:14px 0 18px}
+
+/* Sub-tabs */
+.d-tabhint{font-family:'Courier New',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cool);margin:18px 0 8px;display:flex;align-items:center;gap:6px}
+.d-tabhint::before{content:"\25C6";font-size:8px}
+.d-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.d-tab{font-family:'Courier New',monospace;font-size:13px;font-weight:700;padding:10px 18px;background:var(--panel2);border:1px solid var(--line);border-radius:6px;color:var(--mid);cursor:pointer;transition:all .15s}
+.d-tab:hover{background:#243042;color:var(--txt)}
+.d-tab.active{background:var(--warm);color:#fff;border-color:var(--warm)}
+.d-tabpanel{display:none}
+.d-tabpanel.active{display:block}
+.d-pd{font-size:14px;color:var(--mid);line-height:1.6;margin:0 0 14px}
+.d-chartbox{position:relative;height:300px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;margin:0 0 14px}
+
+/* Analyst Read inference box */
+.d-inf{background:rgba(91,143,201,0.07);border-left:3px solid var(--steel);border-radius:0 6px 6px 0;padding:14px 18px;margin:0 0 8px;font-size:14px;line-height:1.65;color:var(--txt)}
+.d-inf-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--steel);display:block;margin:0 0 7px}
+
+/* Score bars */
+.d-scores{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0 0}
+.d-score{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px}
+.d-sc-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 8px}
+.d-sc-n{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:var(--txt);text-transform:uppercase}
+.d-sc-v{font-size:18px;font-weight:700;color:#fff;font-family:'Courier New',monospace}
+.d-sc-track{height:10px;background:#0a0e14;border-radius:5px;overflow:hidden}
+.d-sc-fill{height:100%;border-radius:5px}
+.d-sc-i{font-size:12px;color:var(--mid);margin:8px 0 0;font-style:italic}
+
+/* Consensus */
+.d-cons-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+.d-cons-g,.d-peak{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px}
+.d-cons-box{position:relative;height:230px}
+.d-pm-row{margin:0 0 12px}
+.d-pm-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 5px}
+.d-pm-l{font-family:'Courier New',monospace;font-size:11px;color:var(--txt);font-weight:700}
+.d-pm-pct{font-family:'Courier New',monospace;font-size:13px;font-weight:700;color:#fff}
+.d-pm-track{height:9px;background:#0a0e14;border-radius:5px;overflow:hidden}
+.d-pm-fill{height:100%;border-radius:5px}
+
+/* Tables */
+.d-tblwrap{overflow-x:auto;margin:0 0 14px}
+.d-tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+.d-tbl th{background:#0a0e14;color:var(--steel);padding:9px 11px;text-align:left;font-size:10px;font-family:'Courier New',monospace;letter-spacing:1px;text-transform:uppercase}
+.d-tbl td{padding:9px 11px;border-bottom:1px solid var(--line);color:var(--txt);line-height:1.5}
+.d-tbl tr:nth-child(even) td{background:var(--panel)}
+.d-tbl .yr{font-weight:700;color:#fff}
+.d-tbl .sim{font-family:'Courier New',monospace;font-weight:700;color:var(--warm)}
+.d-rg-n{font-weight:700;color:#fff}
+.d-badge{font-family:'Courier New',monospace;font-size:10px;font-weight:700;padding:3px 9px;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+.d-badge.warm{background:rgba(226,92,74,0.18);color:#f08a7a}
+.d-badge.gold{background:rgba(224,153,47,0.18);color:#f0b860}
+.d-badge.neutral{background:rgba(95,179,126,0.18);color:#82c89c}
+
+/* Timeline */
+.d-tl{margin:0 0 14px}
+.d-tl-box{position:relative;height:240px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;margin:0 0 14px}
+
+/* Monsoon dist */
+.d-dist{margin:0 0 14px}
+.d-dist-row{margin:0 0 11px}
+.d-dist-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 5px}
+.d-dist-l{font-size:13px;color:var(--txt);font-weight:600}
+.d-dist-pct{font-family:'Courier New',monospace;font-size:14px;font-weight:700;color:#fff}
+.d-dist-track{height:11px;background:#0a0e14;border-radius:5px;overflow:hidden}
+.d-dist-fill{height:100%;border-radius:5px}
+.d-onset{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 14px}
+.d-onset-c{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;text-align:center;border-top:3px solid var(--cool)}
+.d-onset-c.status{border-top-color:var(--neutral)}
+.d-onset-k{font-family:'Courier New',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin:0 0 7px}
+.d-onset-v{font-size:17px;font-weight:700;color:#fff;font-family:Georgia,serif;line-height:1.1}
+.d-res{display:grid;grid-template-columns:190px 1fr;gap:16px;align-items:center;margin:0 0 14px}
+.d-res-g{text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px}
+.d-res-big{font-size:40px;font-weight:700;color:var(--neutral);font-family:Georgia,serif;line-height:1;margin:0}
+.d-res-u{font-family:'Courier New',monospace;font-size:11px;color:var(--mid);margin:4px 0 0}
+.d-res-c{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}
+.d-res-bar{margin:0 0 12px}
+.d-res-bt{display:flex;justify-content:space-between;font-size:12px;margin:0 0 4px}
+.d-res-bn{font-family:'Courier New',monospace;color:var(--mid);text-transform:uppercase;letter-spacing:0.5px;font-size:10px}
+.d-res-bv{font-family:'Courier New',monospace;font-weight:700;color:#fff}
+.d-res-track{height:12px;background:#0a0e14;border-radius:6px;overflow:hidden}
+.d-res-fill{height:100%;border-radius:6px}
+
+/* Risk */
+.d-rl{background:rgba(226,92,74,0.08);border:1px solid rgba(226,92,74,0.25);border-left:5px solid var(--warm);border-radius:8px;padding:20px 22px;margin:0 0 16px}
+.d-rl-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin:0 0 12px}
+.d-rl-n{font-size:19px;font-weight:700;color:#fff;margin:0}
+.d-rl-badge{font-family:'Courier New',monospace;font-size:12px;font-weight:700;padding:5px 13px;border-radius:4px;color:#fff;text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.d-rl-trend{font-family:'Courier New',monospace;font-size:11px;color:var(--warm);margin:4px 0 0}
+.d-rl-track{height:12px;background:rgba(0,0,0,0.3);border-radius:6px;overflow:hidden;margin:0 0 14px}
+.d-rl-fill{height:100%;border-radius:6px}
+.d-rl-sum{font-size:15px;line-height:1.65;color:var(--txt);margin:0 0 14px}
+.d-rl-dl{font-family:'Courier New',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--warm);margin:0 0 8px}
+.d-rl-d{margin:0;padding:0;list-style:none}
+.d-rl-d li{font-size:13px;line-height:1.5;color:var(--txt);padding:5px 0 5px 18px;position:relative}
+.d-rl-d li::before{content:"\25B8";position:absolute;left:0;color:var(--warm);font-size:11px}
+.d-risk-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 16px}
+.d-rc{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:14px;border-top:3px solid var(--dim)}
+.d-rc-n{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:var(--txt);letter-spacing:0.3px;margin:0 0 8px;line-height:1.3}
+.d-rc-l{font-size:15px;font-weight:700;margin:0 0 8px}
+.d-rc-track{height:7px;background:#0a0e14;border-radius:4px;overflow:hidden;margin:0 0 10px}
+.d-rc-fill{height:100%;border-radius:4px}
+.d-rc-note{font-size:11px;color:var(--mid);line-height:1.5}
+
+/* Analogs */
+.d-analogs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 16px}
+.d-an{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;border-top:4px solid var(--steel)}
+.d-an.r1{border-top-color:var(--warm)} .d-an.r2{border-top-color:var(--gold)} .d-an.r3{border-top-color:var(--cool)}
+.d-an-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 10px}
+.d-an-y{font-size:24px;font-weight:700;color:#fff}
+.d-an-sv{font-size:20px;font-weight:700;font-family:'Courier New',monospace;color:var(--warm);line-height:1}
+.d-an-sl{font-family:'Courier New',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--dim)}
+.d-an-r{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--line);font-size:12px}
+.d-an-r:last-child{border-bottom:none}
+.d-an-k{color:var(--dim);font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase}
+.d-an-v{color:var(--txt);font-weight:600}
+.d-an-v.warm{color:#f08a7a} .d-an-v.gold{color:#f0b860} .d-an-v.neutral{color:#82c89c}
+
+/* Sources */
+.d-source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0 0 8px}
+.d-src{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;border-left:3px solid var(--cool)}
+.d-src-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 6px;gap:10px}
+.d-src-n{font-size:15px;font-weight:700;color:#fff}
+.d-src-rel{font-family:'Courier New',monospace;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+.d-src-rel.high{background:rgba(95,179,126,0.18);color:#82c89c}
+.d-src-rel.med{background:rgba(224,153,47,0.18);color:#f0b860}
+.d-src-d{font-size:13px;color:var(--txt);line-height:1.5;margin:0 0 8px}
+.d-src-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.d-src-f{font-family:'Courier New',monospace;font-size:10px;color:var(--mid);letter-spacing:0.5px}
+.d-src-link{font-family:'Courier New',monospace;font-size:11px;color:var(--steel);text-decoration:none;border-bottom:1px solid #2f4a6b}
+
+/* Footer */
+.d-foot{font-size:11px;color:var(--mid);padding:18px 26px;border-top:1px solid var(--line);background:var(--panel);line-height:1.65;text-align:center;font-style:italic}
+.d-update-badge{display:inline-block;font-family:'Courier New',monospace;font-size:10px;background:var(--warm);color:#fff;padding:3px 9px;border-radius:3px;font-style:normal;letter-spacing:0.5px;margin:0 0 8px}
+
+@media(max-width:760px){
+  .d-hero{grid-template-columns:1fr} .d-metrics{grid-template-columns:repeat(2,1fr)}
+  .d-cons-wrap{grid-template-columns:1fr} .d-scores{grid-template-columns:1fr}
+  .d-risk-grid{grid-template-columns:repeat(2,1fr)} .d-analogs{grid-template-columns:1fr}
+  .d-onset{grid-template-columns:1fr} .d-res{grid-template-columns:1fr}
+  .d-source-grid{grid-template-columns:1fr} .d-cyc{flex-wrap:wrap} .d-cyc-p{flex-basis:calc(50% - 3px)}
+  .d-tab,.d-sectab{font-size:11px;padding:8px 12px}
+}
+</style>
+
+<div class="enso-d">
+
+  <div class="d-mast">
+    <div class="d-mast-top">
+      <div>
+        <p class="d-eyebrow">Fenrir Research · Climate Intelligence</p>
+        <h1 class="d-title">ENSO &amp; Indian Monsoon Intelligence</h1>
+      </div>
+      <span class="d-asof" id="d-asof">AS OF —</span>
+    </div>
+    <p class="d-mast-sub">A decision-support terminal: where ENSO is, where it is heading, and what it means for India. Every chart carries an analyst read, not just data.</p>
+  </div>
+
+  <div class="d-cmd">
+    <p class="d-cmd-tag">Command Header · the ten-second read</p>
+    <div class="d-hero">
+      <div class="d-state" id="d-state-card">
+        <p class="d-state-l">Current ENSO State</p>
+        <p class="d-state-v" id="d-state-value">—</p>
+        <p class="d-state-d" id="d-state-detail">—</p>
+      </div>
+      <div class="d-gauge-wrap">
+        <p class="d-gl">Regime Score</p>
+        <div class="d-gauge-box"><canvas id="d-gauge"></canvas></div>
+        <p class="d-gauge-val" id="d-gauge-val">—</p>
+      </div>
+    </div>
+    <div class="d-metrics" id="d-metrics"></div>
+    <p class="d-cyc-l">ENSO Lifecycle Position</p>
+    <div class="d-cyc" id="d-cyc"></div>
+    <div class="d-narr"><span class="d-narr-l">Fenrir Read</span><span id="d-narrative-text">—</span></div>
+  </div>
+
+  <div class="d-sectabs" id="d-sectabs">
+    <button class="d-sectab active" data-sec="ocean">Ocean &amp; Atmosphere</button>
+    <button class="d-sectab" data-sec="forecast">Forecast</button>
+    <button class="d-sectab" data-sec="monsoon">India Monsoon</button>
+    <button class="d-sectab" data-sec="risk">Risk</button>
+    <button class="d-sectab" data-sec="analogs">Analogs</button>
+    <button class="d-sectab" data-sec="sources">Sources</button>
+  </div>
+
+  <!-- Ocean & Atmosphere -->
+  <div class="d-section active" id="d-sec-ocean">
+    <div class="d-sec-head"><span class="d-sec-num">02</span><h2 class="d-sec-title">Ocean &amp; Atmosphere</h2><p class="d-sec-q">Is the ocean warming — and is the atmosphere agreeing?</p></div>
+    <p class="d-sec-intro">An El Niño needs both a warming ocean (the energy) and an atmosphere that couples to it (the sustaining feedback). Many forecasts fail because the atmosphere never couples. These tabs track both halves.</p>
+    <p class="d-tabhint">Tap to switch metric</p>
+    <div class="d-tabs" id="d-oa-tabs"></div>
+    <div id="d-oa-panels"></div>
+    <div class="d-scores" id="d-scorebars"></div>
+  </div>
+
+  <!-- Forecast -->
+  <div class="d-section" id="d-sec-forecast">
+    <div class="d-sec-head"><span class="d-sec-num">04</span><h2 class="d-sec-title">Forecast Consensus</h2><p class="d-sec-q">Where is ENSO heading — and how much do forecasters agree?</p></div>
+    <p class="d-sec-intro">Five major centres, aggregated. The consensus gauge shows blended peak-window probability; the agency table shows where each centre sits and how confident it is. Disagreement is itself information.</p>
+    <div class="d-cons-wrap">
+      <div class="d-cons-g"><p class="d-gl" style="margin-bottom:8px">Peak-Window Consensus · Dec 2026–Feb 2027</p><div class="d-cons-box"><canvas id="d-consensus-chart"></canvas></div></div>
+      <div class="d-peak"><p class="d-gl" style="margin-bottom:14px">Expected Peak Intensity</p><div id="d-peak-bars"></div></div>
+    </div>
+    <div id="d-consensus-inf"></div>
+    <div class="d-tblwrap"><table class="d-tbl"><thead><tr><th>Agency</th><th>Outlook</th><th>El Niño Prob.</th><th>Peak Intensity</th><th>Duration</th><th>Confidence</th></tr></thead><tbody id="d-agency-tbody"></tbody></table></div>
+    <div class="d-tl"><p class="d-gl" style="text-align:left;margin-bottom:10px">12-Month Consensus Timeline · Monthly El Niño Probability</p><div class="d-tl-box"><canvas id="d-timeline-chart"></canvas></div></div>
+    <div id="d-timeline-inf"></div>
+  </div>
+
+  <!-- Monsoon -->
+  <div class="d-section" id="d-sec-monsoon">
+    <div class="d-sec-head"><span class="d-sec-num">05</span><h2 class="d-sec-title">India Monsoon Intelligence</h2><p class="d-sec-q">What does this mean for the Indian monsoon?</p></div>
+    <p class="d-sec-intro">A dashboard within the dashboard. The Super El Niño phase peaks after the monsoon ends, so the seasonal distribution matters more than the headline strength.</p>
+    <p class="d-tabhint">Tap to switch view</p>
+    <div class="d-tabs" id="d-mon-tabs"></div>
+    <div id="d-mon-panels"></div>
+  </div>
+
+  <!-- Risk -->
+  <div class="d-section" id="d-sec-risk">
+    <div class="d-sec-head"><span class="d-sec-num">06</span><h2 class="d-sec-title">Risk &amp; Transmission</h2><p class="d-sec-q">How does ENSO become a real-world consequence?</p></div>
+    <p class="d-sec-intro">ENSO matters when it transmits into the real economy. For India in 2026 the dominant channel is not drought — the reservoir buffer is adequate — but food inflation. The lead card tracks that channel; the grid tracks the others.</p>
+    <div class="d-rl" id="d-risk-lead"></div>
+    <p class="d-tabhint" style="margin-top:4px">Supporting risk channels</p>
+    <div class="d-risk-grid" id="d-risk-grid"></div>
+    <div id="d-risk-inf"></div>
+  </div>
+
+  <!-- Analogs -->
+  <div class="d-section" id="d-sec-analogs">
+    <div class="d-sec-head"><span class="d-sec-num">03</span><h2 class="d-sec-title">Historical Analog Engine</h2><p class="d-sec-q">Which past years most resemble current conditions?</p></div>
+    <p class="d-sec-intro">Current ONI, RONI, subsurface heat, SOI and forecast path compared against every ENSO cycle since 1950. Closest analogs shown with their eventual outcomes. Similarity is indicative, not predictive — the historical sample is small.</p>
+    <div class="d-analogs" id="d-analog-grid"></div>
+    <div class="d-tblwrap"><table class="d-tbl"><thead><tr><th>Year</th><th>Similarity</th><th>ENSO Outcome</th><th>Peak ONI</th><th>Monsoon</th><th>% LPA</th><th>Note</th></tr></thead><tbody id="d-analog-tbody"></tbody></table></div>
+    <div id="d-analog-inf"></div>
+  </div>
+
+  <!-- Sources -->
+  <div class="d-section" id="d-sec-sources">
+    <div class="d-sec-head"><span class="d-sec-num">07</span><h2 class="d-sec-title">Data Sources &amp; Research Hub</h2><p class="d-sec-q">Where does this come from — and how reliable is it?</p></div>
+    <p class="d-sec-intro">Every figure is compiled from official meteorological and research sources. Reliability reflects each source's authority and update cadence for the specific metrics used here.</p>
+    <div class="d-source-grid" id="d-source-grid"></div>
+  </div>
+
+  <div class="d-foot">
+    <span class="d-update-badge" id="d-foot-updated">UPDATED —</span><br>
+    <strong>Fenrir Research</strong> · a division of Yggdrasil Ledger · ENSO &amp; Indian Monsoon Intelligence<br>
+    Sources: NOAA CPC · IRI/Columbia · Skymet · IMD · NOAA NCEI. Analytical estimates compiled from cited official sources. Not investment advice. ENSO forecasting carries inherent uncertainty, particularly through the spring predictability barrier.
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function(){
+"use strict";
+/* ╔══════════════════════════════════════════════════════════════════╗
+   ║  DATA LOADER — fetches the JSON files in /data and assembles D.    ║
+   ║  To UPDATE the dashboard you edit the JSON files, NOT this file.   ║
+   ║  This index.html is a template and normally never changes.        ║
+   ╚══════════════════════════════════════════════════════════════════╝ */
+var DASHBOARD_DATA = {};
+var D = DASHBOARD_DATA;
+
+var DATA_FILES = ["status","ocean","forecast","monsoon","risk","analogs"];
+
+function showLoadError(which){
+  var host = document.getElementById("d-metrics");
+  var banner = document.createElement("div");
+  banner.style.cssText = "background:#3a1414;border:1px solid #e25c4a;color:#f0b8b0;padding:14px 18px;border-radius:6px;margin:16px 26px;font-family:'Courier New',monospace;font-size:12px;line-height:1.6";
+  banner.innerHTML = "&#9888; Could not load data file: <strong>data/"+which+".json</strong>.<br>"
+    + "If you are opening this file directly from disk, that is expected — browsers block local fetch. "
+    + "Host it on GitHub Pages (or any web server) and the data will load.";
+  var dash = document.querySelector(".enso-d");
+  if(dash) dash.insertBefore(banner, dash.querySelector(".d-sectabs"));
+}
+
+function bust(url){ return url + "?v=" + Date.now(); }
+
+(function loadAll(){
+  var loaded = 0, failed = false;
+  DATA_FILES.forEach(function(name){
+    fetch(bust("data/" + name + ".json"))
+      .then(function(r){ if(!r.ok) throw new Error(name); return r.json(); })
+      .then(function(obj){
+        Object.keys(obj).forEach(function(k){ DASHBOARD_DATA[k] = obj[k]; });
+        loaded++;
+        if(loaded === DATA_FILES.length && !failed){ renderDashboard(); }
+      })
+      .catch(function(){
+        if(!failed){ failed = true; showLoadError(name); }
+      });
+  });
+})();
+
+function renderDashboard(){
+  D = DASHBOARD_DATA;
+/* ════════════════════════════════════════════════════════════════
+   RENDERING ENGINE — no need to edit below this line
+   ════════════════════════════════════════════════════════════════ */
+var F = "'Courier New',monospace";
+var GRID = "#222a36";
+var charts = {};
+var HAS_CHART = (typeof Chart !== "undefined");
+function $(id){ return document.getElementById(id); }
+function infBox(text){
+  return '<div class="d-inf"><span class="d-inf-l">Analyst Read</span>' + text + '</div>';
+}
+
+if(HAS_CHART){
+  Chart.defaults.color = "#8b97a8";
+  Chart.defaults.font.family = F;
+  Chart.register({
+    id:"thr",
+    afterDraw:function(chart){
+      var lines = chart.options._thr;
+      if(!lines) return;
+      var ys = chart.scales.y, xa = chart.chartArea;
+      if(!ys || !xa) return;
+      var c = chart.ctx;
+      lines.forEach(function(L){
+        var y = ys.getPixelForValue(L.y);
+        if(y < xa.top || y > xa.bottom) return;
+        c.save();
+        c.strokeStyle = L.c; c.lineWidth = 1; c.setLineDash([4,3]);
+        c.beginPath(); c.moveTo(xa.left,y); c.lineTo(xa.right,y); c.stroke();
+        c.setLineDash([]);
+        c.fillStyle = L.c; c.font = "10px " + F; c.textAlign = "right";
+        c.fillText(L.t, xa.right - 4, y - 3);
+        c.restore();
+      });
+    }
+  });
+}
+
+/* ── Masthead ── */
+$("d-asof").textContent = "AS OF " + D.meta.asOf.toUpperCase();
+$("d-foot-updated").textContent = "UPDATED " + D.meta.lastUpdated.toUpperCase();
+
+/* ── Command Header ── */
+$("d-state-value").textContent = D.state.label;
+$("d-state-detail").textContent = D.state.detail;
+$("d-narrative-text").textContent = D.narrative;
+var rs = D.state.regimeScore;
+$("d-state-card").style.borderLeftColor = (rs < 30 ? "#3d9bd4" : (rs > 70 ? "#e25c4a" : "#e0992f"));
+
+(function(){
+  var h = "";
+  D.metrics.forEach(function(m){
+    h += '<div class="d-metric ' + m.dir + '"><p class="d-ml">' + m.label + '</p>'
+      + '<p class="d-mv">' + m.value + '</p><p class="d-ms">' + m.sub + '</p></div>';
+  });
+  $("d-metrics").innerHTML = h;
+})();
+
+(function(){
+  var h = "";
+  D.cycle.forEach(function(p,i){
+    var a = (i === D.state.cyclePhase) ? " active" : "";
+    h += '<div class="d-cyc-p' + a + '"><span class="d-cyc-n">' + p.name + '</span>'
+      + '<span class="d-cyc-s">' + p.sub + '</span></div>';
+  });
+  $("d-cyc").innerHTML = h;
+})();
+
+/* ── Regime gauge ── */
+function drawGauge(){
+  if(!HAS_CHART) return;
+  var v = D.state.regimeScore;
+  var col = v < 30 ? "#3d9bd4" : (v > 70 ? "#e25c4a" : "#e0992f");
+  new Chart($("d-gauge"), {
+    type:"doughnut",
+    data:{ datasets:[{ data:[v,100-v], backgroundColor:[col,"#222a36"], borderWidth:0, circumference:180, rotation:270, cutout:"72%" }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{enabled:false} } }
+  });
+  $("d-gauge-val").textContent = v + " / 100 \u00B7 " + (v<30?"La Ni\u00F1a":(v>70?"El Ni\u00F1o":"Neutral"));
+}
+
+/* ── Top-level section tabs ── */
+$("d-sectabs").addEventListener("click", function(e){
+  var btn = e.target.closest(".d-sectab");
+  if(!btn) return;
+  var id = btn.getAttribute("data-sec");
+  $("d-sectabs").querySelectorAll(".d-sectab").forEach(function(t){ t.classList.remove("active"); });
+  document.querySelectorAll(".d-section").forEach(function(s){ s.classList.remove("active"); });
+  btn.classList.add("active");
+  $("d-sec-" + id).classList.add("active");
+  if(id === "ocean") drawOA("oni");
+  if(id === "forecast"){ drawConsensus(); drawTimeline(); }
+  if(id === "monsoon"){ /* charts drawn on sub-tab */ }
+});
+
+/* ── Chart option factory ── */
+function lineOpts(yTitle, thr){
+  var o = {
+    responsive:true, maintainAspectRatio:false,
+    interaction:{ intersect:false, mode:"index" },
+    plugins:{ legend:{ display:true, labels:{ font:{family:F,size:11}, color:"#c8d2e0", boxWidth:18 } },
+              tooltip:{ titleFont:{family:F}, bodyFont:{family:F} } },
+    scales:{
+      x:{ ticks:{ font:{family:F,size:10} }, grid:{ color:GRID } },
+      y:{ title:{ display:!!yTitle, text:yTitle, font:{family:F,size:10} }, ticks:{ font:{family:F,size:10} }, grid:{ color:GRID } }
+    }
+  };
+  if(thr) o._thr = thr;
+  return o;
+}
+
+/* ── Layer 2: Ocean & Atmosphere ── */
+var OA = D.ocean;
+var OATABS = [
+  { id:"oni", label:"ONI" }, { id:"roni", label:"RONI" },
+  { id:"nino34", label:"Ni\u00F1o 3.4" }, { id:"subsurface", label:"Subsurface" },
+  { id:"atmosphere", label:"Atmosphere" }
+];
+(function(){
+  var tabs = "", panels = "";
+  OATABS.forEach(function(t,i){
+    var a = i===0 ? " active" : "";
+    tabs += '<button class="d-tab' + a + '" data-oa="' + t.id + '">' + t.label + '</button>';
+    var d = OA[t.id];
+    panels += '<div class="d-tabpanel' + a + '" data-oapanel="' + t.id + '">'
+      + '<p class="d-pd">' + d.desc + '</p>'
+      + '<div class="d-chartbox"><canvas id="d-oa-' + t.id + '"></canvas></div>'
+      + infBox(d.inference) + '</div>';
+  });
+  $("d-oa-tabs").innerHTML = tabs;
+  $("d-oa-panels").innerHTML = panels;
+})();
+$("d-oa-tabs").addEventListener("click", function(e){
+  var btn = e.target.closest(".d-tab");
+  if(!btn) return;
+  var id = btn.getAttribute("data-oa");
+  $("d-oa-tabs").querySelectorAll(".d-tab").forEach(function(t){ t.classList.remove("active"); });
+  $("d-oa-panels").querySelectorAll(".d-tabpanel").forEach(function(p){ p.classList.remove("active"); });
+  btn.classList.add("active");
+  document.querySelector('[data-oapanel="' + id + '"]').classList.add("active");
+  drawOA(id);
+});
+function drawOA(id){
+  if(!HAS_CHART || charts["oa-"+id]) return;
+  var d = OA[id], ctx = $("d-oa-" + id);
+  if(!ctx) return;
+  if(id === "oni"){
+    charts["oa-"+id] = new Chart(ctx, { type:"line",
+      data:{ labels:d.labels, datasets:[{ label:"ONI (\u00B0C)", data:d.values, borderColor:"#e25c4a", backgroundColor:"rgba(226,92,74,0.12)", fill:true, tension:0.3, pointRadius:3, borderWidth:2.5 }] },
+      options: lineOpts("\u00B0C anomaly", d.thr) });
+  } else if(id === "roni"){
+    charts["oa-"+id] = new Chart(ctx, { type:"line",
+      data:{ labels:d.labels, datasets:[
+        { label:"ONI (\u00B0C)", data:d.oni, borderColor:"#e25c4a", tension:0.3, pointRadius:2, borderWidth:2 },
+        { label:"RONI (\u00B0C)", data:d.roni, borderColor:"#9b7bd4", borderDash:[5,3], tension:0.3, pointRadius:2, borderWidth:2 }
+      ] },
+      options: lineOpts("\u00B0C anomaly", d.thr) });
+  } else if(id === "nino34"){
+    charts["oa-"+id] = new Chart(ctx, { type:"line",
+      data:{ labels:d.labels, datasets:[{ label:"Ni\u00F1o 3.4 weekly (\u00B0C)", data:d.values, borderColor:"#e0992f", backgroundColor:"rgba(224,153,47,0.12)", fill:true, tension:0.3, pointRadius:3, borderWidth:2.5 }] },
+      options: lineOpts("\u00B0C anomaly", d.thr) });
+  } else if(id === "subsurface"){
+    charts["oa-"+id] = new Chart(ctx, { type:"bar",
+      data:{ labels:d.labels, datasets:[{ label:"WWV anomaly (\u00B0C)", data:d.values, backgroundColor:d.values.map(function(v){ return v>=0?"#e25c4a":"#3d9bd4"; }), borderWidth:0 }] },
+      options: lineOpts("WWV anomaly (\u00B0C)") });
+  } else if(id === "atmosphere"){
+    charts["oa-"+id] = new Chart(ctx, { type:"line",
+      data:{ labels:d.labels, datasets:[
+        { label:"SOI", data:d.soi, borderColor:"#3d9bd4", tension:0.3, pointRadius:2, borderWidth:2 },
+        { label:"Trade wind anomaly", data:d.tradewind, borderColor:"#5fb37e", borderDash:[5,3], tension:0.3, pointRadius:2, borderWidth:2 }
+      ] },
+      options: lineOpts("index / anomaly", d.thr) });
+  }
+}
+
+/* ── Ocean score bars ── */
+(function(){
+  var h = "";
+  [D.scores.regime, D.scores.coupling].forEach(function(s){
+    h += '<div class="d-score"><div class="d-sc-top"><span class="d-sc-n">' + s.name + '</span>'
+      + '<span class="d-sc-v">' + s.value + '<span style="font-size:11px;color:#5c6675">/100</span></span></div>'
+      + '<div class="d-sc-track"><div class="d-sc-fill" style="width:' + s.value + '%;background:' + s.color + '"></div></div>'
+      + '<p class="d-sc-i">' + s.interp + '</p></div>';
+  });
+  $("d-scorebars").innerHTML = h;
+})();
+
+/* ── Layer 4: Forecast ── */
+function drawConsensus(){
+  if(!HAS_CHART || charts.consensus) return;
+  var c = D.consensus.peak;
+  charts.consensus = new Chart($("d-consensus-chart"), {
+    type:"doughnut",
+    data:{ labels:["El Ni\u00F1o","Neutral","La Ni\u00F1a"], datasets:[{ data:[c.elnino,c.neutral,c.lanina], backgroundColor:["#e25c4a","#e0992f","#3d9bd4"], borderColor:"#161d28", borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false, cutout:"58%",
+      plugins:{ legend:{ position:"bottom", labels:{ font:{family:F,size:11}, color:"#c8d2e0", padding:12 } },
+        tooltip:{ callbacks:{ label:function(x){ return x.label + ": " + x.parsed + "%"; } }, titleFont:{family:F}, bodyFont:{family:F} } } }
+  });
+}
+function drawTimeline(){
+  if(!HAS_CHART || charts.timeline) return;
+  var t = D.consensus.timeline;
+  charts.timeline = new Chart($("d-timeline-chart"), {
+    type:"line",
+    data:{ labels:t.labels, datasets:[{ label:"El Ni\u00F1o probability (%)", data:t.values, borderColor:"#e25c4a", backgroundColor:"rgba(226,92,74,0.12)", fill:true, tension:0.35, pointRadius:3, borderWidth:2.5 }] },
+    options:{ responsive:true, maintainAspectRatio:false, interaction:{intersect:false,mode:"index"},
+      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:function(x){ return x.parsed.y + "% El Ni\u00F1o"; } }, titleFont:{family:F}, bodyFont:{family:F} } },
+      scales:{ x:{ ticks:{font:{family:F,size:10}}, grid:{color:GRID} },
+        y:{ min:0, max:100, ticks:{font:{family:F,size:10}, callback:function(v){return v+"%";}}, grid:{color:GRID} } } }
+  });
+}
+(function(){
+  var h = "";
+  D.consensus.intensity.forEach(function(it){
+    h += '<div class="d-pm-row"><div class="d-pm-top"><span class="d-pm-l">' + it.label + '</span>'
+      + '<span class="d-pm-pct">' + it.pct + '%</span></div>'
+      + '<div class="d-pm-track"><div class="d-pm-fill" style="width:' + it.pct + '%;background:' + it.color + '"></div></div></div>';
+  });
+  $("d-peak-bars").innerHTML = h;
+  var rows = "";
+  D.consensus.agencies.forEach(function(a){
+    rows += '<tr><td class="yr">' + a.name + '</td><td>' + a.outlook + '</td><td class="sim">' + a.prob + '</td><td>' + a.peak + '</td><td>' + a.dur + '</td><td>' + a.conf + '</td></tr>';
+  });
+  $("d-agency-tbody").innerHTML = rows;
+  $("d-consensus-inf").innerHTML = infBox(D.consensus.consensusInference);
+  $("d-timeline-inf").innerHTML = infBox(D.consensus.timeline.inference);
+})();
+
+/* ── Layer 5: Monsoon ── */
+var MON = D.monsoon;
+var MTABS = [
+  { id:"forecast", label:"Forecast" }, { id:"seasonal", label:"Seasonal Split" },
+  { id:"onset", label:"Onset" }, { id:"reservoir", label:"Reservoirs" }, { id:"regional", label:"Regional Risk" }
+];
+(function(){
+  var tabs = "", panels = "";
+  MTABS.forEach(function(t,i){
+    var a = i===0 ? " active" : "";
+    tabs += '<button class="d-tab' + a + '" data-mon="' + t.id + '">' + t.label + '</button>';
+    panels += '<div class="d-tabpanel' + a + '" data-monpanel="' + t.id + '">' + buildMon(t.id) + '</div>';
+  });
+  $("d-mon-tabs").innerHTML = tabs;
+  $("d-mon-panels").innerHTML = panels;
+})();
+function buildMon(id){
+  var d = MON[id];
+  var h = '<p class="d-pd">' + d.desc + '</p>';
+  if(id === "forecast"){
+    h += '<div class="d-dist">';
+    d.dist.forEach(function(x){
+      h += '<div class="d-dist-row"><div class="d-dist-top"><span class="d-dist-l">' + x.label + '</span><span class="d-dist-pct">' + x.pct + '%</span></div>'
+        + '<div class="d-dist-track"><div class="d-dist-fill" style="width:' + x.pct + '%;background:' + x.color + '"></div></div></div>';
+    });
+    h += '</div>';
+  } else if(id === "seasonal"){
+    h += '<div class="d-chartbox"><canvas id="d-mon-seasonal"></canvas></div>';
+  } else if(id === "onset"){
+    h += '<div class="d-onset">'
+      + '<div class="d-onset-c"><p class="d-onset-k">Normal Onset</p><p class="d-onset-v">' + d.normalDate + '</p></div>'
+      + '<div class="d-onset-c"><p class="d-onset-k">Forecast Window</p><p class="d-onset-v">' + d.forecastDate + '</p></div>'
+      + '<div class="d-onset-c status"><p class="d-onset-k">Status</p><p class="d-onset-v">' + d.status + '</p></div></div>';
+  } else if(id === "reservoir"){
+    var cur = d.current, avg = d.tenYrAvg;
+    h += '<div class="d-res"><div class="d-res-g"><p class="d-res-big">' + cur + '%</p><p class="d-res-u">of live capacity</p></div>'
+      + '<div class="d-res-c">'
+      + '<div class="d-res-bar"><div class="d-res-bt"><span class="d-res-bn">Current</span><span class="d-res-bv">' + cur + '%</span></div><div class="d-res-track"><div class="d-res-fill" style="width:' + Math.min(100,cur) + '%;background:#5fb37e"></div></div></div>'
+      + '<div class="d-res-bar"><div class="d-res-bt"><span class="d-res-bn">10-Yr Avg</span><span class="d-res-bv">' + avg + '%</span></div><div class="d-res-track"><div class="d-res-fill" style="width:' + Math.min(100,avg) + '%;background:#5c6675"></div></div></div>'
+      + '</div></div>';
+  } else if(id === "regional"){
+    h += '<div class="d-tblwrap"><table class="d-tbl"><thead><tr><th>Region</th><th>Risk</th><th>Driver</th></tr></thead><tbody>';
+    d.rows.forEach(function(r){
+      h += '<tr><td class="d-rg-n">' + r.region + '</td><td><span class="d-badge ' + r.cls + '">' + r.risk + '</span></td><td style="font-size:12px;color:#8b97a8">' + r.note + '</td></tr>';
+    });
+    h += '</tbody></table></div>';
+  }
+  h += infBox(d.inference);
+  return h;
+}
+function drawMonSeasonal(){
+  if(!HAS_CHART || charts.monSeasonal) return;
+  var ctx = $("d-mon-seasonal");
+  if(!ctx) return;
+  var d = MON.seasonal;
+  charts.monSeasonal = new Chart(ctx, { type:"bar",
+    data:{ labels:d.labels, datasets:[
+      { label:"Weak El Ni\u00F1o", data:d.weak, backgroundColor:"#3d9bd4" },
+      { label:"Moderate", data:d.moderate, backgroundColor:"#e0992f" },
+      { label:"Strong+", data:d.strong, backgroundColor:"#e25c4a" }
+    ] },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{position:"bottom",labels:{font:{family:F,size:11},color:"#c8d2e0",padding:10}},
+        tooltip:{titleFont:{family:F},bodyFont:{family:F},callbacks:{label:function(x){return x.dataset.label+": "+x.parsed.y+"%";}}} },
+      scales:{ x:{stacked:true,ticks:{font:{family:F,size:10}},grid:{display:false}},
+        y:{stacked:true,min:0,max:100,ticks:{font:{family:F,size:10},callback:function(v){return v+"%";}},grid:{color:GRID}} } }
+  });
+}
+$("d-mon-tabs").addEventListener("click", function(e){
+  var btn = e.target.closest(".d-tab");
+  if(!btn) return;
+  var id = btn.getAttribute("data-mon");
+  $("d-mon-tabs").querySelectorAll(".d-tab").forEach(function(t){ t.classList.remove("active"); });
+  $("d-mon-panels").querySelectorAll(".d-tabpanel").forEach(function(p){ p.classList.remove("active"); });
+  btn.classList.add("active");
+  document.querySelector('[data-monpanel="' + id + '"]').classList.add("active");
+  if(id === "seasonal") drawMonSeasonal();
+});
+
+/* ── Layer 6: Risk ── */
+(function(){
+  var L = D.risk.lead;
+  var h = '<div class="d-rl-top"><div><p class="d-rl-n">' + L.name + '</p><p class="d-rl-trend">Trend: ' + L.trend + '</p></div>'
+    + '<span class="d-rl-badge" style="background:' + L.color + '">' + L.level + '</span></div>'
+    + '<div class="d-rl-track"><div class="d-rl-fill" style="width:' + L.levelPct + '%;background:' + L.color + '"></div></div>'
+    + '<p class="d-rl-sum">' + L.summary + '</p><p class="d-rl-dl">Primary Drivers</p><ul class="d-rl-d">';
+  L.drivers.forEach(function(x){ h += '<li>' + x + '</li>'; });
+  h += '</ul>';
+  $("d-risk-lead").innerHTML = h;
+  var g = "";
+  D.risk.channels.forEach(function(c){
+    g += '<div class="d-rc" style="border-top-color:' + c.color + '"><p class="d-rc-n">' + c.name + '</p>'
+      + '<p class="d-rc-l" style="color:' + c.color + '">' + c.level + '</p>'
+      + '<div class="d-rc-track"><div class="d-rc-fill" style="width:' + c.levelPct + '%;background:' + c.color + '"></div></div>'
+      + '<p class="d-rc-note">' + c.note + '</p></div>';
+  });
+  $("d-risk-grid").innerHTML = g;
+  $("d-risk-inf").innerHTML = infBox(D.risk.riskInference);
+})();
+
+/* ── Layer 3: Analogs ── */
+(function(){
+  var cards = "";
+  D.analogs.slice(0,3).forEach(function(a,i){
+    cards += '<div class="d-an r' + (i+1) + '"><div class="d-an-top"><span class="d-an-y">' + a.year + '</span>'
+      + '<span style="text-align:right"><span class="d-an-sv">' + a.sim + '%</span><br><span class="d-an-sl">Similarity</span></span></div>'
+      + '<div class="d-an-r"><span class="d-an-k">ENSO</span><span class="d-an-v warm">' + a.enso + '</span></div>'
+      + '<div class="d-an-r"><span class="d-an-k">Peak ONI</span><span class="d-an-v">' + a.peak + '</span></div>'
+      + '<div class="d-an-r"><span class="d-an-k">Monsoon</span><span class="d-an-v ' + a.monClass + '">' + a.monsoon + '</span></div>'
+      + '<div class="d-an-r"><span class="d-an-k">% LPA</span><span class="d-an-v ' + a.monClass + '">' + a.lpa + '</span></div></div>';
+  });
+  $("d-analog-grid").innerHTML = cards;
+  var rows = "";
+  D.analogs.forEach(function(a){
+    rows += '<tr><td class="yr">' + a.year + '</td><td class="sim">' + a.sim + '%</td><td>' + a.enso + '</td><td>' + a.peak + '</td><td>' + a.monsoon + '</td><td>' + a.lpa + '</td><td style="font-size:12px;color:#8b97a8">' + a.note + '</td></tr>';
+  });
+  $("d-analog-tbody").innerHTML = rows;
+  $("d-analog-inf").innerHTML = infBox(D.analogInference);
+})();
+
+/* ── Layer 7: Sources ── */
+(function(){
+  var h = "";
+  D.sources.forEach(function(s){
+    var rc = s.rel.indexOf("Medium") > -1 ? "med" : "high";
+    var host = s.url.replace(/^https?:\/\//,"").replace(/\/.*$/,"");
+    h += '<div class="d-src"><div class="d-src-top"><span class="d-src-n">' + s.name + '</span><span class="d-src-rel ' + rc + '">' + s.rel + '</span></div>'
+      + '<p class="d-src-d">' + s.desc + '</p><div class="d-src-meta"><span class="d-src-f">\u21BB ' + s.freq + '</span>'
+      + '<a class="d-src-link" href="' + s.url + '" target="_blank" rel="noopener">' + host + '</a></div></div>';
+  });
+  $("d-source-grid").innerHTML = h;
+})();
+
+/* ── Initial draws ── */
+if(HAS_CHART){
+  drawGauge();
+  drawOA("oni");
+} else {
+  document.querySelectorAll(".d-chartbox").forEach(function(b){
+    b.innerHTML = '<p style="font-family:' + F + ';font-size:12px;color:#8b97a8;text-align:center;padding-top:40px">Chart library unavailable \u2014 see the Analyst Read below.</p>';
+  });
+  if($("d-gauge-val")) $("d-gauge-val").textContent = D.state.regimeScore + " / 100";
+}
+
+}
+})();
+</script>

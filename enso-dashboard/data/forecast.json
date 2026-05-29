@@ -1,0 +1,105 @@
+{
+  "consensus": {
+    "peak": {
+      "elnino": 82,
+      "neutral": 15,
+      "lanina": 3
+    },
+    "intensity": [
+      {
+        "label": "Super (≥+2.0°C)",
+        "pct": 25,
+        "color": "#9b7bd4"
+      },
+      {
+        "label": "Strong (+1.5–2.0)",
+        "pct": 40,
+        "color": "#e25c4a"
+      },
+      {
+        "label": "Moderate (+1.0–1.5)",
+        "pct": 22,
+        "color": "#e0992f"
+      },
+      {
+        "label": "Weak (+0.5–1.0)",
+        "pct": 13,
+        "color": "#3d9bd4"
+      }
+    ],
+    "agencies": [
+      {
+        "name": "NOAA CPC",
+        "outlook": "El Niño Watch",
+        "prob": "82%",
+        "peak": "Strong–Super",
+        "dur": "Through Q1 2027",
+        "conf": "High"
+      },
+      {
+        "name": "IRI/Columbia",
+        "outlook": "El Niño likely",
+        "prob": "80%",
+        "peak": "Strong",
+        "dur": "MJJ→JFM",
+        "conf": "High"
+      },
+      {
+        "name": "ECMWF",
+        "outlook": "El Niño (early)",
+        "prob": "~90%",
+        "peak": "Strong–Super",
+        "dur": "Into 2027",
+        "conf": "Med–High"
+      },
+      {
+        "name": "BOM (Aus)",
+        "outlook": "Watch / Alert",
+        "prob": "70%",
+        "peak": "Moderate–Strong",
+        "dur": "Spring–Summer",
+        "conf": "Medium"
+      },
+      {
+        "name": "IMD (India)",
+        "outlook": "El Niño developing",
+        "prob": "—",
+        "peak": "Strong",
+        "dur": "Monsoon-relevant",
+        "conf": "Medium"
+      }
+    ],
+    "consensusInference": "An 82% blended probability with Super as the modal peak is a strong consensus — but consensus is not certainty, and the dispersion is the real information. ECMWF sits at the bullish extreme (~90%, Super-tilted); BOM is the most cautious (70%, moderate-strong). The spread between them is the uncertainty band. If ECMWF and BOM converge over the next two updates, confidence rises; if they diverge further, the event's intensity is genuinely unsettled and headline probabilities should be discounted.",
+    "timeline": {
+      "labels": [
+        "Jun'26",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+        "Jan'27",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May"
+      ],
+      "values": [
+        82,
+        86,
+        90,
+        93,
+        95,
+        96,
+        96,
+        95,
+        93,
+        86,
+        72,
+        55
+      ],
+      "inference": "The shape is the message: probability rises steeply into the Dec–Feb peak, then decays through spring 2027. The decay slope is shallower than 2023–24's, which is the constructive read — but this is a forecast of probability, not intensity, and it assumes coupling proceeds. If the June trade-wind data disappoints, the entire curve shifts down and forward, and the peak window compresses."
+    }
+  }
+}

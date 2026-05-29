@@ -1,0 +1,123 @@
+{
+  "analogs": [
+    {
+      "year": "1997",
+      "sim": 88,
+      "enso": "Super El Niño",
+      "peak": "+2.4°C",
+      "monsoon": "Normal",
+      "lpa": "102%",
+      "monClass": "neutral",
+      "note": "Strong ocean signal + negative IOD offset → normal monsoon despite Super event."
+    },
+    {
+      "year": "2015",
+      "sim": 84,
+      "enso": "Super El Niño",
+      "peak": "+2.6°C",
+      "monsoon": "Below normal",
+      "lpa": "86%",
+      "monClass": "gold",
+      "note": "Closest ocean-heat analog. Moderate drought; coupling locked in fully."
+    },
+    {
+      "year": "2023",
+      "sim": 81,
+      "enso": "Strong (faded)",
+      "peak": "+2.0°C",
+      "monsoon": "Below normal",
+      "lpa": "94%",
+      "monClass": "gold",
+      "note": "Coupling analog — peaked then faded fast. The cautionary precedent for 2026."
+    },
+    {
+      "year": "2006",
+      "sim": 74,
+      "enso": "Weak El Niño",
+      "peak": "+0.9°C",
+      "monsoon": "Normal",
+      "lpa": "100%",
+      "monClass": "neutral",
+      "note": "Subsurface heat present but coupling stalled; event underperformed."
+    },
+    {
+      "year": "2018",
+      "sim": 71,
+      "enso": "Weak El Niño",
+      "peak": "+0.9°C",
+      "monsoon": "Below normal",
+      "lpa": "91%",
+      "monClass": "gold",
+      "note": "Slow developer; weak coupling produced a low-amplitude event."
+    },
+    {
+      "year": "2014",
+      "sim": 68,
+      "enso": "Deferred",
+      "peak": "+0.7°C",
+      "monsoon": "Below normal",
+      "lpa": "88%",
+      "monClass": "gold",
+      "note": "Big subsurface heat discharged by a June easterly burst; Super deferred to 2015."
+    }
+  ],
+  "analogInference": "The analog set splits cleanly into two stories. On the ocean signal — subsurface heat and the Niño 3.4 trajectory — 2026 most resembles 1997 and 2015, the two sustained Super events. On the coupling signal — SOI and trade winds — it resembles 2023, which peaked and faded. The dashboard cannot resolve which story wins; that is precisely what the June–July atmospheric data will decide. The honest read: extraordinary ocean potential, unproven atmospheric follow-through. Weight 1997/2015 if coupling locks in, 2023 if it does not.",
+  "sources": [
+    {
+      "name": "NOAA CPC",
+      "desc": "Official US ENSO advisories, ONI, ENSO probabilities.",
+      "freq": "Monthly + weekly",
+      "rel": "High",
+      "url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/"
+    },
+    {
+      "name": "IRI / Columbia",
+      "desc": "ENSO forecast plume, subsurface heat, model consensus.",
+      "freq": "Monthly",
+      "rel": "High",
+      "url": "https://iri.columbia.edu/our-expertise/climate/forecasts/enso/current/"
+    },
+    {
+      "name": "ECMWF",
+      "desc": "European ensemble — the bullish outlier on 2026 intensity.",
+      "freq": "Monthly",
+      "rel": "High",
+      "url": "https://www.ecmwf.int/"
+    },
+    {
+      "name": "BOM (Australia)",
+      "desc": "Bureau of Meteorology ENSO Outlook, IOD tracking.",
+      "freq": "Fortnightly",
+      "rel": "High",
+      "url": "http://www.bom.gov.au/climate/enso/"
+    },
+    {
+      "name": "India Met Dept",
+      "desc": "Official monsoon forecasts, onset, LPA distribution.",
+      "freq": "Stage-wise",
+      "rel": "High",
+      "url": "https://mausam.imd.gov.in/"
+    },
+    {
+      "name": "Skymet Weather",
+      "desc": "Private Indian monsoon forecast; ENSO–monsoon analysis.",
+      "freq": "Seasonal + ad hoc",
+      "rel": "Medium–High",
+      "url": "https://www.skymetweather.com/"
+    },
+    {
+      "name": "NOAA NCEI",
+      "desc": "Global temperature records, annual ranking outlook.",
+      "freq": "Monthly",
+      "rel": "High",
+      "url": "https://www.ncei.noaa.gov/access/monitoring/monthly-report/global/"
+    },
+    {
+      "name": "NOAA PMEL / TAO",
+      "desc": "Equatorial buoy array — trade winds, subsurface temps.",
+      "freq": "Real-time",
+      "rel": "High",
+      "url": "https://www.pmel.noaa.gov/elnino/"
+    }
+  ]
+}

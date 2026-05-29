@@ -1,0 +1,56 @@
+{
+  "risk": {
+    "lead": {
+      "name": "Food Inflation Risk",
+      "level": "Elevated",
+      "levelPct": 70,
+      "color": "#e25c4a",
+      "trend": "Rising into H2 2026",
+      "summary": "The primary transmission channel for 2026. A below-normal monsoon with localised northern-belt deficits is enough to push pulses, oilseeds and select vegetables materially higher in H2 CY26 — even with adequate aggregate supply. Peak food inflation may land in Oct–Dec 2026, coinciding with the strongest El Niño phase and pre-Budget sensitivity.",
+      "drivers": [
+        "Kharif pulses & oilseeds are price-sensitive to distribution, not just totals",
+        "2023 sugar episode (−8% output on uneven rain) as the recent template",
+        "Peak El Niño phase (Oct–Dec) aligns with the peak price-pressure window",
+        "RBI and the bond market are watching CPI-food as the binding constraint"
+      ]
+    },
+    "channels": [
+      {
+        "name": "Drought Risk",
+        "level": "Moderate",
+        "levelPct": 45,
+        "color": "#e0992f",
+        "note": "Buffered by 44.6% reservoir storage; northern belt most exposed late-season."
+      },
+      {
+        "name": "Agriculture Risk",
+        "level": "Moderate",
+        "levelPct": 50,
+        "color": "#e0992f",
+        "note": "Kharif (rice, soy, cotton, pulses) most exposed; southern output protected."
+      },
+      {
+        "name": "Heatwave Risk",
+        "level": "Elevated",
+        "levelPct": 62,
+        "color": "#e25c4a",
+        "note": "El Niño years skew hot; pre- and post-monsoon windows the concern."
+      },
+      {
+        "name": "Flood Risk",
+        "level": "Low",
+        "levelPct": 25,
+        "color": "#5fb37e",
+        "note": "El Niño suppresses the heaviest monsoon flooding vs La Niña years."
+      },
+      {
+        "name": "Water / Hydro Risk",
+        "level": "Moderate",
+        "levelPct": 48,
+        "color": "#e0992f",
+        "note": "Reservoir drawdown affects hydro generation (NHPC, JSW) into rabi season."
+      }
+    ],
+    "riskInference": "For India in 2026 the dominant channel is not drought — the reservoir buffer is adequate — but food inflation. The five supporting channels all feed into or sit alongside that primary read. The analytically important point is the timing alignment: the peak El Niño phase (Oct–Dec), peak food-price pressure, and pre-Budget political sensitivity all land in the same window, which is what makes the food-inflation channel the one to position around rather than the headline monsoon number."
+  }
+}

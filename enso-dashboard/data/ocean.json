@@ -1,0 +1,165 @@
+{
+  "ocean": {
+    "oni": {
+      "desc": "The Oceanic Niño Index — 3-month running mean of Niño 3.4 SST anomalies, the official ENSO yardstick. +0.5°C sustained = El Niño.",
+      "labels": [
+        "May'25",
+        "Jul",
+        "Sep",
+        "Nov",
+        "Jan'26",
+        "Mar",
+        "May"
+      ],
+      "values": [
+        -0.6,
+        -0.7,
+        -0.5,
+        -0.3,
+        -0.1,
+        0.1,
+        0.4
+      ],
+      "thr": [
+        {
+          "y": 0.5,
+          "c": "#e25c4a",
+          "t": "El Niño +0.5"
+        },
+        {
+          "y": -0.5,
+          "c": "#3d9bd4",
+          "t": "La Niña −0.5"
+        }
+      ],
+      "inference": "The trajectory shows the classic signature of a developing event — a clean exit from La Niña, through neutral, with an accelerating slope into the threshold. What matters analytically is not that ONI crossed +0.5°C but the steepening since January, which historically separates events that reach Strong/Super (1997, 2015) from those that stall in weak territory (2006, 2018). Caveat: ONI is a 3-month mean and therefore lags; the weekly Niño 3.4 is the true leading edge."
+    },
+    "roni": {
+      "desc": "The Relative ONI strips out the long-term warming baseline. In a warmer mean ocean, ONI runs hot — RONI is the more honest measure of physical strength.",
+      "labels": [
+        "May'25",
+        "Jul",
+        "Sep",
+        "Nov",
+        "Jan'26",
+        "Mar",
+        "May"
+      ],
+      "oni": [
+        -0.6,
+        -0.7,
+        -0.5,
+        -0.3,
+        -0.1,
+        0.1,
+        0.4
+      ],
+      "roni": [
+        -0.9,
+        -1,
+        -0.8,
+        -0.6,
+        -0.4,
+        -0.2,
+        0.1
+      ],
+      "inference": "The ONI–RONI spread is the most under-appreciated number on this dashboard. RONI sits ~0.3°C below ONI because it removes the warming baseline. In practice: an event that looks 'Strong' on ONI may be only 'Moderate' in the physical sense that drives atmospheric coupling, so models keyed to absolute ONI can overstate intensity. Watch whether RONI converges toward ONI — genuine intensification — or the gap persists, which would mean the apparent strength is partly a warm-baseline illusion."
+    },
+    "nino34": {
+      "desc": "Niño 3.4 weekly SST anomaly — the fastest-moving surface signal. Momentum foreshadows whether the event is accelerating into the threshold.",
+      "labels": [
+        "Jan'26",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May"
+      ],
+      "values": [
+        -0.2,
+        0,
+        0.2,
+        0.35,
+        0.5
+      ],
+      "mom3": "+0.5°C",
+      "mom6": "+0.7°C",
+      "thr": [
+        {
+          "y": 0.5,
+          "c": "#e25c4a",
+          "t": "+0.5"
+        }
+      ],
+      "inference": "Momentum is the signal. The +0.7°C six-month change sits in the range that preceded 1997 and 2015. But momentum can reverse fast: the 2014 cycle showed comparable early momentum before a June easterly burst flattened it. A single month of stalling here would be the first hard evidence for the peak-and-fade path — making this the chart to check first after each weekly update."
+    },
+    "subsurface": {
+      "desc": "Warm Water Volume anomaly — the subsurface heat reservoir that fuels surface warming. A strong recharge is the precondition for a strong event.",
+      "labels": [
+        "May'25",
+        "Jul",
+        "Sep",
+        "Nov",
+        "Jan'26",
+        "Mar",
+        "May"
+      ],
+      "values": [
+        -0.4,
+        -0.2,
+        0.2,
+        0.6,
+        1,
+        1.5,
+        1.9
+      ],
+      "meter": 82,
+      "inference": "This is the fuel gauge, and it reads near-full. Heat content at roughly 2× the May-2023 level means the energy for a Strong-plus event is unambiguously present. But subsurface heat is necessary, not sufficient — 2014 carried comparable loading and still stalled when the atmosphere failed to couple. The reservoir tells you the event can be big; it does not tell you it will sustain. Pair this chart with the Atmosphere tab before drawing any conclusion."
+    },
+    "atmosphere": {
+      "desc": "SOI and trade winds confirm whether the atmosphere is coupling to the ocean. Sustained negative SOI plus weakening trades = the Bjerknes feedback locking in.",
+      "labels": [
+        "Jan'26",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May"
+      ],
+      "soi": [
+        0.4,
+        0.2,
+        -0.1,
+        -0.3,
+        -0.3
+      ],
+      "tradewind": [
+        0.2,
+        0.1,
+        -0.1,
+        -0.2,
+        -0.2
+      ],
+      "thr": [
+        {
+          "y": 0,
+          "c": "#5c6675",
+          "t": "0"
+        }
+      ],
+      "inference": "This is the chart that decides everything. The ocean is loaded; the question is whether the atmosphere joins. SOI at −0.3 shows coupling has begun, but a self-sustaining Bjerknes feedback needs sustained SOI below −0.5 with decisively weakening trades — neither is locked in yet. If these two lines push lower through June–July, the Sustained Super path (Scenario A) gains weight. If they hover here or revert, the 2023-style peak-and-fade (Scenario B) becomes the base case."
+    }
+  },
+  "scores": {
+    "regime": {
+      "name": "ENSO Regime Score",
+      "value": 58,
+      "interp": "Upper-neutral, tilting toward El Niño development. Above 70 would confirm a locked-in El Niño state.",
+      "color": "#e0992f"
+    },
+    "coupling": {
+      "name": "Atmospheric Coupling",
+      "value": 42,
+      "interp": "Moderate. Coupling has begun (SOI −0.3) but is not locked in. This is the decisive variable for whether the event sustains.",
+      "color": "#e25c4a"
+    }
+  }
+}

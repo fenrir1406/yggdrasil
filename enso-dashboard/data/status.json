@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "asOf": "May 26, 2026",
+    "lastUpdated": "May 26, 2026"
+  },
+  "state": {
+    "label": "ENSO-Neutral · El Niño Watch",
+    "detail": "Neutral conditions persist but the ocean is warming fast. NOAA issued an El Niño Watch on May 14. Atmospheric coupling has begun but is not yet locked in.",
+    "regimeScore": 58,
+    "cyclePhase": 1
+  },
+  "metrics": [
+    {
+      "label": "ONI",
+      "value": "+0.4",
+      "sub": "°C · 3-mo avg",
+      "dir": "pos"
+    },
+    {
+      "label": "RONI",
+      "value": "+0.1",
+      "sub": "°C · trend-adj",
+      "dir": "neu"
+    },
+    {
+      "label": "Niño 3.4",
+      "value": "+0.5",
+      "sub": "°C · weekly",
+      "dir": "pos"
+    },
+    {
+      "label": "SOI",
+      "value": "−0.3",
+      "sub": "Apr 2026",
+      "dir": "pos"
+    },
+    {
+      "label": "Outlook",
+      "value": "El Niño",
+      "sub": "82% by Jul",
+      "dir": "pos"
+    }
+  ],
+  "cycle": [
+    {
+      "name": "RECHARGE",
+      "sub": "Heat builds"
+    },
+    {
+      "name": "DEVELOPMENT",
+      "sub": "We are here"
+    },
+    {
+      "name": "PEAK",
+      "sub": "Dec–Feb"
+    },
+    {
+      "name": "DECAY",
+      "sub": "2027"
+    }
+  ],
+  "narrative": "ENSO remains neutral but ocean heat content is more than double the May-2023 reading and Niño 3.4 has crossed +0.5°C for the first time since May 2024. Forecast consensus favours El Niño emergence by July (82%) with a Super event the modal peak for Dec 2026–Feb 2027. The open question is sustainability: atmospheric coupling has started (SOI −0.3) but trade winds have not decisively weakened. Conditions resemble 1997 and 2015 on the ocean signal, but 2023 on the coupling signal — the latter peaked and faded. Watch the June 11 NOAA update and June–July trade winds."
+}

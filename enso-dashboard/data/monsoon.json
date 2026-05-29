@@ -1,0 +1,107 @@
+{
+  "monsoon": {
+    "forecast": {
+      "desc": "IMD first-stage forecast (April 13): 92% of LPA, 'below normal'. Probability of a deficient season (below 90% LPA) is 35% — more than double the 16% climatological base rate.",
+      "dist": [
+        {
+          "label": "Deficient (<90%)",
+          "pct": 35,
+          "color": "#e25c4a"
+        },
+        {
+          "label": "Below Normal (90–96%)",
+          "pct": 30,
+          "color": "#e0992f"
+        },
+        {
+          "label": "Normal (96–104%)",
+          "pct": 28,
+          "color": "#5fb37e"
+        },
+        {
+          "label": "Above Normal (>104%)",
+          "pct": 7,
+          "color": "#3d9bd4"
+        }
+      ],
+      "inference": "92% of LPA reads as 'below normal,' but the distribution is the story: a 35% chance of a deficient season is more than double the climatological 16%. That tail — not the headline — is what the agricultural economy and the RBI watch. The asymmetry is the point: the downside (deficient) is roughly five times as likely as the upside (above-normal), so the risk skew is firmly negative even though the central case is only modestly below par."
+    },
+    "seasonal": {
+      "desc": "NOAA's strength distribution across the monsoon: El Niño weak at onset, strengthening only at the close. The Super phase arrives after September.",
+      "labels": [
+        "Onset (Jun)",
+        "Early (Jul)",
+        "Mid (Aug)",
+        "Close (Sep)"
+      ],
+      "weak": [
+        70,
+        55,
+        45,
+        30
+      ],
+      "moderate": [
+        10,
+        30,
+        40,
+        30
+      ],
+      "strong": [
+        0,
+        5,
+        15,
+        40
+      ],
+      "inference": "The most important monsoon chart, and the most counterintuitive. The Super El Niño phase arrives after the monsoon ends — 70% weak at onset, only 40% strong-plus by the close. The monsoon largely escapes the peak. The risk is therefore back-loaded: late-season deficits concentrated in the northern grain belt, not a wholesale failure. This is the mechanism by which 2026 can disappoint without becoming a 2015-style drought."
+    },
+    "onset": {
+      "desc": "Kerala onset is the starting gun. IMD flagged an early window of May 22–30 against a normal of June 1.",
+      "normalDate": "Jun 1",
+      "forecastDate": "May 22–30",
+      "status": "Early (−3 to −10 days)",
+      "inference": "Early onset is constructive but weakly predictive. The correlation between onset timing and seasonal total is low — 1997 had an early onset and a normal season; other early-onset years underperformed. Read the early signal as 'the system is energized at the start,' not as 'the season is saved.' The onset matters more for sowing timing and farmer sentiment than for the eventual seasonal total."
+    },
+    "reservoir": {
+      "desc": "Live storage across major reservoirs vs the 10-year average. The buffer is why food supply is protected even in a below-normal monsoon.",
+      "current": 44.6,
+      "tenYrAvg": 38,
+      "inference": "This is why food supply is not the worry — storage at 44.6% against a ~38% ten-year average is a genuine buffer, and grain stocks remain adequate after two La Niña years. The transmission channel to watch is price, not availability. A below-normal monsoon with localised deficits pushes specific crop prices (pulses, oilseeds) higher even when aggregate supply holds. Supply is buffered; prices are not — which is exactly why the Risk tab leads with food inflation, not drought."
+    },
+    "regional": {
+      "desc": "Rainfall risk by region. The north–south divergence is the dominant fact the headline LPA number hides.",
+      "rows": [
+        {
+          "region": "Punjab / Haryana",
+          "risk": "High",
+          "cls": "warm",
+          "note": "Late-season coupling risk to rabi sowing"
+        },
+        {
+          "region": "Rajasthan / Gujarat",
+          "risk": "High",
+          "cls": "warm",
+          "note": "Arid baseline; sensitive to any deficit"
+        },
+        {
+          "region": "UP / MP / Bihar",
+          "risk": "Moderate",
+          "cls": "gold",
+          "note": "Core kharif belt; back-half risk"
+        },
+        {
+          "region": "Maharashtra / Karnataka",
+          "risk": "Moderate",
+          "cls": "gold",
+          "note": "Mixed; interior dry zones exposed"
+        },
+        {
+          "region": "Tamil Nadu / Kerala / AP",
+          "risk": "Low",
+          "cls": "neutral",
+          "note": "Near-normal expected; NE monsoon matters more"
+        }
+      ],
+      "inference": "The north–south divergence is the dominant analytical fact, and the national LPA number hides it entirely. The northern grain belt carries the real risk — especially late-season as coupling strengthens — while the southern peninsula is expected near-normal. A national '92% of LPA' could mask a northern deficit and a southern surplus averaging out, which has very different implications for specific crops and states than a uniform 92% would. Always read the regional split before the headline."
+    }
+  }
+}
