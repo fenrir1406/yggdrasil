@@ -29,17 +29,14 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 .d-gauge-box{position:relative;height:130px}
 .d-gauge-val{text-align:center;font-size:13px;color:var(--steel);font-weight:700;margin:6px 0 0;font-family:'Courier New',monospace}
 
-/* Metric pills - lighter tinted backgrounds */
+/* Metric pills - real light pastel backgrounds, dark text */
 .d-metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 16px}
 .d-metric{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:13px 12px;text-align:center;border-top:3px solid var(--dim)}
-.d-metric.pos{border-top-color:var(--warm);background:rgba(226,92,74,0.08)}
-.d-metric.neu{border-top-color:var(--neutral);background:rgba(95,179,126,0.08)}
-.d-metric.neg{border-top-color:var(--cool);background:rgba(61,155,212,0.08)}
-.d-metric.oni-pill{background:rgba(226,92,74,0.10);border:1px solid rgba(226,92,74,0.3);border-top:3px solid var(--warm)}
-.d-metric.roni-pill{background:rgba(95,179,126,0.10);border:1px solid rgba(95,179,126,0.3);border-top:3px solid var(--neutral)}
-.d-metric.nino-pill{background:rgba(224,153,47,0.10);border:1px solid rgba(224,153,47,0.3);border-top:3px solid var(--gold)}
-.d-metric.soi-pill{background:rgba(61,155,212,0.10);border:1px solid rgba(61,155,212,0.3);border-top:3px solid var(--cool)}
-.d-metric.outlook-pill{background:rgba(155,123,212,0.10);border:1px solid rgba(155,123,212,0.3);border-top:3px solid var(--purple)}
+.d-metric.oni-pill{background:#4a1a18;border:1px solid #c0524a;border-top:3px solid #e25c4a;border-radius:6px}
+.d-metric.roni-pill{background:#163320;border:1px solid #3d8050;border-top:3px solid #5fb37e;border-radius:6px}
+.d-metric.nino-pill{background:#3a2a08;border:1px solid #a07020;border-top:3px solid #e0992f;border-radius:6px}
+.d-metric.soi-pill{background:#0f2a40;border:1px solid #2a6090;border-top:3px solid #3d9bd4;border-radius:6px}
+.d-metric.outlook-pill{background:#28184a;border:1px solid #6040a0;border-top:3px solid #9b7bd4;border-radius:6px}
 .d-ml{font-family:'Courier New',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin:0 0 5px}
 .d-mv{font-size:21px;font-weight:700;color:#fff;line-height:1;margin:0;font-family:'Courier New',monospace}
 .d-ms{font-size:10px;color:var(--dim);margin:5px 0 0}
@@ -85,11 +82,13 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 .d-inf{background:rgba(91,143,201,0.07);border-left:3px solid var(--steel);border-radius:0 6px 6px 0;padding:14px 18px;margin:0 0 8px;font-size:14px;line-height:1.65;color:var(--txt)}
 .d-inf-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--steel);display:block;margin:0 0 7px}
 
-/* Score bars - white-background pills with colored tints */
+/* Score bars - distinct colored backgrounds */
 .d-scores{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0 0}
 .d-score{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px}
-.d-score.regime-score{background:rgba(226,92,74,0.07);border:1px solid rgba(226,92,74,0.25)}
-.d-score.coupling-score{background:rgba(61,155,212,0.07);border:1px solid rgba(61,155,212,0.25)}
+.d-score.regime-score{background:#3d1a18;border:1px solid #c04030;border-left:4px solid #e25c4a}
+.d-score.regime-score .d-sc-n{color:#f0a090}
+.d-score.coupling-score{background:#0d2540;border:1px solid #2060a0;border-left:4px solid #3d9bd4}
+.d-score.coupling-score .d-sc-n{color:#80c0e8}
 .d-sc-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 8px}
 .d-sc-n{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:var(--txt);text-transform:uppercase}
 .d-sc-v{font-size:18px;font-weight:700;color:#fff;font-family:'Courier New',monospace}
@@ -108,10 +107,11 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 .d-pm-track{height:9px;background:#0a0e14;border-radius:5px;overflow:hidden}
 .d-pm-fill{height:100%;border-radius:5px}
 
-/* Peak intensity box - white tint */
-.d-peak-box{background:rgba(224,153,47,0.08);border:1px solid rgba(224,153,47,0.25);border-radius:8px;padding:18px}
+/* Peak intensity box */
+.d-peak.d-peak-box{background:#2e1a08;border:1px solid #a06020;border-left:4px solid #e0992f}
+.d-peak.d-peak-box .d-gl{color:#e0992f}
 
-/* Tables - with header background */
+/* Tables */
 .d-tblwrap{overflow-x:auto;margin:0 0 14px}
 .d-tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
 .d-tbl th{background:linear-gradient(180deg,#1a2a40,#0e1a28);color:#c8d8f0;padding:9px 11px;text-align:left;font-size:10px;font-family:'Courier New',monospace;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid var(--steel)}
@@ -179,7 +179,7 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 .d-rc-fill{height:100%;border-radius:4px}
 .d-rc-note{font-size:11px;color:var(--mid);line-height:1.5}
 
-/* Analogs - white background pills */
+/* Analogs - white background */
 .d-analogs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 16px}
 .d-an{background:#ffffff;border:1px solid #d0d8e4;border-radius:8px;padding:16px;border-top:4px solid var(--steel)}
 .d-an.r1{border-top-color:var(--warm)} .d-an.r2{border-top-color:var(--gold)} .d-an.r3{border-top-color:var(--cool)}
@@ -193,7 +193,7 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 .d-an-v{color:#1a2533;font-weight:600}
 .d-an-v.warm{color:#c04030} .d-an-v.gold{color:#a06820} .d-an-v.neutral{color:#1a6640}
 
-/* Sources - white background pills */
+/* Sources - white background */
 .d-source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0 0 8px}
 .d-src{background:#ffffff;border:1px solid #d0d8e4;border-radius:8px;padding:16px 18px;border-left:3px solid var(--cool)}
 .d-src-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 6px;gap:10px}
@@ -261,7 +261,6 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 <button class="d-sectab" data-sec="sources">Sources</button>
 </div>
 
-<!-- Ocean & Atmosphere -->
 <div class="d-section active" id="d-sec-ocean">
 <div class="d-sec-head"><span class="d-sec-num">02</span><h2 class="d-sec-title">Ocean &amp; Atmosphere</h2><p class="d-sec-q">Is the ocean warming — and is the atmosphere agreeing?</p></div>
 <p class="d-sec-intro">An El Niño needs both a warming ocean (the energy) and an atmosphere that couples to it (the sustaining feedback). Many forecasts fail because the atmosphere never couples. These tabs track both halves.</p>
@@ -271,13 +270,12 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 <div class="d-scores" id="d-scorebars"></div>
 </div>
 
-<!-- Forecast -->
 <div class="d-section" id="d-sec-forecast">
 <div class="d-sec-head"><span class="d-sec-num">04</span><h2 class="d-sec-title">Forecast Consensus</h2><p class="d-sec-q">Where is ENSO heading — and how much do forecasters agree?</p></div>
 <p class="d-sec-intro">Five major centres, aggregated. The consensus gauge shows blended peak-window probability; the agency table shows where each centre sits and how confident it is. Disagreement is itself information.</p>
 <div class="d-cons-wrap">
 <div class="d-cons-g"><p class="d-gl" style="margin-bottom:8px">Peak-Window Consensus · Dec 2026–Feb 2027</p><div class="d-cons-box"><canvas id="d-consensus-chart"></canvas></div></div>
-<div class="d-peak d-peak-box"><p class="d-gl" style="margin-bottom:14px;color:#c08030">Expected Peak Intensity</p><div id="d-peak-bars"></div></div>
+<div class="d-peak d-peak-box"><p class="d-gl" style="margin-bottom:14px">Expected Peak Intensity</p><div id="d-peak-bars"></div></div>
 </div>
 <div id="d-consensus-inf"></div>
 <div class="d-tblwrap"><table class="d-tbl"><thead><tr><th>Agency</th><th>Outlook</th><th>El Niño Prob.</th><th>Peak Intensity</th><th>Duration</th><th>Confidence</th></tr></thead><tbody id="d-agency-tbody"></tbody></table></div>
@@ -285,7 +283,6 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 <div id="d-timeline-inf"></div>
 </div>
 
-<!-- Monsoon -->
 <div class="d-section" id="d-sec-monsoon">
 <div class="d-sec-head"><span class="d-sec-num">05</span><h2 class="d-sec-title">India Monsoon Intelligence</h2><p class="d-sec-q">What does this mean for the Indian monsoon?</p></div>
 <p class="d-sec-intro">A dashboard within the dashboard. The Super El Niño phase peaks after the monsoon ends, so the seasonal distribution matters more than the headline strength.</p>
@@ -294,7 +291,6 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 <div id="d-mon-panels"></div>
 </div>
 
-<!-- Risk -->
 <div class="d-section" id="d-sec-risk">
 <div class="d-sec-head"><span class="d-sec-num">06</span><h2 class="d-sec-title">Risk &amp; Transmission</h2><p class="d-sec-q">How does ENSO become a real-world consequence?</p></div>
 <p class="d-sec-intro">ENSO matters when it transmits into the real economy. For India in 2026 the dominant channel is not drought — the reservoir buffer is adequate — but food inflation. The lead card tracks that channel; the grid tracks the others.</p>
@@ -304,7 +300,6 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 <div id="d-risk-inf"></div>
 </div>
 
-<!-- Analogs -->
 <div class="d-section" id="d-sec-analogs">
 <div class="d-sec-head"><span class="d-sec-num">03</span><h2 class="d-sec-title">Historical Analog Engine</h2><p class="d-sec-q">Which past years most resemble current conditions?</p></div>
 <p class="d-sec-intro">Current ONI, RONI, subsurface heat, SOI and forecast path compared against every ENSO cycle since 1950. Closest analogs shown with their eventual outcomes. Similarity is indicative, not predictive — the historical sample is small.</p>
@@ -313,7 +308,6 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 <div id="d-analog-inf"></div>
 </div>
 
-<!-- Sources -->
 <div class="d-section" id="d-sec-sources">
 <div class="d-sec-head"><span class="d-sec-num">07</span><h2 class="d-sec-title">Data Sources &amp; Research Hub</h2><p class="d-sec-q">Where does this come from — and how reliable is it?</p></div>
 <p class="d-sec-intro">Every figure is compiled from official meteorological and research sources. Reliability reflects each source's authority and update cadence for the specific metrics used here.</p>
@@ -333,20 +327,16 @@ Sources: NOAA CPC · IRI/Columbia · Skymet · IMD · NOAA NCEI. Analytical esti
 "use strict";
 var DASHBOARD_DATA = {};
 var D = DASHBOARD_DATA;
-
 var DATA_FILES = ["status","ocean","forecast","monsoon","risk","analogs"];
 
 function showLoadError(which){
 var host = document.getElementById("d-metrics");
 var banner = document.createElement("div");
 banner.style.cssText = "background:#3a1414;border:1px solid #e25c4a;color:#f0b8b0;padding:14px 18px;border-radius:6px;margin:16px 26px;font-family:'Courier New',monospace;font-size:12px;line-height:1.6";
-banner.innerHTML = "&#9888; Could not load data file: <strong>data/"+which+".json</strong>.<br>"
-+ "If you are opening this file directly from disk, that is expected — browsers block local fetch. "
-+ "Host it on GitHub Pages (or any web server) and the data will load.";
+banner.innerHTML = "&#9888; Could not load data file: <strong>data/"+which+".json</strong>.<br>Host it on a web server and the data will load.";
 var dash = document.querySelector(".enso-d");
 if(dash) dash.insertBefore(banner, dash.querySelector(".d-sectabs"));
 }
-
 function bust(url){ return url + "?v=" + Date.now(); }
 
 (function loadAll(){
@@ -404,25 +394,23 @@ c.restore();
 
 $("d-asof").textContent = "AS OF " + D.meta.asOf.toUpperCase();
 $("d-foot-updated").textContent = "UPDATED " + D.meta.lastUpdated.toUpperCase();
-
 $("d-state-value").textContent = D.state.label;
 $("d-state-detail").textContent = D.state.detail;
 $("d-narrative-text").textContent = D.narrative;
 var rs = D.state.regimeScore;
 $("d-state-card").style.borderLeftColor = (rs < 30 ? "#3d9bd4" : (rs > 70 ? "#e25c4a" : "#e0992f"));
 
-/* Metric pills with custom classes per metric label */
+/* Metric pills with per-metric color classes */
 (function(){
 var h = "";
 D.metrics.forEach(function(m){
 var pillClass = "";
 var label = m.label.toLowerCase();
-if(label.indexOf("oni") !== -1 && label.indexOf("roni") === -1){ pillClass = " oni-pill"; }
-else if(label.indexOf("roni") !== -1){ pillClass = " roni-pill"; }
-else if(label.indexOf("ni") !== -1 && label.indexOf("o") !== -1){ pillClass = " nino-pill"; }
+if(label.indexOf("roni") !== -1){ pillClass = " roni-pill"; }
+else if(label.indexOf("oni") !== -1){ pillClass = " oni-pill"; }
+else if(label.indexOf("ni") !== -1 && (label.indexOf("3") !== -1 || label.indexOf("o") !== -1)){ pillClass = " nino-pill"; }
 else if(label.indexOf("soi") !== -1){ pillClass = " soi-pill"; }
 else if(label.indexOf("outlook") !== -1){ pillClass = " outlook-pill"; }
-else { pillClass = " " + m.dir; }
 h += '<div class="d-metric' + pillClass + '"><p class="d-ml">' + m.label + '</p>'
 + '<p class="d-mv">' + m.value + '</p><p class="d-ms">' + m.sub + '</p></div>';
 });
@@ -439,7 +427,6 @@ h += '<div class="d-cyc-p' + a + '"><span class="d-cyc-n">' + p.name + '</span>'
 $("d-cyc").innerHTML = h;
 })();
 
-/* Regime gauge - red for high, blue/grey for the remaining portion */
 function drawGauge(){
 if(!HAS_CHART) return;
 var v = D.state.regimeScore;
@@ -473,7 +460,8 @@ plugins:{ legend:{ display:true, labels:{ font:{family:F,size:11}, color:"#c8d2e
 tooltip:{ titleFont:{family:F}, bodyFont:{family:F} } },
 scales:{
 x:{ ticks:{ font:{family:F,size:10}, color:"#ffffff" }, grid:{ color:GRID } },
-y:{ title:{ display:!!yTitle, text:yTitle, font:{family:F,size:10}, color:"#ffffff" }, ticks:{ font:{family:F,size:10}, color:"#ffffff" }, grid:{ color:GRID } }
+y:{ title:{ display:!!yTitle, text:yTitle, font:{family:F,size:10}, color:"#ffffff" },
+ticks:{ font:{family:F,size:10}, color:"#ffffff" }, grid:{ color:GRID } }
 }
 };
 if(thr) o._thr = thr;
@@ -544,7 +532,7 @@ options: lineOpts("index / anomaly", d.thr) });
 }
 }
 
-/* Score bars with colored tints */
+/* Score bars */
 (function(){
 var h = "";
 var scoreItems = [D.scores.regime, D.scores.coupling];
@@ -733,14 +721,13 @@ drawGauge();
 drawOA("oni");
 } else {
 document.querySelectorAll(".d-chartbox").forEach(function(b){
-b.innerHTML = '<p style="font-family:' + F + ';font-size:12px;color:#8b97a8;text-align:center;padding-top:40px">Chart library unavailable \u2014 see the Analyst Read below.</p>';
+b.innerHTML = '<p style="font-family:' + F + ';font-size:12px;color:#8b97a8;text-align:center;padding-top:40px">Chart library unavailable.</p>';
 });
 if($("d-gauge-val")) $("d-gauge-val").textContent = D.state.regimeScore + " / 100";
 }
 }
 })();
 
-/* Auto-resize: post height to parent for iframe embedding */
 function postHeight(){
 var dash = document.querySelector('.enso-d');
 if(!dash) return;
@@ -749,17 +736,12 @@ if(window.parent && window.parent !== window){
 window.parent.postMessage({ ensoDashHeight: h }, "*");
 }
 }
-
-/* Also respond to messages requesting height */
 window.addEventListener('message', function(e){
 if(e.data && e.data.requestHeight){ postHeight(); }
 });
-
 window.addEventListener('load', function(){ setTimeout(postHeight, 500); });
 window.addEventListener('resize', function(){ setTimeout(postHeight, 100); });
 document.addEventListener('click', function(){ setTimeout(postHeight, 200); });
-
-/* ResizeObserver for dynamic content changes */
 if(typeof ResizeObserver !== 'undefined'){
 var ro = new ResizeObserver(function(){ postHeight(); });
 var dash = document.querySelector('.enso-d');
