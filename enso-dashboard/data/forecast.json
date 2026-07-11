@@ -99,7 +99,7 @@
         60,
         44
       ],
-      "inference": "The curve has shifted up and forward since the spring. El Niño probability now sits near-certain (97–98%) through the autumn, with the intensity peak concentrated in SON–DJF 2026 rather than the later window the May forecast implied. The decay through spring 2027 is the expected seasonal fade, and GFDL explicitly projects weakening into the spring. For anyone timing exposure — hurricane suppression, monsoon impact, energy demand — the operative window is now: the event is at or near full strength through the second half of 2026, not building toward it."
+      "inference": "Read the shape carefully: this is the probability that El Niño is present in each month, not its strength. It sits near-certain (97–98%) through the second half of 2026 and only declines in spring–summer 2027 — that fall is the expected end-of-event decay, not a weakening now. El Niño events peak in NH winter and fade the following spring, and GFDL's July run explicitly projects weakening into spring 2027. Meanwhile the separate strength probability is still rising (very-strong odds went from ~25% in May to 81% for Oct–Dec). So both hold at once: near-certain to persist through 2026, increasingly likely to peak very strong, and expected to decay through 2027."
     }
   }
 }
