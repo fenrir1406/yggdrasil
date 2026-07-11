@@ -1,107 +1,107 @@
 {
   "monsoon": {
     "forecast": {
-      "desc": "IMD first-stage forecast (April 13): 92% of LPA, 'below normal'. Probability of a deficient season (below 90% LPA) is 35% — more than double the 16% climatological base rate.",
+      "desc": "IMD second-stage forecast (late May): 90% of LPA — 'below normal', revised down from the April 92%. The probability of a deficient season (below 90% LPA) is now 60%, and there is an 84% chance of below-normal-or-less rainfall.",
       "dist": [
         {
           "label": "Deficient (<90%)",
-          "pct": 35,
-          "color": "#e25c4a"
+          "pct": 60,
+          "color": "#c0392b"
         },
         {
           "label": "Below Normal (90–96%)",
-          "pct": 30,
+          "pct": 24,
           "color": "#e0992f"
         },
         {
           "label": "Normal (96–104%)",
-          "pct": 28,
+          "pct": 13,
           "color": "#5fb37e"
         },
         {
           "label": "Above Normal (>104%)",
-          "pct": 7,
+          "pct": 3,
           "color": "#3d9bd4"
         }
       ],
-      "inference": "92% of LPA reads as 'below normal,' but the distribution is the story: a 35% chance of a deficient season is more than double the climatological 16%. That tail — not the headline — is what the agricultural economy and the RBI watch. The asymmetry is the point: the downside (deficient) is roughly five times as likely as the upside (above-normal), so the risk skew is firmly negative even though the central case is only modestly below par."
+      "inference": "The forecast has deteriorated as El Niño strengthened. IMD's second-stage update cut the seasonal call to 90% of LPA and lifted the deficient-season probability to 60% — nearly four times the ~16% climatological base rate — with an 84% chance of below-normal-or-worse. This is no longer a 'modestly below par' central case with a fat tail; the deficient outcome is now the single most likely bucket. The strengthening event and a neutral IOD (offering no offset) have pushed the distribution firmly to the dry side."
     },
     "seasonal": {
-      "desc": "NOAA's strength distribution across the monsoon: El Niño weak at onset, strengthening only at the close. The Super phase arrives after September.",
+      "desc": "June opened with a severe deficit. Unlike a classic Super El Niño where the peak arrives after the monsoon, the 2026 event strengthened early enough to suppress rainfall from the season's start.",
       "labels": [
-        "Onset (Jun)",
-        "Early (Jul)",
-        "Mid (Aug)",
-        "Close (Sep)"
+        "June (actual)",
+        "July (fcst)",
+        "Aug (fcst)",
+        "Sep (fcst)"
       ],
       "weak": [
-        70,
-        55,
-        45,
-        30
+        0,
+        20,
+        30,
+        25
       ],
       "moderate": [
         10,
-        30,
         40,
-        30
-      ],
-      "strong": [
-        0,
-        5,
-        15,
+        40,
         40
       ],
-      "inference": "The most important monsoon chart, and the most counterintuitive. The Super El Niño phase arrives after the monsoon ends — 70% weak at onset, only 40% strong-plus by the close. The monsoon largely escapes the peak. The risk is therefore back-loaded: late-season deficits concentrated in the northern grain belt, not a wholesale failure. This is the mechanism by which 2026 can disappoint without becoming a 2015-style drought."
+      "strong": [
+        90,
+        40,
+        30,
+        35
+      ],
+      "inference": "This is the chart that has diverged most from the spring assumption. The spring thesis held that a Super El Niño peaks after the monsoon, so the season would largely escape it. Instead the event strengthened early: June came in with a ~40% all-India deficit (central India ~50%), driven by the strengthening El Niño, an unfavourable MJO, and a lack of low-pressure systems. The monsoon did not escape the peak — it was suppressed from the outset. July revival depends on the Somali Jet and low-pressure formation in the Bay of Bengal; the season now needs a strong recovery just to reach 'below normal.'"
     },
     "onset": {
-      "desc": "Kerala onset is the starting gun. IMD flagged an early window of May 22–30 against a normal of June 1.",
+      "desc": "Kerala onset is the starting gun. IMD officially declared onset on June 4, three days later than the June 1 normal — a late onset, despite earlier forecasts of an early arrival.",
       "normalDate": "Jun 1",
-      "forecastDate": "May 22–30",
-      "status": "Early (−3 to −10 days)",
-      "inference": "Early onset is constructive but weakly predictive. The correlation between onset timing and seasonal total is low — 1997 had an early onset and a normal season; other early-onset years underperformed. Read the early signal as 'the system is energized at the start,' not as 'the season is saved.' The onset matters more for sowing timing and farmer sentiment than for the eventual seasonal total."
+      "forecastDate": "Jun 4 (actual)",
+      "status": "Late (+3 days)",
+      "inference": "The onset came in late, not early — a correction worth noting because the April forecast (and much of the pre-season coverage) pointed to an early arrival. IMD's forecast window slipped repeatedly through May (May 26 → May 28–Jun 3) before onset was officially declared on June 4, three days after normal. Onset timing is only weakly correlated with the seasonal total, but here the late start was the leading edge of a broader suppression: the same weak circulation that delayed onset also produced the severe June deficit that followed."
     },
     "reservoir": {
-      "desc": "Live storage across major reservoirs vs the 10-year average. The buffer is why food supply is protected even in a below-normal monsoon.",
+      "desc": "Live storage across major reservoirs vs the 10-year average. The buffer is the reason food supply is protected even as the rainfall deficit widens.",
       "current": 44.6,
-      "tenYrAvg": 38,
-      "inference": "This is why food supply is not the worry — storage at 44.6% against a ~38% ten-year average is a genuine buffer, and grain stocks remain adequate after two La Niña years. The transmission channel to watch is price, not availability. A below-normal monsoon with localised deficits pushes specific crop prices (pulses, oilseeds) higher even when aggregate supply holds. Supply is buffered; prices are not — which is exactly why the Risk tab leads with food inflation, not drought."
+      "tenYrAvg": 38.0,
+      "inference": "The reservoir buffer remains the key reason a deficient monsoon is a price story, not a supply-collapse story. Storage entered the season above the ten-year average after two La Niña years, and grain stocks are adequate. But a ~40% June rainfall deficit draws that buffer down faster than a normal year, and if July fails to revive, the cushion that currently protects supply will thin into the rabi season. Supply is buffered for now; the buffer is being spent."
     },
     "regional": {
-      "desc": "Rainfall risk by region. The north–south divergence is the dominant fact the headline LPA number hides.",
+      "desc": "June rainfall by region. Central, eastern and northeastern India were worst hit; the deficit was broad, not confined to the northern grain belt as the spring framework assumed.",
       "rows": [
         {
-          "region": "Punjab / Haryana",
+          "region": "Central India (MP, Chhattisgarh)",
           "risk": "High",
           "cls": "warm",
+          "note": "~50% June deficit — the worst-hit region"
+        },
+        {
+          "region": "East & Northeast (Bihar, Jharkhand)",
+          "risk": "High",
+          "cls": "warm",
+          "note": "Deficient to no rain across most districts"
+        },
+        {
+          "region": "Northwest (Punjab, Haryana, Raj.)",
+          "risk": "Moderate",
+          "cls": "gold",
           "note": "Late-season coupling risk to rabi sowing"
         },
         {
-          "region": "Rajasthan / Gujarat",
-          "risk": "High",
-          "cls": "warm",
-          "note": "Arid baseline; sensitive to any deficit"
-        },
-        {
-          "region": "UP / MP / Bihar",
-          "risk": "Moderate",
-          "cls": "gold",
-          "note": "Core kharif belt; back-half risk"
-        },
-        {
-          "region": "Maharashtra / Karnataka",
+          "region": "Maharashtra / Gujarat",
           "risk": "Moderate",
           "cls": "gold",
           "note": "Mixed; interior dry zones exposed"
         },
         {
-          "region": "Tamil Nadu / Kerala / AP",
-          "risk": "Low",
-          "cls": "neutral",
-          "note": "Near-normal expected; NE monsoon matters more"
+          "region": "South Peninsula (TN, Kerala, AP)",
+          "risk": "Moderate",
+          "cls": "gold",
+          "note": "Better than core zone but below normal"
         }
       ],
-      "inference": "The north–south divergence is the dominant analytical fact, and the national LPA number hides it entirely. The northern grain belt carries the real risk — especially late-season as coupling strengthens — while the southern peninsula is expected near-normal. A national '92% of LPA' could mask a northern deficit and a southern surplus averaging out, which has very different implications for specific crops and states than a uniform 92% would. Always read the regional split before the headline."
+      "inference": "The June deficit was broader than the spring's north–south framing anticipated. Central India — the core rain-fed farmland of the Monsoon Core Zone — took the worst hit at ~50% below normal, with east and northeast India also badly deficient. Over three-quarters of districts reported deficient-to-no rain. This is a wider, more central-belt-weighted shortfall than the 'northern grain belt at risk, south near-normal' picture the spring analysis drew, and it raises the stakes for the July revival across the country's main kharif zone."
     }
   }
 }
