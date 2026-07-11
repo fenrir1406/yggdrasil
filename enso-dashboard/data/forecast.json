@@ -1,79 +1,78 @@
 {
   "consensus": {
     "peak": {
-      "elnino": 82,
-      "neutral": 15,
-      "lanina": 3
+      "elnino": 97,
+      "neutral": 3,
+      "lanina": 0
     },
     "intensity": [
       {
-        "label": "Super (≥+2.0°C)",
-        "pct": 25,
+        "label": "Super / V.Strong (≥+2.0°C)",
+        "pct": 58,
         "color": "#9b7bd4"
       },
       {
         "label": "Strong (+1.5–2.0)",
-        "pct": 40,
+        "pct": 30,
         "color": "#e25c4a"
       },
       {
         "label": "Moderate (+1.0–1.5)",
-        "pct": 22,
+        "pct": 10,
         "color": "#e0992f"
       },
       {
         "label": "Weak (+0.5–1.0)",
-        "pct": 13,
+        "pct": 2,
         "color": "#3d9bd4"
       }
     ],
     "agencies": [
       {
         "name": "NOAA CPC",
-        "outlook": "El Niño Watch",
-        "prob": "82%",
-        "peak": "Strong–Super",
-        "dur": "Through Q1 2027",
+        "outlook": "El Niño Advisory",
+        "prob": "97%",
+        "peak": "Very Strong",
+        "dur": "Through early spring 2027",
         "conf": "High"
       },
       {
         "name": "IRI/Columbia",
-        "outlook": "El Niño likely",
-        "prob": "80%",
-        "peak": "Strong",
-        "dur": "MJJ→JFM",
+        "outlook": "El Niño present",
+        "prob": "~98%",
+        "peak": "Very Strong",
+        "dur": "Peak SON 2026",
         "conf": "High"
       },
       {
         "name": "ECMWF",
-        "outlook": "El Niño (early)",
-        "prob": "~90%",
-        "peak": "Strong–Super",
-        "dur": "Into 2027",
-        "conf": "Med–High"
+        "outlook": "El Niño (record?)",
+        "prob": "~98%",
+        "peak": "Super (>+3°C?)",
+        "dur": "Peak autumn 2026",
+        "conf": "High"
+      },
+      {
+        "name": "GFDL SPEAR",
+        "outlook": "El Niño present",
+        "prob": "~98%",
+        "peak": "Historic-class",
+        "dur": "Weakens into spring 2027",
+        "conf": "High"
       },
       {
         "name": "BOM (Aus)",
-        "outlook": "Watch / Alert",
-        "prob": "70%",
-        "peak": "Moderate–Strong",
-        "dur": "Spring–Summer",
-        "conf": "Medium"
-      },
-      {
-        "name": "IMD (India)",
-        "outlook": "El Niño developing",
-        "prob": "—",
-        "peak": "Strong",
-        "dur": "Monsoon-relevant",
-        "conf": "Medium"
+        "outlook": "El Niño / Alert",
+        "prob": "~95%",
+        "peak": "Strong–V.Strong",
+        "dur": "Spring–summer",
+        "conf": "High"
       }
     ],
-    "consensusInference": "An 82% blended probability with Super as the modal peak is a strong consensus — but consensus is not certainty, and the dispersion is the real information. ECMWF sits at the bullish extreme (~90%, Super-tilted); BOM is the most cautious (70%, moderate-strong). The spread between them is the uncertainty band. If ECMWF and BOM converge over the next two updates, confidence rises; if they diverge further, the event's intensity is genuinely unsettled and headline probabilities should be discounted.",
+    "consensusInference": "The spring's dispersion has collapsed into agreement. Every major centre now carries El Niño at ~97–98% with a very-strong peak the central case — the disagreement is no longer about whether, but about how extreme. ECMWF sits at the aggressive extreme (anomalies possibly above +3°C, i.e. record-challenging), while NOAA's 81% very-strong figure for Oct–Dec is the more measured read; GFDL's July ensemble has all 30 members competitive with the strongest events of the past century. When the debate shifts from 'will it happen' to 'how big is the peak,' the event itself is settled. The residual uncertainty is magnitude and timing, not direction.",
     "timeline": {
       "labels": [
-        "Jun'26",
-        "Jul",
+        "Jul'26",
         "Aug",
         "Sep",
         "Oct",
@@ -83,23 +82,24 @@
         "Feb",
         "Mar",
         "Apr",
-        "May"
+        "May",
+        "Jun"
       ],
       "values": [
-        82,
-        86,
-        90,
-        93,
-        95,
+        98,
+        98,
+        98,
+        97,
+        97,
+        97,
         96,
-        96,
-        95,
         93,
-        86,
-        72,
-        55
+        87,
+        76,
+        60,
+        44
       ],
-      "inference": "The shape is the message: probability rises steeply into the Dec–Feb peak, then decays through spring 2027. The decay slope is shallower than 2023–24's, which is the constructive read — but this is a forecast of probability, not intensity, and it assumes coupling proceeds. If the June trade-wind data disappoints, the entire curve shifts down and forward, and the peak window compresses."
+      "inference": "The curve has shifted up and forward since the spring. El Niño probability now sits near-certain (97–98%) through the autumn, with the intensity peak concentrated in SON–DJF 2026 rather than the later window the May forecast implied. The decay through spring 2027 is the expected seasonal fade, and GFDL explicitly projects weakening into the spring. For anyone timing exposure — hurricane suppression, monsoon impact, energy demand — the operative window is now: the event is at or near full strength through the second half of 2026, not building toward it."
     }
   }
 }
