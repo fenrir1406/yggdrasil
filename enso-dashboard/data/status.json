@@ -1,50 +1,50 @@
 {
   "meta": {
-    "asOf": "May 26, 2026",
-    "lastUpdated": "May 26, 2026"
+    "asOf": "July 9, 2026",
+    "lastUpdated": "July 9, 2026"
   },
   "state": {
-    "label": "ENSO-Neutral · El Niño Watch",
-    "detail": "Neutral conditions persist but the ocean is warming fast. NOAA issued an El Niño Watch on May 14. Atmospheric coupling has begun but is not yet locked in.",
-    "regimeScore": 58,
+    "label": "El Niño Advisory · Strengthening",
+    "detail": "El Niño conditions are present and strengthening fast. NOAA is at a full El Niño Advisory, with an 81% chance of a very strong event in Oct–Dec and a 97% chance it persists into early spring 2027.",
+    "regimeScore": 84,
     "cyclePhase": 1
   },
   "metrics": [
     {
       "label": "ONI",
-      "value": "+0.4",
-      "sub": "°C · 3-mo avg",
+      "value": "+0.9",
+      "sub": "°C · 3-mo, rising",
       "dir": "pos"
     },
     {
       "label": "RONI",
-      "value": "+0.1",
+      "value": "+0.6",
       "sub": "°C · trend-adj",
-      "dir": "neu"
+      "dir": "pos"
     },
     {
       "label": "Niño 3.4",
-      "value": "+0.5",
-      "sub": "°C · weekly",
+      "value": "+1.7",
+      "sub": "°C · wk, Jun 17",
       "dir": "pos"
     },
     {
       "label": "SOI",
-      "value": "−0.3",
-      "sub": "Apr 2026",
+      "value": "−1.2",
+      "sub": "coupled",
       "dir": "pos"
     },
     {
       "label": "Outlook",
-      "value": "El Niño",
-      "sub": "82% by Jul",
+      "value": "Very Strong",
+      "sub": "81% Oct–Dec",
       "dir": "pos"
     }
   ],
   "cycle": [
     {
       "name": "RECHARGE",
-      "sub": "Heat builds"
+      "sub": "Heat built"
     },
     {
       "name": "DEVELOPMENT",
@@ -52,12 +52,12 @@
     },
     {
       "name": "PEAK",
-      "sub": "Dec–Feb"
+      "sub": "Sep–Dec"
     },
     {
       "name": "DECAY",
       "sub": "2027"
     }
   ],
-  "narrative": "ENSO remains neutral but ocean heat content is more than double the May-2023 reading and Niño 3.4 has crossed +0.5°C for the first time since May 2024. Forecast consensus favours El Niño emergence by July (82%) with a Super event the modal peak for Dec 2026–Feb 2027. The open question is sustainability: atmospheric coupling has started (SOI −0.3) but trade winds have not decisively weakened. Conditions resemble 1997 and 2015 on the ocean signal, but 2023 on the coupling signal — the latter peaked and faded. Watch the June 11 NOAA update and June–July trade winds."
+  "narrative": "El Niño is now present and strengthening fast — the sustainability question that dominated the spring has largely resolved. NOAA moved to a full El Niño Advisory, and the weekly Niño 3.4 index reached +1.7°C by mid-June, up sharply from +0.5°C in late May. NOAA now puts an 81% chance of a very strong El Niño during October–December that would rank among the largest events since 1950, with a 97% chance the event persists through early spring 2027. Atmospheric coupling has established: thunderstorm activity has shifted to the central and eastern Pacific and is suppressed over Indonesia. The model ensemble has trended warmer month-on-month — GFDL's July run has all 30 members peaking at least competitive with the strongest events of the past century, and ECMWF flags the possibility of anomalies above +3°C by autumn. The event is no longer 'developing' as a question; it is developing in force. The remaining uncertainty is the magnitude of the peak (strong vs very strong vs record) and the exact timing of the autumn–winter maximum."
 }
