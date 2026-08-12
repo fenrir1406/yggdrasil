@@ -1,29 +1,29 @@
 {
   "consensus": {
     "peak": {
-      "elnino": 97,
-      "neutral": 3,
+      "elnino": 99,
+      "neutral": 1,
       "lanina": 0
     },
     "intensity": [
       {
         "label": "Super / V.Strong (≥+2.0°C)",
-        "pct": 58,
+        "pct": 81,
         "color": "#9b7bd4"
       },
       {
         "label": "Strong (+1.5–2.0)",
-        "pct": 30,
+        "pct": 15,
         "color": "#e25c4a"
       },
       {
         "label": "Moderate (+1.0–1.5)",
-        "pct": 10,
+        "pct": 3,
         "color": "#e0992f"
       },
       {
         "label": "Weak (+0.5–1.0)",
-        "pct": 2,
+        "pct": 1,
         "color": "#3d9bd4"
       }
     ],
@@ -31,49 +31,48 @@
       {
         "name": "NOAA CPC",
         "outlook": "El Niño Advisory",
-        "prob": "97%",
-        "peak": "Very Strong",
+        "prob": "99%",
+        "peak": "Very Strong (81%)",
         "dur": "Through early spring 2027",
-        "conf": "High"
+        "conf": "Very High"
       },
       {
         "name": "IRI/Columbia",
-        "outlook": "El Niño present",
-        "prob": "~98%",
+        "outlook": "Intensifying",
+        "prob": "~99%",
         "peak": "Very Strong",
-        "dur": "Peak SON 2026",
-        "conf": "High"
+        "dur": "Peak OND 2026",
+        "conf": "Very High"
       },
       {
         "name": "ECMWF",
         "outlook": "El Niño (record?)",
-        "prob": "~98%",
-        "peak": "Super (>+3°C?)",
-        "dur": "Peak autumn 2026",
-        "conf": "High"
+        "prob": "~99%",
+        "peak": "Super (>+3°C)",
+        "dur": "Peak late autumn",
+        "conf": "Very High"
       },
       {
-        "name": "GFDL SPEAR",
-        "outlook": "El Niño present",
-        "prob": "~98%",
-        "peak": "Historic-class",
+        "name": "NCEP CFSv2",
+        "outlook": "Extreme",
+        "prob": "~99%",
+        "peak": ">+3°C (record?)",
         "dur": "Weakens into spring 2027",
         "conf": "High"
       },
       {
-        "name": "BOM (Aus)",
-        "outlook": "El Niño / Alert",
-        "prob": "~95%",
-        "peak": "Strong–V.Strong",
-        "dur": "Spring–summer",
-        "conf": "High"
+        "name": "CCSR/IRI ens.",
+        "outlook": "23 of 26 v.strong",
+        "prob": "~99%",
+        "peak": "Very Strong",
+        "dur": "Every model holds El Niño",
+        "conf": "Very High"
       }
     ],
-    "consensusInference": "The spring's dispersion has collapsed into agreement. Every major centre now carries El Niño at ~97–98% with a very-strong peak the central case — the disagreement is no longer about whether, but about how extreme. ECMWF sits at the aggressive extreme (anomalies possibly above +3°C, i.e. record-challenging), while NOAA's 81% very-strong figure for Oct–Dec is the more measured read; GFDL's July ensemble has all 30 members competitive with the strongest events of the past century. When the debate shifts from 'will it happen' to 'how big is the peak,' the event itself is settled. The residual uncertainty is magnitude and timing, not direction.",
+    "consensusInference": "The dispersion has collapsed to near-unanimity. IRI's mid-July ensemble has 23 of 26 models forecasting a very strong peak (≥+2.0°C) at OND 2026, with every single model maintaining El Niño throughout the forecast — described by IRI as exceptional model agreement. The remaining debate is narrow and specific: whether 2026 beats the 2015–16 record (+2.6°C ONI). ECMWF and CFSv2 point beyond +3°C, which would; more conservative reads and the RONI lens argue it joins rather than leads the Super club. When the models agree this tightly, the event is settled — only its magnitude ceiling is open.",
     "timeline": {
       "labels": [
-        "Jul'26",
-        "Aug",
+        "Aug'26",
         "Sep",
         "Oct",
         "Nov",
@@ -83,23 +82,24 @@
         "Mar",
         "Apr",
         "May",
-        "Jun"
+        "Jun",
+        "Jul"
       ],
       "values": [
+        99,
+        99,
         98,
         98,
-        98,
-        97,
-        97,
         97,
         96,
         93,
         87,
         76,
         60,
-        44
+        44,
+        32
       ],
-      "inference": "Read the shape carefully: this is the probability that El Niño is present in each month, not its strength. It sits near-certain (97–98%) through the second half of 2026 and only declines in spring–summer 2027 — that fall is the expected end-of-event decay, not a weakening now. El Niño events peak in NH winter and fade the following spring, and GFDL's July run explicitly projects weakening into spring 2027. Meanwhile the separate strength probability is still rising (very-strong odds went from ~25% in May to 81% for Oct–Dec). So both hold at once: near-certain to persist through 2026, increasingly likely to peak very strong, and expected to decay through 2027."
+      "inference": "Read the shape carefully: this is the probability that El Niño is present in each month, not its strength. It sits near-certain (98–99%) through autumn and winter 2026, then declines through spring–summer 2027 — that fall is the expected end-of-event decay, not a weakening now. El Niño peaks in NH winter and fades the following spring; the ensembles project weakening into spring 2027. Meanwhile the strength probability is at its ceiling (81% very-strong). Both hold: near-certain to persist through the 2026–27 winter, very likely to peak very strong, and expected to decay through 2027."
     }
   }
 }
