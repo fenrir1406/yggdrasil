@@ -1,37 +1,37 @@
 {
   "meta": {
-    "asOf": "July 9, 2026",
-    "lastUpdated": "July 9, 2026"
+    "asOf": "August 13, 2026",
+    "lastUpdated": "August 13, 2026"
   },
   "state": {
-    "label": "El Niño Advisory · Strengthening",
-    "detail": "El Niño conditions are present and strengthening fast. NOAA is at a full El Niño Advisory, with an 81% chance of a very strong event in Oct–Dec and a 97% chance it persists into early spring 2027.",
-    "regimeScore": 84,
+    "label": "El Niño Advisory · Very Strong Threshold Crossed",
+    "detail": "El Niño is intensifying toward a very strong event. Weekly Niño 3.4 reached +2.1°C in mid-July — across the +2.0°C very-strong threshold. NOAA holds 81% odds of a very strong peak in Oct–Dec and 97% persistence into early 2027.",
+    "regimeScore": 90,
     "cyclePhase": 1
   },
   "metrics": [
     {
       "label": "ONI",
-      "value": "+0.9",
+      "value": "+1.3",
       "sub": "°C · 3-mo, rising",
       "dir": "pos"
     },
     {
       "label": "RONI",
-      "value": "+0.6",
+      "value": "+1.0",
       "sub": "°C · trend-adj",
       "dir": "pos"
     },
     {
       "label": "Niño 3.4",
-      "value": "+1.7",
-      "sub": "°C · wk, Jun 17",
+      "value": "+2.1",
+      "sub": "°C · wk, Jul 15",
       "dir": "pos"
     },
     {
       "label": "SOI",
-      "value": "−1.2",
-      "sub": "coupled",
+      "value": "−1.5",
+      "sub": "strongly coupled",
       "dir": "pos"
     },
     {
@@ -52,12 +52,12 @@
     },
     {
       "name": "PEAK",
-      "sub": "Sep–Dec"
+      "sub": "Oct–Jan"
     },
     {
       "name": "DECAY",
-      "sub": "2027"
+      "sub": "spring 2027"
     }
   ],
-  "narrative": "El Niño is now present and strengthening fast — the sustainability question that dominated the spring has largely resolved. NOAA moved to a full El Niño Advisory, and the weekly Niño 3.4 index reached +1.7°C by mid-June, up sharply from +0.5°C in late May. NOAA now puts an 81% chance of a very strong El Niño during October–December that would rank among the largest events since 1950, with a 97% chance the event persists through early spring 2027. Atmospheric coupling has established: thunderstorm activity has shifted to the central and eastern Pacific and is suppressed over Indonesia. The model ensemble has trended warmer month-on-month — GFDL's July run has all 30 members peaking at least competitive with the strongest events of the past century, and ECMWF flags the possibility of anomalies above +3°C by autumn. The event is no longer 'developing' as a question; it is developing in force. The remaining uncertainty is the magnitude of the peak (strong vs very strong vs record) and the exact timing of the autumn–winter maximum."
+  "narrative": "El Niño has crossed the very-strong threshold and continues to intensify. The weekly Niño 3.4 index reached +2.1°C in mid-July — up from +1.7°C in June and +0.5°C in late May — and IRI's mid-July ensemble has 23 of 26 models forecasting a very strong peak (≥+2.0°C) during Oct–Dec, with every model holding El Niño throughout. NOAA's discussion carries an 81% chance of a very strong event at peak and 97% persistence into early spring 2027. The CFSv2 and ECMWF ensembles point beyond +3°C, raising the record-challenging question against 2015–16 (+2.6°C). The event is no longer developing in question or in force — it is now competing for a place among the largest since 1950. The residual uncertainty is whether it beats the 2015–16 record and the exact timing of the autumn–winter maximum. Real-world confirmation is arriving: NOAA raised its below-normal Atlantic hurricane-season odds to 75%, and India's monsoon — after a severe June — is tracking the classic mid-season volatility."
 }
