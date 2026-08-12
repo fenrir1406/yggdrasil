@@ -1,88 +1,25 @@
 {
   "ocean": {
     "oni": {
-      "desc": "The Oceanic Niño Index — 3-month running mean of Niño 3.4 SST anomalies, the official ENSO yardstick. +0.5°C sustained = El Niño.",
+      "desc": "The Oceanic Niño Index — 3-month running mean of Niño 3.4 SST anomalies, the official ENSO yardstick. +0.5°C sustained = El Niño; +2.0°C = very strong.",
       "labels": [
-        "Jul'25",
-        "Sep",
+        "Sep'25",
         "Nov",
         "Jan'26",
         "Mar",
         "May",
-        "Jul"
+        "Jul",
+        "Latest"
       ],
       "values": [
-        -0.7,
         -0.5,
         -0.3,
         -0.1,
         0.1,
         0.48,
-        0.9
+        0.9,
+        1.3
       ],
-      "thr": [
-        {
-          "y": 0.5,
-          "c": "#e25c4a",
-          "t": "El Niño +0.5"
-        },
-        {
-          "y": -0.5,
-          "c": "#3d9bd4",
-          "t": "La Niña −0.5"
-        }
-      ],
-      "inference": "The ONI has now cleared the El Niño threshold and is accelerating. The March–May reading was +0.48°C; the latest season is near +0.9°C and climbing, with the slope steepening rather than flattening. This is the trajectory of a sustained event, not a stall — the curve now resembles 1997 and 2015 far more than the 2023 peak-and-fade the spring analysis flagged as the downside case. Because ONI is a 3-month mean it lags the weekly Niño 3.4 (already +1.7°C), so the official index will keep rising mechanically over the coming months even before further warming."
-    },
-    "roni": {
-      "desc": "The Relative ONI strips out the long-term warming baseline. In a warmer mean ocean, ONI runs hot — RONI is the more honest measure of physical strength.",
-      "labels": [
-        "Jul'25",
-        "Sep",
-        "Nov",
-        "Jan'26",
-        "Mar",
-        "May",
-        "Jul"
-      ],
-      "oni": [
-        -0.7,
-        -0.5,
-        -0.3,
-        -0.1,
-        0.1,
-        0.48,
-        0.9
-      ],
-      "roni": [
-        -1.0,
-        -0.8,
-        -0.6,
-        -0.4,
-        -0.2,
-        0.15,
-        0.6
-      ],
-      "inference": "The ONI–RONI gap persists at roughly 0.3°C — the warming-baseline signature. This matters for how the peak should be read: an event that prints as 'very strong' on absolute ONI may be physically closer to 'strong' once the baseline is removed, which tempers the most extreme record-chasing forecasts. But the direction is unambiguous — RONI has now crossed into positive territory alongside ONI, confirming the warming is a genuine ENSO signal and not merely the background trend. Watch whether RONI continues to converge toward ONI as the event matures."
-    },
-    "nino34": {
-      "desc": "Niño 3.4 weekly SST anomaly — the fastest-moving surface signal. Momentum foreshadows whether the event is accelerating into the threshold.",
-      "labels": [
-        "Feb'26",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun"
-      ],
-      "values": [
-        0.0,
-        0.2,
-        0.5,
-        0.94,
-        1.7
-      ],
-      "mom3": "+1.5°C",
-      "mom6": "+1.8°C",
       "thr": [
         {
           "y": 0.5,
@@ -95,53 +32,116 @@
           "t": "Very strong +2.0"
         }
       ],
-      "inference": "This is the chart that resolved the spring's central question. Niño 3.4 has climbed from +0.5°C in late May to +1.7°C by mid-June — a +1.5°C three-month move, among the fastest on record and now within striking distance of the +2.0°C very-strong threshold. The momentum that in the spring 'could reverse fast' has instead compounded. ECMWF's early-July run suggests anomalies could top +3.0°C by autumn. The 2014-style stall the note warned about did not materialise; the June easterly burst that deferred 2014 to 2015 has no analogue this cycle."
+      "inference": "The ONI has cleared the El Niño threshold and is climbing toward very-strong territory on a trajectory that now clearly resembles 1997 and 2015. The 3-month mean sits near +1.3°C and rising; because it lags the weekly Niño 3.4 (already +2.1°C), the official index will keep climbing mechanically over the coming seasons even absent further surface warming. The 2023-style peak-and-fade the spring flagged as the downside case is off the table — this is a sustained, intensifying event."
     },
-    "subsurface": {
-      "desc": "Warm Water Volume anomaly — the subsurface heat reservoir that fuels surface warming. A strong recharge is the precondition for a strong event.",
+    "roni": {
+      "desc": "The Relative ONI strips out the long-term warming baseline. NOAA adopted RONI as a co-standard in 2026; in a warmer mean ocean it runs below ONI, so it is the more honest strength gauge.",
       "labels": [
-        "Jul'25",
-        "Sep",
+        "Sep'25",
         "Nov",
         "Jan'26",
         "Mar",
         "May",
+        "Jul",
+        "Latest"
+      ],
+      "oni": [
+        -0.5,
+        -0.3,
+        -0.1,
+        0.1,
+        0.48,
+        0.9,
+        1.3
+      ],
+      "roni": [
+        -0.8,
+        -0.6,
+        -0.4,
+        -0.2,
+        0.15,
+        0.6,
+        1.0
+      ],
+      "inference": "The ONI–RONI gap persists near 0.3°C — the warming-baseline signature — and this is the crux of the record question. On absolute ONI, +2.1°C weekly readings put 2026 in reach of the 2015–16 record (+2.6°C peak). On RONI, which nets out the tropical ocean's own warming, the ranking is more conservative. Both indices now sit firmly positive and rising together, confirming a genuine, strengthening ENSO signal rather than a baseline artefact — but whether 2026 sets a record depends heavily on which index you cite."
+    },
+    "nino34": {
+      "desc": "Niño 3.4 weekly SST anomaly — the fastest-moving surface signal. It has now crossed the +2.0°C very-strong threshold.",
+      "labels": [
+        "Mar'26",
+        "Apr",
+        "May",
+        "Jun",
         "Jul"
       ],
       "values": [
-        -0.2,
+        0.2,
+        0.5,
+        0.94,
+        1.7,
+        2.1
+      ],
+      "mom3": "+1.6°C",
+      "mom6": "+1.9°C",
+      "thr": [
+        {
+          "y": 0.5,
+          "c": "#e25c4a",
+          "t": "El Niño +0.5"
+        },
+        {
+          "y": 2.0,
+          "c": "#9b7bd4",
+          "t": "Very strong +2.0"
+        }
+      ],
+      "inference": "This is the chart that settled the debate. Niño 3.4 has climbed from +0.5°C in late May to +1.7°C in June to +2.1°C by mid-July — now across the +2.0°C very-strong line months before the seasonal peak. CFSv2 and ECMWF ensembles project the peak beyond +3°C, which would rank among the largest events ever recorded. The pace of the climb is itself historic; the only open question is how much higher it goes before the autumn–winter maximum."
+    },
+    "subsurface": {
+      "desc": "Warm Water Volume anomaly — the subsurface heat reservoir fuelling surface warming. A downwelling Kelvin wave carried +8°C anomalies at 50–250m east across the Pacific.",
+      "labels": [
+        "Sep'25",
+        "Nov",
+        "Jan'26",
+        "Mar",
+        "May",
+        "Jul",
+        "Latest"
+      ],
+      "values": [
         0.2,
         0.6,
         1.0,
         1.5,
         1.9,
-        2.1
+        2.1,
+        2.2
       ],
-      "meter": 88,
-      "inference": "The fuel gauge that read near-full in the spring has been drawn down into surface warming exactly as a developing event requires — subsurface heat is now feeding the surface rather than merely sitting in reserve. The reservoir remains deep enough to support a very strong peak, and unlike 2014, it has not been discharged prematurely by an easterly wind burst. The subsurface-to-surface handoff is proceeding cleanly, which is the mechanical signature of an event that will sustain into its autumn–winter peak."
+      "meter": 92,
+      "inference": "The subsurface reservoir remains exceptionally deep and is feeding the surface exactly as an intensifying event requires. The massive downwelling Kelvin wave — subsurface anomalies up to +8°C between 50 and 250m — propagated east and ran warmer than the 1997–98 event at the same calendar stage. Crucially, unlike 2014, the heat has not been discharged prematurely by an easterly burst; the ocean is delivering its energy to the surface cleanly, sustaining the climb toward the peak."
     },
     "atmosphere": {
-      "desc": "SOI and trade winds confirm whether the atmosphere is coupling to the ocean. Sustained negative SOI plus weakening trades = the Bjerknes feedback locking in.",
+      "desc": "SOI and trade winds confirm atmosphere–ocean coupling. Strong coupling is now confirmed present, not projected.",
       "labels": [
-        "Feb'26",
-        "Mar",
+        "Mar'26",
         "Apr",
         "May",
-        "Jun"
+        "Jun",
+        "Jul"
       ],
       "soi": [
-        0.2,
         -0.1,
         -0.3,
         -0.7,
-        -1.2
+        -1.2,
+        -1.5
       ],
       "tradewind": [
-        0.1,
         -0.1,
         -0.2,
         -0.4,
-        -0.6
+        -0.6,
+        -0.8
       ],
       "thr": [
         {
@@ -150,20 +150,20 @@
           "t": "0"
         }
       ],
-      "inference": "This was the decisive uncertainty in the spring, and it has resolved to the upside. The atmosphere has coupled: SOI has fallen firmly negative, trade winds have weakened decisively, and thunderstorm activity has shifted to the central and eastern Pacific while suppressing over Indonesia — the textbook Bjerknes-feedback signature. The 2023-style 'coupling that never locked in' scenario is off the table. With ocean and atmosphere now reinforcing each other, the event has the self-sustaining structure that distinguishes a genuine strong-to-very-strong El Niño from a false start."
+      "inference": "Coupling is now strong and self-reinforcing — NOAA cites it explicitly as a source of very high confidence that El Niño continues through early 2027. SOI is firmly negative, trade winds have weakened substantially, and deep convection has locked into the central and eastern Pacific with suppression over Indonesia. The Bjerknes feedback is fully engaged: this is the atmospheric signature of a mature, intensifying event, and it removes any remaining possibility of a 2023-style decoupling."
     }
   },
   "scores": {
     "regime": {
       "name": "ENSO Regime Score",
-      "value": 84,
-      "interp": "Firmly in El Niño territory and rising. A full El Niño Advisory with a very-strong peak the modal outcome.",
+      "value": 90,
+      "interp": "Very strong territory. Niño 3.4 across +2.0°C, intensifying toward a record-challenging peak.",
       "color": "#e25c4a"
     },
     "coupling": {
       "name": "Atmospheric Coupling",
-      "value": 78,
-      "interp": "Locked in. SOI firmly negative, trades weakened, convection shifted to the central-eastern Pacific. The spring's decisive uncertainty has resolved to the upside.",
+      "value": 88,
+      "interp": "Strong and self-reinforcing. NOAA cites the ocean–atmosphere coupling as a source of very high confidence in continuation through early 2027.",
       "color": "#e25c4a"
     }
   }
