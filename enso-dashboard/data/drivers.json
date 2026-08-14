@@ -1,0 +1,26 @@
+{
+  "drivers": {
+    "intro": "ENSO is one node near the top of a longer chain: ocean state drives tropical convection, convection sets the jet, the jet decides where heat and rain land. This board tracks the seasonal drivers that matter now — each with its current sourced value, its phase, and its push on the Indian monsoon and Europe. Winter-dominant modes (NAO, AO) are seasonally muted in August and become the story from autumn.",
+    "cards": [
+      {"name": "El Niño (ENSO)", "value": "RONI +1.0 · Niño 3.4 +2.6", "phase": "Very Strong", "cls": "hot",
+       "read": "The dominant driver. Suppresses Indian monsoon convection, skews India hot and dry, and forces the whole downstream chain. Peaking Oct–Dec."},
+      {"name": "Indian Ocean Dipole", "value": "+0.41°C (9 Aug)", "phase": "Neutral → +IOD forecast", "cls": "warm",
+       "read": "Neutral now but at the +0.4 threshold a third week running; models favour a positive IOD by SH spring. A +IOD is the counterweight that rescued the 1997 monsoon from a monster El Niño — the swing variable for 2026."},
+      {"name": "Southern Oscillation Index", "value": "−2.4 (Jul · ~2σ)", "phase": "Strongly Negative", "cls": "hot",
+       "read": "The atmosphere is fully coupled to the warm Pacific — near two standard deviations negative. Confirms a mature, self-reinforcing El Niño rather than an ocean-only warm blip."},
+      {"name": "Madden–Julian Oscillation", "value": "Phase 6 · amp >1", "phase": "Western Pacific", "cls": "cool",
+       "read": "Currently over the Western Pacific, constructively interfering with El Niño. Not enhancing convection over the Bay of Bengal or Arabian Sea this fortnight — no intraseasonal boost to the monsoon right now."},
+      {"name": "MEI.v2 (Multivariate)", "value": "+2.41 (Jun–Jul)", "phase": "Record", "cls": "hot",
+       "read": "The highest June–July value in the record back to 1979. Folds SST, pressure, winds and cloudiness into one number — the multivariate confirmation that ocean and atmosphere are jointly extreme."},
+      {"name": "NAO / AO", "value": "Summer lull", "phase": "Muted", "cls": "idle",
+       "read": "Winter-dominant modes, weak and noisy in August. The European summer is being run by blocking, not the NAO. These become the key Europe and India winter-teleconnection signals from October — one to pull onto the board then."}
+    ],
+    "push": {
+      "desc": "Analyst synthesis — the net directional push of each active driver on Indian monsoon rainfall right now. Not an official index: a directional read (dry ← 0 → wet), with the +IOD bar shown as a forecast contribution.",
+      "labels": ["El Niño", "+IOD (forecast)", "MJO Phase 6", "SOI coupling"],
+      "values": [-0.8, 0.5, -0.2, -0.3],
+      "inference": "El Niño is the heavy hand — a strong suppressive push that the coupling (SOI) and the current MJO position both reinforce. The one force pulling the other way is the forecast positive IOD, and it is the whole game: if it develops as models suggest, it blunts the suppression the way it did in 1997, when a monster El Niño still delivered a near-normal Indian monsoon. Without it, the drivers align dry. Watch the IOD weekly values cross and hold above +0.4°C."
+    },
+    "inference": "Read across the board and the drivers are aligned, not conflicting: a very strong El Niño, emphatic atmospheric coupling, a record multivariate index, and an MJO that is not helping. The single genuine uncertainty is the IOD — neutral today, forecast positive, and historically the one driver capable of overriding El Niño's grip on the monsoon. Everything else is pointing the same way."
+  }
+}

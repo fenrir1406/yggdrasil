@@ -1,0 +1,29 @@
+{
+  "europe": {
+    "intro": "The India half of this dashboard has an Atlantic mirror. The same warming baseline that inflates ENSO readings is loading Europe's summers — but the mechanism is physical, not a measurement artefact. This view tracks the Euro-Atlantic circulation regime that decides where the heat parks, and reads it against the ENSO chain.",
+    "hero": {
+      "stat": "+1.88°C",
+      "label": "UK summer mean vs 1991–2020 (1 Jun–10 Aug)",
+      "sub": "On course for the UK's warmest summer on record — after the second-warmest June and second-warmest July. 2026 is the first UK year to hit 35°C in May, June and July."
+    },
+    "mechanism": {
+      "name": "Omega Block · Heat Dome",
+      "desc": "A textbook Omega block: high pressure locked over core Europe with deep lows either side, over the North Atlantic and Russia. The high acts as a lid — sinking air compresses and warms, skies clear, the ground bakes day after day, and Saharan air is drawn north. The Atlantic flow that normally ventilates Europe is blocked."
+    },
+    "regimes": [
+      {"name": "European / Scandinavian Blocking", "state": "Dominant", "cls": "hot",
+       "note": "The active regime all summer — successive heat domes over Iberia, France and Central Europe. This is the pattern delivering the records."},
+      {"name": "Atlantic Ridge", "state": "Intermittent", "cls": "warm",
+       "note": "Phases in as the block flexes west; keeps NW Europe and the northern British Isles nearer normal under maritime air."},
+      {"name": "NAO Positive", "state": "Suppressed", "cls": "idle",
+       "note": "A zonal, Atlantic-driven regime would break the heat — largely absent this summer."},
+      {"name": "NAO Negative", "state": "Latent", "cls": "idle",
+       "note": "Winter-relevant. The ENSO → Europe teleconnection strengthens from autumn; a strong El Niño tilts the odds of European winter circulation anomalies worth watching."}
+    ],
+    "jet": {
+      "state": "Blocked · Ω-shaped",
+      "desc": "The jet stream is kinked into a stationary Omega, stalling systems for days at a time. With the Atlantic storm track deflected north, there is no westerly relief — the defining feature of a heat-dome summer, and the link from the tropical chain to the surface extreme."
+    },
+    "inference": "Europe's warmest-summer-on-record trajectory is not primarily an ENSO story — the ENSO → Europe link is weak in summer and strongest in winter. It is a blocking story, amplified by a warmer baseline that lifts every heat-dome peak higher. That is the mirror of the India thesis: the measurement problem (the drifting ruler) and the physical problem (a blocking-prone, warming atmosphere) share one cause and must be read separately. The ENSO signal to watch here arrives with autumn, when the teleconnection to European winter circulation switches on."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "statevector": {
+    "intro": "Classifying 2026 as 'an El Niño' says less than it seems. The useful question is how the whole state vector compares to its closest analogues — because 2026 can look like 2015-16 on one variable and like 1997-98 on another, and those two monsters produced opposite Indian monsoons. This is the tracking layer the series has been building toward.",
+    "compare": {
+      "desc": "The SST index family for 2026 (current) against the peaks of the two closest strong-El Niño analogues. All three share the same °C scale; SOI, MEI, IOD and monsoon sit in the table below because they run on different units.",
+      "labels": ["Niño 3.4 (wk)", "ONI", "RONI"],
+      "y2026": [2.6, 1.4, 1.0],
+      "y2015": [2.6, 2.6, 2.4],
+      "y1997": [2.4, 2.4, 2.4],
+      "inference": "The surface is already at 2015-16 intensity — the weekly Niño 3.4 is matched. The smoothed indices (ONI, RONI) sit well below the analogue peaks, but that is a timing gap, not a ceiling: they lag the surface and are climbing fast toward Oct–Dec. Read the shape, not the levels — 2026 is where 2015-16 was months before its peak, with coupling running harder."
+    },
+    "rows": [
+      {"var": "Niño 3.4 (weekly)", "now": "+2.6°C", "a2015": "+2.6°C", "a1997": "+2.4°C", "read": "matched", "cls": "match"},
+      {"var": "ONI (3-mo)", "now": "+1.4°C", "a2015": "+2.6°C", "a1997": "+2.4°C", "read": "below, climbing", "cls": "below"},
+      {"var": "RONI", "now": "+1.0°C", "a2015": "+2.4°C", "a1997": "+2.4°C", "read": "below, climbing", "cls": "below"},
+      {"var": "SOI", "now": "−2.4", "a2015": "~−1.5", "a1997": "~−2.0", "read": "coupling stronger", "cls": "match"},
+      {"var": "MEI.v2", "now": "+2.41", "a2015": "~+2.1", "a1997": "~+2.4", "read": "record for JJ", "cls": "match"},
+      {"var": "IOD", "now": "+0.4 → +IOD fcst", "a2015": "weak +", "a1997": "strong +IOD", "read": "swing variable", "cls": "track"},
+      {"var": "Monsoon (JJAS)", "now": "~−12% recovering", "a2015": "−14%", "a1997": "+2%", "read": "1997 = +IOD rescue", "cls": "track"}
+    ],
+    "inference": "The vector points two ways at once, and that is the finding. On the ocean and coupling, 2026 tracks 2015-16 — a strong El Niño, monsoon-suppressing, India hot and dry. But the decisive difference between the two analogues was the IOD: 1997-98 paired its monster El Niño with a strong positive IOD and India still got a near-normal monsoon, while 2015-16's weak IOD let the deficit through. 2026's IOD is neutral and forecast to turn positive. Which analogue 2026 rhymes with — the 2015-16 deficit or the 1997-98 rescue — is being decided in the Indian Ocean right now, not the Pacific."
+  }
+}
