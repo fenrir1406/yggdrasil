@@ -1,0 +1,18 @@
+{
+  "baseline": {
+    "intro": "El Niño is defined as a departure from a 30-year average — but the average itself is drifting upward as the tropical ocean warms. NOAA made the warming-adjusted RONI its primary index in February 2026 precisely to net that drift out. These views show what the drift does to the record book, and how 2026 reads once it is removed.",
+    "rulers": {
+      "desc": "Peak intensity of the great El Niño events, measured two ways. ONI compares Niño 3.4 to a fixed 30-year climatology; RONI compares it to the rest of the tropics in real time, stripping out background warming. The two rulers disagree — and the disagreement grows with every decade.",
+      "labels": ["1982-83", "1997-98", "2015-16", "2023-24", "2026-27*"],
+      "oni": [2.2, 2.4, 2.6, 2.0, 2.7],
+      "roni": [2.5, 2.4, 2.4, 1.5, 2.5],
+      "inference": "The ordering reshuffles when you change rulers. On ONI, the record runs newest-on-top — 2015-16 at the summit near +2.6°C. On RONI, which lifts older events (cooler background) and trims recent ones (warmer background), 1982-83 climbs to the front and 1997-98 and 2015-16 fall into a near-tie. The 'strongest event since 1950' is a different El Niño depending on which index you cite. Note the 2026-27 bars are projected peaks, not observed; RONI values for past events are reconstructions, so read the ordering as the signal rather than the third decimal."
+    },
+    "gap": {
+      "desc": "The difference between the two rulers — ONI minus RONI — at each event's peak. This is the warming baseline made visible: a positive value means the fixed-climatology index reads hotter than the warming-adjusted one, i.e. part of the 'event' is really the rising floor beneath it.",
+      "labels": ["1982-83", "1997-98", "2015-16", "2023-24", "2026-27*"],
+      "values": [-0.3, 0.0, 0.2, 0.5, 0.4],
+      "inference": "One rising line carries the whole thesis. The gap starts negative in the early 1980s (the cool-era ocean made ONI understate events), crosses zero around the late 1990s, and has widened since — reaching +0.5°C by 2023-24, when an event that read +2.0°C on ONI was only +1.5°C on RONI. Same slice of ocean, measured two ways, diverging more each decade. 2026-27 sits at +0.4°C on current May–Jul values and is still climbing toward its peak. The gap is not noise to be smoothed away; it is the quantity that decides whether a 'record' is a real ENSO record or an artefact of the drifting baseline."
+    }
+  }
+}
