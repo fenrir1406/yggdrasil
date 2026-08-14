@@ -254,10 +254,14 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 
 <div class="d-sectabs" id="d-sectabs">
 <button class="d-sectab active" data-sec="ocean">Ocean &amp; Atmosphere</button>
+<button class="d-sectab" data-sec="baseline">Baseline &amp; Rulers</button>
+<button class="d-sectab" data-sec="drivers">Drivers</button>
 <button class="d-sectab" data-sec="forecast">Forecast</button>
 <button class="d-sectab" data-sec="monsoon">India Monsoon</button>
+<button class="d-sectab" data-sec="europe">Europe &amp; Jet</button>
 <button class="d-sectab" data-sec="risk">Risk</button>
 <button class="d-sectab" data-sec="analogs">Analogs</button>
+<button class="d-sectab" data-sec="statevector">State Vector</button>
 <button class="d-sectab" data-sec="sources">Sources</button>
 </div>
 
@@ -268,6 +272,25 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 <div class="d-tabs" id="d-oa-tabs"></div>
 <div id="d-oa-panels"></div>
 <div class="d-scores" id="d-scorebars"></div>
+</div>
+
+<div class="d-section" id="d-sec-baseline">
+<div class="d-sec-head"><span class="d-sec-num">03</span><h2 class="d-sec-title">Baseline &amp; Rulers</h2><p class="d-sec-q">Is the record real — or is the ruler drifting?</p></div>
+<p class="d-sec-intro" id="d-bl-intro"></p>
+<p class="d-tabhint">Tap to switch view</p>
+<div class="d-tabs" id="d-bl-tabs"></div>
+<div id="d-bl-panels"></div>
+</div>
+
+<div class="d-section" id="d-sec-drivers">
+<div class="d-sec-head"><span class="d-sec-num">08</span><h2 class="d-sec-title">Teleconnection Drivers</h2><p class="d-sec-q">What is driving the event — and which way is each dial pointing?</p></div>
+<p class="d-sec-intro" id="d-drivers-intro"></p>
+<div id="d-drivers-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:0 0 18px"></div>
+<p class="d-tabhint">Analyst synthesis · directional</p>
+<p class="d-pd" id="d-drivers-push-desc"></p>
+<div class="d-chartbox"><canvas id="d-drivers-push"></canvas></div>
+<div id="d-drivers-push-inf"></div>
+<div id="d-drivers-inf"></div>
 </div>
 
 <div class="d-section" id="d-sec-forecast">
@@ -291,6 +314,19 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 <div id="d-mon-panels"></div>
 </div>
 
+<div class="d-section" id="d-sec-europe">
+<div class="d-sec-head"><span class="d-sec-num">09</span><h2 class="d-sec-title">Europe &amp; the Jet</h2><p class="d-sec-q">Where is the heat parking — and is it an ENSO story?</p></div>
+<p class="d-sec-intro" id="d-europe-intro"></p>
+<div style="background:var(--panel2);border-radius:8px;padding:18px 20px;border-left:4px solid #e25c4a;margin:0 0 16px" id="d-europe-hero"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 16px">
+<div class="d-rc" style="border-top-color:#e0992f" id="d-europe-mech"></div>
+<div class="d-rc" style="border-top-color:#9b7bd4" id="d-europe-jet"></div>
+</div>
+<p class="d-tabhint">Euro-Atlantic regimes</p>
+<div id="d-europe-regimes" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:0 0 16px"></div>
+<div id="d-europe-inf"></div>
+</div>
+
 <div class="d-section" id="d-sec-risk">
 <div class="d-sec-head"><span class="d-sec-num">06</span><h2 class="d-sec-title">Risk &amp; Transmission</h2><p class="d-sec-q">How does ENSO become a real-world consequence?</p></div>
 <p class="d-sec-intro">ENSO matters when it transmits into the real economy. For India in 2026 the dominant channel is not drought — the reservoir buffer is adequate — but food inflation. The lead card tracks that channel; the grid tracks the others.</p>
@@ -306,6 +342,16 @@ background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
 <div class="d-analogs" id="d-analog-grid"></div>
 <div class="d-tblwrap"><table class="d-tbl"><thead><tr><th>Year</th><th>Similarity</th><th>ENSO Outcome</th><th>Peak ONI</th><th>Monsoon</th><th>% LPA</th><th>Note</th></tr></thead><tbody id="d-analog-tbody"></tbody></table></div>
 <div id="d-analog-inf"></div>
+</div>
+
+<div class="d-section" id="d-sec-statevector">
+<div class="d-sec-head"><span class="d-sec-num">10</span><h2 class="d-sec-title">State Vector vs Analogue</h2><p class="d-sec-q">Which past event does 2026 actually rhyme with?</p></div>
+<p class="d-sec-intro" id="d-sv-intro"></p>
+<p class="d-pd" id="d-sv-desc"></p>
+<div class="d-chartbox"><canvas id="d-sv-chart"></canvas></div>
+<div id="d-sv-compare-inf"></div>
+<div class="d-tblwrap"><table class="d-tbl"><thead><tr><th>Variable</th><th>2026 now</th><th>2015-16</th><th>1997-98</th><th>Read</th></tr></thead><tbody id="d-sv-tbody"></tbody></table></div>
+<div id="d-sv-inf"></div>
 </div>
 
 <div class="d-section" id="d-sec-sources">
@@ -327,7 +373,7 @@ Sources: NOAA CPC · IRI/Columbia · Skymet · IMD · NOAA NCEI. Analytical esti
 "use strict";
 var DASHBOARD_DATA = {};
 var D = DASHBOARD_DATA;
-var DATA_FILES = ["status","ocean","forecast","monsoon","risk","analogs"];
+var DATA_FILES = ["status","ocean","forecast","monsoon","risk","analogs","baseline","drivers","europe","statevector"];
 
 function showLoadError(which){
 var host = document.getElementById("d-metrics");
@@ -448,6 +494,9 @@ document.querySelectorAll(".d-section").forEach(function(s){ s.classList.remove(
 btn.classList.add("active");
 $("d-sec-" + id).classList.add("active");
 if(id === "ocean") drawOA("oni");
+if(id === "baseline") drawBL("rulers");
+if(id === "drivers") drawDrivers();
+if(id === "statevector") drawSV();
 if(id === "forecast"){ drawConsensus(); drawTimeline(); }
 postHeight();
 });
@@ -466,6 +515,16 @@ ticks:{ font:{family:F,size:10}, color:"#ffffff" }, grid:{ color:GRID } }
 };
 if(thr) o._thr = thr;
 return o;
+}
+
+function barOpts(yTitle, ymin, ymax){
+return { responsive:true, maintainAspectRatio:false,
+plugins:{ legend:{ display:true, labels:{ font:{family:F,size:11}, color:"#c8d2e0", boxWidth:16 } },
+tooltip:{ titleFont:{family:F}, bodyFont:{family:F},
+callbacks:{ label:function(x){ var v=x.parsed.y; return x.dataset.label.replace(/\s*\(.*/,"")+": "+(v>=0?"+":"")+v.toFixed(1)+"\u00B0C"; } } } },
+scales:{ x:{ grid:{display:false}, ticks:{ font:{family:F,size:10}, color:"#ffffff" } },
+y:{ min:ymin, max:ymax, title:{ display:true, text:yTitle, font:{family:F,size:10}, color:"#ffffff" },
+ticks:{ font:{family:F,size:10}, color:"#ffffff", callback:function(v){ return (v>0?"+":"")+v; } }, grid:{ color:GRID } } } };
 }
 
 var OA = D.ocean;
@@ -530,6 +589,134 @@ data:{ labels:d.labels, datasets:[
 ] },
 options: lineOpts("index / anomaly", d.thr) });
 }
+}
+
+/* Baseline & Rulers */
+var BL = D.baseline;
+$("d-bl-intro").textContent = BL.intro;
+var BLTABS = [{ id:"rulers", label:"Two Rulers" }, { id:"gap", label:"The Gap" }];
+(function(){
+var tabs = "", panels = "";
+BLTABS.forEach(function(t,i){
+var a = i===0 ? " active" : "";
+tabs += '<button class="d-tab' + a + '" data-bl="' + t.id + '">' + t.label + '</button>';
+var d = BL[t.id];
+panels += '<div class="d-tabpanel' + a + '" data-blpanel="' + t.id + '">'
++ '<p class="d-pd">' + d.desc + '</p>'
++ '<div class="d-chartbox"><canvas id="d-bl-' + t.id + '"></canvas></div>'
++ infBox(d.inference) + '</div>';
+});
+$("d-bl-tabs").innerHTML = tabs;
+$("d-bl-panels").innerHTML = panels;
+})();
+$("d-bl-tabs").addEventListener("click", function(e){
+var btn = e.target.closest(".d-tab");
+if(!btn) return;
+var id = btn.getAttribute("data-bl");
+$("d-bl-tabs").querySelectorAll(".d-tab").forEach(function(t){ t.classList.remove("active"); });
+$("d-bl-panels").querySelectorAll(".d-tabpanel").forEach(function(p){ p.classList.remove("active"); });
+btn.classList.add("active");
+document.querySelector('[data-blpanel="' + id + '"]').classList.add("active");
+drawBL(id);
+postHeight();
+});
+function drawBL(id){
+if(!HAS_CHART || charts["bl-"+id]) return;
+var d = BL[id], ctx = $("d-bl-" + id);
+if(!ctx) return;
+if(id === "rulers"){
+charts["bl-"+id] = new Chart(ctx, { type:"bar",
+data:{ labels:d.labels, datasets:[
+{ label:"Peak ONI (fixed baseline)", data:d.oni, backgroundColor:"#e25c4a", borderWidth:0 },
+{ label:"Peak RONI (warming-adjusted)", data:d.roni, backgroundColor:"#9b7bd4", borderWidth:0 }
+] },
+options: barOpts("peak anomaly (\u00B0C)", 0, 3) });
+} else if(id === "gap"){
+charts["bl-"+id] = new Chart(ctx, { type:"bar",
+data:{ labels:d.labels, datasets:[{ label:"ONI \u2212 RONI (\u00B0C)", data:d.values,
+backgroundColor:d.values.map(function(v){ return v>0?"#e25c4a":(v<0?"#3d9bd4":"#5c6675"); }), borderWidth:0 }] },
+options: barOpts("index over-read (\u00B0C)", -0.5, 0.7) });
+}
+}
+
+/* Drivers */
+(function(){
+var DR = D.drivers, colOf = function(c){ return c==="hot"?"#e25c4a":(c==="warm"?"#e0992f":(c==="cool"?"#3d9bd4":"#5c6675")); };
+$("d-drivers-intro").textContent = DR.intro;
+$("d-drivers-push-desc").textContent = DR.push.desc;
+var g = "";
+DR.cards.forEach(function(c){
+var col = colOf(c.cls);
+g += '<div class="d-rc" style="border-top-color:' + col + '"><p class="d-rc-n">' + c.name + '</p>'
++ '<p style="font-family:\'Courier New\',monospace;font-size:13px;font-weight:700;color:#fff;margin:2px 0 5px">' + c.value + '</p>'
++ '<p class="d-rc-l" style="color:' + col + '">' + c.phase + '</p>'
++ '<p class="d-rc-note">' + c.read + '</p></div>';
+});
+$("d-drivers-grid").innerHTML = g;
+$("d-drivers-push-inf").innerHTML = infBox(DR.push.inference);
+$("d-drivers-inf").innerHTML = infBox(DR.inference);
+})();
+function drawDrivers(){
+if(!HAS_CHART || charts.drivers) return;
+var p = D.drivers.push, ctx = $("d-drivers-push");
+if(!ctx) return;
+charts.drivers = new Chart(ctx, { type:"bar",
+data:{ labels:p.labels, datasets:[{ label:"push", data:p.values,
+backgroundColor:p.values.map(function(v){ return v>0?"#5fb37e":"#e25c4a"; }), borderWidth:0 }] },
+options:{ responsive:true, maintainAspectRatio:false, indexAxis:"y",
+plugins:{ legend:{display:false}, tooltip:{ titleFont:{family:F}, bodyFont:{family:F},
+callbacks:{ label:function(x){ var v=x.parsed.x; return v>0?("enhances monsoon (+"+v.toFixed(1)+")"):("suppresses monsoon ("+v.toFixed(1)+")"); } } } },
+scales:{ x:{ min:-1, max:1, title:{ display:true, text:"dry  \u2190  net push on monsoon  \u2192  wet", font:{family:F,size:10}, color:"#ffffff" },
+ticks:{ font:{family:F,size:10}, color:"#ffffff", callback:function(v){ return v>0?"+"+v:(v<0?v:"0"); } }, grid:{ color:GRID } },
+y:{ ticks:{ font:{family:F,size:11}, color:"#ffffff" }, grid:{display:false} } } }
+});
+}
+
+/* Europe & the Jet */
+(function(){
+var EU = D.europe, colOf = function(c){ return c==="hot"?"#e25c4a":(c==="warm"?"#e0992f":"#5c6675"); };
+$("d-europe-intro").textContent = EU.intro;
+$("d-europe-hero").innerHTML = '<p style="font-family:\'Courier New\',monospace;font-size:40px;font-weight:700;color:#e25c4a;margin:0;line-height:1">' + EU.hero.stat + '</p>'
++ '<p style="font-family:\'Courier New\',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8b97a8;margin:8px 0 8px">' + EU.hero.label + '</p>'
++ '<p style="font-size:13px;color:#c8d2e0;margin:0;line-height:1.55">' + EU.hero.sub + '</p>';
+$("d-europe-mech").innerHTML = '<p class="d-rc-n">Mechanism · ' + EU.mechanism.name + '</p><p class="d-rc-note">' + EU.mechanism.desc + '</p>';
+$("d-europe-jet").innerHTML = '<p class="d-rc-n">Jet stream · ' + EU.jet.state + '</p><p class="d-rc-note">' + EU.jet.desc + '</p>';
+var g = "";
+EU.regimes.forEach(function(r){
+var col = colOf(r.cls);
+g += '<div class="d-rc" style="border-top-color:' + col + '"><p class="d-rc-n">' + r.name + '</p>'
++ '<p class="d-rc-l" style="color:' + col + '">' + r.state + '</p><p class="d-rc-note">' + r.note + '</p></div>';
+});
+$("d-europe-regimes").innerHTML = g;
+$("d-europe-inf").innerHTML = infBox(EU.inference);
+})();
+
+/* State Vector vs Analogue */
+(function(){
+var SV = D.statevector, colOf = function(c){ return c==="match"?"#5fb37e":(c==="below"?"#e0992f":"#9b7bd4"); };
+$("d-sv-intro").textContent = SV.intro;
+$("d-sv-desc").textContent = SV.compare.desc;
+var rows = "";
+SV.rows.forEach(function(r){
+var col = colOf(r.cls);
+rows += '<tr><td class="d-rg-n">' + r["var"] + '</td><td class="sim">' + r.now + '</td><td>' + r.a2015 + '</td><td>' + r.a1997 + '</td>'
++ '<td><span class="d-badge" style="background:rgba(0,0,0,0.25);color:' + col + ';border:1px solid ' + col + '">' + r.read + '</span></td></tr>';
+});
+$("d-sv-tbody").innerHTML = rows;
+$("d-sv-compare-inf").innerHTML = infBox(SV.compare.inference);
+$("d-sv-inf").innerHTML = infBox(SV.inference);
+})();
+function drawSV(){
+if(!HAS_CHART || charts.sv) return;
+var c = D.statevector.compare, ctx = $("d-sv-chart");
+if(!ctx) return;
+charts.sv = new Chart(ctx, { type:"bar",
+data:{ labels:c.labels, datasets:[
+{ label:"2026 (current)", data:c.y2026, backgroundColor:"#e25c4a", borderWidth:0 },
+{ label:"2015-16 (peak)", data:c.y2015, backgroundColor:"#9b7bd4", borderWidth:0 },
+{ label:"1997-98 (peak)", data:c.y1997, backgroundColor:"#3d9bd4", borderWidth:0 }
+] },
+options: barOpts("\u00B0C anomaly", 0, 3) });
 }
 
 /* Score bars */
