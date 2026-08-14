@@ -8,17 +8,17 @@
     "intensity": [
       {
         "label": "Super / V.Strong (≥+2.0°C)",
-        "pct": 81,
+        "pct": 91,
         "color": "#9b7bd4"
       },
       {
         "label": "Strong (+1.5–2.0)",
-        "pct": 15,
+        "pct": 7,
         "color": "#e25c4a"
       },
       {
         "label": "Moderate (+1.0–1.5)",
-        "pct": 3,
+        "pct": 1,
         "color": "#e0992f"
       },
       {
@@ -32,7 +32,7 @@
         "name": "NOAA CPC",
         "outlook": "El Niño Advisory",
         "prob": "99%",
-        "peak": "Very Strong (81%)",
+        "peak": "Historic 69% · V.Strong >90%",
         "dur": "Through early spring 2027",
         "conf": "Very High"
       },
@@ -69,7 +69,7 @@
         "conf": "Very High"
       }
     ],
-    "consensusInference": "The dispersion has collapsed to near-unanimity. IRI's mid-July ensemble has 23 of 26 models forecasting a very strong peak (≥+2.0°C) at OND 2026, with every single model maintaining El Niño throughout the forecast — described by IRI as exceptional model agreement. The remaining debate is narrow and specific: whether 2026 beats the 2015–16 record (+2.6°C ONI). ECMWF and CFSv2 point beyond +3°C, which would; more conservative reads and the RONI lens argue it joins rather than leads the Super club. When the models agree this tightly, the event is settled — only its magnitude ceiling is open.",
+    "consensusInference": "The dispersion has collapsed to near-unanimity, and NOAA's August 13 outlook made the record scenario its base case: a 69% chance the event exceeds every El Niño since 1950 on the relative index (RONI ≥ +2.5°C for OND 2026), alongside a greater-than-90% chance of a very strong peak. IRI's mid-July ensemble had 23 of 26 models very strong at OND with every model holding El Niño throughout — exceptional agreement. The debate has narrowed from 'does it join the Super club' to 'by how much does it break the record': ECMWF and CFSv2 point beyond +3°C on the standard scale, while the RONI lens — which nets out background warming, the more honest gauge NOAA now co-standardises — still clears +2.5°C at better-than-even odds. When the models agree this tightly and the official outlook favours a record, only the magnitude ceiling is open.",
     "timeline": {
       "labels": [
         "Aug'26",
@@ -99,7 +99,7 @@
         44,
         32
       ],
-      "inference": "Read the shape carefully: this is the probability that El Niño is present in each month, not its strength. It sits near-certain (98–99%) through autumn and winter 2026, then declines through spring–summer 2027 — that fall is the expected end-of-event decay, not a weakening now. El Niño peaks in NH winter and fades the following spring; the ensembles project weakening into spring 2027. Meanwhile the strength probability is at its ceiling (81% very-strong). Both hold: near-certain to persist through the 2026–27 winter, very likely to peak very strong, and expected to decay through 2027."
+      "inference": "Read the shape carefully: this is the probability that El Niño is present in each month, not its strength. It sits near-certain (98–99%) through autumn and winter 2026, then declines through spring–summer 2027 — that fall is the expected end-of-event decay, not a weakening now. El Niño peaks in NH winter and fades the following spring; the ensembles project weakening into spring 2027. Meanwhile the strength probability is at its ceiling (>90% very-strong). Both hold: near-certain to persist through the 2026–27 winter, very likely to peak very strong, and expected to decay through 2027."
     }
   }
 }
