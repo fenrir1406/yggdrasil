@@ -3,31 +3,32 @@
     "lead": {
       "name": "Food Inflation Risk",
       "level": "Elevated",
-      "levelPct": 70,
+      "levelPct": 72,
       "color": "#e25c4a",
-      "trend": "Rising into H2 2026",
-      "summary": "The primary transmission channel for 2026. A below-normal monsoon with localised northern-belt deficits is enough to push pulses, oilseeds and select vegetables materially higher in H2 CY26 — even with adequate aggregate supply. Peak food inflation may land in Oct–Dec 2026, coinciding with the strongest El Niño phase and pre-Budget sensitivity.",
+      "trend": "Materialising — CFPI 5.52% in July, seen >5% headline by Sept",
+      "summary": "The primary transmission channel, and it is now printing. Consumer food inflation reached 5.52% in July (from 4.78% in May and 5.32% in June), lifting headline CPI to a 19-month-high 4.45% — driven by vegetables and spices (ginger +84%, garlic +35%, onion +23%) with the West Asia war feeding through to transport and restaurants. A below-normal August–September (IMD <94% LPA) keeps pulses, oilseeds and vegetables under pressure even with adequate aggregate supply. Peak food-price pressure lands in Oct–Dec, coinciding with the strongest El Niño phase; economists see headline CPI above 5% by September and flag a possible RBI hike as early as December.",
       "drivers": [
-        "Kharif pulses & oilseeds are price-sensitive to distribution, not just totals",
-        "2023 sugar episode (−8% output on uneven rain) as the recent template",
-        "Peak El Niño phase (Oct–Dec) aligns with the peak price-pressure window",
-        "RBI and the bond market are watching CPI-food as the binding constraint"
+        "CFPI already at 5.52% (Jul) and rising — vegetables and spices leading, not a broad-based shock",
+        "Below-normal August (IMD <94% LPA) hits the month carrying ~29% of seasonal rain and ~20% of kharif sowing",
+        "Peak El Niño phase (Oct–Dec) aligns with the peak food-price window and pre-Budget sensitivity",
+        "West Asia war passing through to transport (4.43%) and restaurants (7.72%) — a second, non-monsoon leg",
+        "A positive IOD in September is the offset that could ease the monsoon channel (the 1997 template)"
       ]
     },
     "channels": [
       {
         "name": "Drought Risk",
         "level": "Moderate",
-        "levelPct": 45,
+        "levelPct": 48,
         "color": "#e0992f",
-        "note": "Buffered by 44.6% reservoir storage; northern belt most exposed late-season."
+        "note": "~44% reservoir storage, recovered from 26% in early July but below normal; south/east basins critically low."
       },
       {
         "name": "Agriculture Risk",
         "level": "Moderate",
         "levelPct": 50,
         "color": "#e0992f",
-        "note": "Kharif (rice, soy, cotton, pulses) most exposed; southern output protected."
+        "note": "Kharif sowing gap narrowed to ~3% YoY (from ~23% in June); pulses, oilseeds and the south/east still exposed."
       },
       {
         "name": "Heatwave Risk",
@@ -48,9 +49,9 @@
         "level": "Moderate",
         "levelPct": 48,
         "color": "#e0992f",
-        "note": "Reservoir drawdown affects hydro generation (NHPC, JSW) into rabi season."
+        "note": "Storage below the seasonal normal; southern and eastern basins the concern for hydro (NHPC, JSW) into rabi."
       }
     ],
-    "riskInference": "For India in 2026 the dominant channel is not drought — the reservoir buffer is adequate — but food inflation. The five supporting channels all feed into or sit alongside that primary read. The analytically important point is the timing alignment: the peak El Niño phase (Oct–Dec), peak food-price pressure, and pre-Budget political sensitivity all land in the same window, which is what makes the food-inflation channel the one to position around rather than the headline monsoon number."
+    "riskInference": "The dominant channel for India in 2026 is no longer a forecast — it is a print. Food inflation has climbed for three straight months to 5.52%, and the analytically important feature is the timing alignment: the peak El Niño phase (Oct–Dec), peak food-price pressure, unfavourable base effects, and pre-Budget sensitivity all converge in the same window, with economists already pencilling headline CPI above 5% by September and a possible December RBI hike. The reservoir recovery removes the supply-collapse tail but not the price pressure. The single mitigant worth tracking is the September IOD: a positive turn would ease the monsoon leg, though the West Asia crude channel would remain. This is the channel to position around, not the headline monsoon number."
   }
 }
