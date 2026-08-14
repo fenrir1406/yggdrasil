@@ -118,6 +118,55 @@
       "freq": "Real-time",
       "rel": "High",
       "url": "https://www.pmel.noaa.gov/elnino/"
+    },
+    {
+      "name": "NOAA PSL Climate Indices",
+      "rel": "High",
+      "freq": "Daily + monthly",
+      "desc": "Teleconnection and ocean indices in one place — NAO, AO, PNA, EA/WR, PDO, QBO, SOI, MEI, Niño regions, Indian-monsoon indices — many daily and back to 1948. The bridge from ENSO to actual circulation.",
+      "url": "https://psl.noaa.gov/data/climateindices/list/"
+    },
+    {
+      "name": "ECMWF European Weather Regimes",
+      "rel": "High",
+      "freq": "Daily",
+      "desc": "Evolution of the Euro-Atlantic circulation regimes (+NAO, −NAO, blocking, Atlantic ridge). More analytically useful for a UK/Europe read than a raw temperature forecast.",
+      "url": "https://charts.ecmwf.int/"
+    },
+    {
+      "name": "Climate Reanalyzer",
+      "rel": "High",
+      "freq": "Daily",
+      "desc": "Daily global SST anomalies, Niño 3.4, 500-hPa heights and jet maps — the fastest way to see the physical structure of an ongoing event rather than a single index.",
+      "url": "https://climatereanalyzer.org/"
+    },
+    {
+      "name": "Copernicus C3S",
+      "rel": "High",
+      "freq": "Monthly + seasonal",
+      "desc": "ERA5 reanalysis and European climate monitoring — the continuous historical record needed to say how unusual an anomaly is against the 1950–present distribution.",
+      "url": "https://climate.copernicus.eu/"
+    },
+    {
+      "name": "Met Office (UK)",
+      "rel": "High",
+      "freq": "Monthly + event",
+      "desc": "UK climate monitoring, the NAO seasonal driver outlook, and rapid attribution studies estimating how warming shifted an event's probability.",
+      "url": "https://www.metoffice.gov.uk/research/climate/climate-monitoring"
+    },
+    {
+      "name": "McNoldy RONI archive",
+      "rel": "High",
+      "freq": "Monthly",
+      "desc": "Relative ONI monthly and seasonal values back to 1850, following CPC methodology — the source for locking exact historical RONI figures behind the Baseline & Rulers view.",
+      "url": "https://bmcnoldy.earth.miami.edu/tropics/roni/"
+    },
+    {
+      "name": "World Weather Attribution",
+      "rel": "Medium–High",
+      "freq": "Event",
+      "desc": "Event-by-event attribution: how much more likely or intense a specific heatwave, drought or flood became because of anthropogenic warming — the climate-change layer of the analysis.",
+      "url": "https://www.worldweatherattribution.org/"
     }
   ]
 }
