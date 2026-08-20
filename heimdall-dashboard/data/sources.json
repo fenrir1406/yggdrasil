@@ -1,0 +1,147 @@
+{
+  "sources": {
+    "intro": "The research stack behind the register — live event feeds, official databases and the sources each section refreshes from, across severe storms, wildfire, floods, cyclones and drought. Reliability reflects primary-source status and update cadence.",
+    "items": [
+      {
+        "name": "GDACS (Global Disaster Alerts)",
+        "rel": "High",
+        "freq": "Real-time",
+        "desc": "Global Disaster Alert & Coordination System (UN/EC): keyless GeoJSON feed of active cyclones, floods, droughts and wildfires with green/orange/red alert levels — the backbone of the Active Events registry.",
+        "url": "https://www.gdacs.org/"
+      },
+      {
+        "name": "Iowa Environmental Mesonet (IEM)",
+        "rel": "High",
+        "freq": "Real-time",
+        "desc": "Scriptable LSR webservice and Autoplot #245: national tornado/hail/wind report counts as CSV, current through today — the refresh source behind the severe-convective bands.",
+        "url": "https://mesonet.agron.iastate.edu/"
+      },
+      {
+        "name": "SPC Storm Reports & Summary",
+        "rel": "High",
+        "freq": "Daily",
+        "desc": "NWS Storm Prediction Center: daily Local Storm Reports and the current-year tornado/hail/wind summaries — the live severe-convective feed.",
+        "url": "https://www.spc.noaa.gov/climo/reports/"
+      },
+      {
+        "name": "SPC WCM Data (report CSVs)",
+        "rel": "High",
+        "freq": "Annual + running",
+        "desc": "The definitive tornado/hail/wind report database and running-total climatology graphics. Ingest these CSVs (2010–25) to render exact IQR/interdecile percentile envelopes.",
+        "url": "https://www.spc.noaa.gov/wcm/"
+      },
+      {
+        "name": "SPC Severe Climatology",
+        "rel": "High",
+        "freq": "Static + daily",
+        "desc": "30-year severe-weather climatology and daily/annual summary maps — the baseline the current year is measured against.",
+        "url": "https://www.spc.noaa.gov/climo/summary/"
+      },
+      {
+        "name": "NCEI Storm Events & SWDI",
+        "rel": "High",
+        "freq": "Monthly",
+        "desc": "NOAA's official Storm Events Database and Severe Weather Data Inventory — the verified record after preliminary reports are quality-controlled.",
+        "url": "https://www.ncei.noaa.gov/stormevents/"
+      },
+      {
+        "name": "NWS API & Local Storm Reports",
+        "rel": "High",
+        "freq": "Real-time",
+        "desc": "api.weather.gov for alerts and observations, plus the LSR map service — machine-readable warnings and reports for automation.",
+        "url": "https://www.weather.gov/documentation/services-web-api"
+      },
+      {
+        "name": "NIFC Fire Statistics",
+        "rel": "High",
+        "freq": "Daily",
+        "desc": "National Interagency Fire Center: year-to-date fires and acres, preparedness level, and the daily situation report — the US wildfire ground truth.",
+        "url": "https://www.nifc.gov/fire-information/statistics"
+      },
+      {
+        "name": "NIFC Open Data (WFIGS)",
+        "rel": "High",
+        "freq": "Real-time",
+        "desc": "Wildland Fire Interagency Geospatial Services: incident locations, perimeters and the day-of-year record used to build fire seasonality curves.",
+        "url": "https://data-nifc.opendata.arcgis.com/"
+      },
+      {
+        "name": "NASA FIRMS",
+        "rel": "High",
+        "freq": "Sub-daily",
+        "desc": "Fire Information for Resource Management System: near-real-time active-fire and thermal-anomaly detections from VIIRS/MODIS, global coverage.",
+        "url": "https://firms.modaps.eosdis.nasa.gov/"
+      },
+      {
+        "name": "CAL FIRE",
+        "rel": "High",
+        "freq": "Daily",
+        "desc": "California's incident feed — acreage, containment and structure losses for the state that sets the tone for US wildfire risk.",
+        "url": "https://www.fire.ca.gov/"
+      },
+      {
+        "name": "USFA Data & Insights",
+        "rel": "Med",
+        "freq": "Periodic",
+        "desc": "US Fire Administration statistics and datasets — the structural-fire and casualty complement to wildland data.",
+        "url": "https://www.usfa.fema.gov/statistics/data-sets/"
+      },
+      {
+        "name": "Copernicus EFFIS / CEMS",
+        "rel": "High",
+        "freq": "Daily",
+        "desc": "European Forest Fire Information System and Emergency Management Service — burnt-area, fire-danger and flood mapping for Europe and beyond.",
+        "url": "https://forest-fire.emergency.copernicus.eu/"
+      },
+      {
+        "name": "ESSL European Severe Weather DB",
+        "rel": "High",
+        "freq": "Daily",
+        "desc": "The European Severe Weather Database (ESWD): tornado, hail, wind and heavy-rain reports across Europe — the SPC analogue for the continent.",
+        "url": "https://www.essl.org/cms/european-severe-weather-database/"
+      },
+      {
+        "name": "Met Office Warnings",
+        "rel": "High",
+        "freq": "Real-time",
+        "desc": "UK National Severe Weather Warning Service — the authoritative UK warning feed for wind, rain, snow, heat and thunderstorms.",
+        "url": "https://weather.metoffice.gov.uk/warnings-and-advice/uk-weather-warnings/met-office-weather-warnings"
+      },
+      {
+        "name": "UK EA Flood Monitoring",
+        "rel": "High",
+        "freq": "Real-time",
+        "desc": "Environment Agency flood-monitoring API — river and coastal levels, flow and flood warnings across England.",
+        "url": "https://environment.data.gov.uk/flood-monitoring/doc/reference"
+      },
+      {
+        "name": "IMD Mausam",
+        "rel": "High",
+        "freq": "Daily",
+        "desc": "India Meteorological Department: monsoon rainfall, warnings and cyclone bulletins — the source for the South Asian flood and heat signal.",
+        "url": "https://mausam.imd.gov.in/"
+      },
+      {
+        "name": "FSI Forest Fire (India)",
+        "rel": "Med",
+        "freq": "Sub-daily",
+        "desc": "Forest Survey of India fire alerts — active-fire detections and alerts for the Indian subcontinent.",
+        "url": "https://fsiforestfire.gov.in/"
+      },
+      {
+        "name": "NHC (Atlantic / E-Pacific)",
+        "rel": "High",
+        "freq": "Real-time in season",
+        "desc": "National Hurricane Center advisories and tropical outlooks — the authority for the tropical-cyclone card.",
+        "url": "https://www.nhc.noaa.gov/"
+      },
+      {
+        "name": "World Weather Attribution",
+        "rel": "Med",
+        "freq": "Event",
+        "desc": "How much more likely or intense a given heatwave, flood or fire-weather episode became because of anthropogenic warming.",
+        "url": "https://www.worldweatherattribution.org/"
+      }
+    ]
+  }
+}

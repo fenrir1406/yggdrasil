@@ -1,0 +1,17 @@
+{
+  "meta": {"asOf": "19 Aug 2026", "lastUpdated": "19 Aug 2026"},
+  "state": {
+    "label": "Multi-Hazard \u00b7 Active",
+    "detail": "A busy Northern-Hemisphere summer across several hazards at once: a US wildfire season at the highest national readiness level, an above-average severe-convective season, deadly flooding across Asia, and prolonged drought and heat in Europe. Fire and water are the dominant active signals.",
+    "regimeScore": 76,
+    "scoreText": "76 / 100 \u00b7 Elevated"
+  },
+  "metrics": [
+    {"label": "US wildfire", "value": "7.2M ac", "sub": "169% of 10-yr avg \u00b7 PL5", "cls": "warm"},
+    {"label": "US tornado YTD", "value": "1,350", "sub": "prelim \u00b7 +30% vs 10-yr", "cls": "gold"},
+    {"label": "Active global events", "value": "5 tracked", "sub": "fire \u00b7 flood \u00b7 drought \u00b7 cyclone", "cls": "steel"},
+    {"label": "Asia flooding", "value": "Deadly", "sub": "Japan \u00b7 India monsoon", "cls": "cool"},
+    {"label": "Europe", "value": "Drought", "sub": "Rhine low \u00b7 5th heatwave", "cls": "gold"}
+  ],
+  "narrative": "The watchman's read for mid-August is a multi-hazard one. The United States is carrying its most demanding active hazard in wildfire \u2014 more than 7.2 million acres burned, 169% of the ten-year average, at Preparedness Level 5 \u2014 alongside a severe-convective season running above its ten-year envelope. The wet signal sits over Asia, where record Kanto rainfall and a deadly Indian monsoon are the sharpest flood events, while Europe runs dry under a fifth heatwave. This dashboard is a register of those events: what is active now on the global map, and how the US fire and severe-storm seasons compare with climatology. The broad ocean and El Ni\u00f1o backdrop that ties them together is tracked in the companion ENSO dashboard; here the focus is the events themselves."
+}

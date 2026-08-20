@@ -1,0 +1,19 @@
+{
+  "activeEvents": {
+    "intro": "A live register of high-impact weather events worldwide \u2014 tropical cyclones, floods, droughts and wildfires \u2014 each placed on the map and ranked by alert level. Use the region filter to isolate any part of the world. This is the repository's front door: what is active now, where, and how severe.",
+    "asOf": "19 Aug 2026",
+    "note": "Seeded snapshot of major active events, web-verified to 5\u201319 Aug 2026. Alert levels here are indicative, assigned from cited severity; running <code>fetch_events.py</code> replaces this list with the live GDACS feed and its official green / orange / red levels. Sources: GDACS, EFFIS (Europe), NIFC (US), national disaster authorities.",
+    "regions": ["All", "Americas", "Europe", "Asia", "Africa", "Oceania"],
+    "rows": [
+      {"type": "Wildfire", "code": "WF", "name": "US wildfire season (Northwest)", "region": "United States", "grp": "Americas", "alert": "red", "metric": "7.2M acres YTD \u00b7 PL 5", "date": "2026-08-16", "lat": 45.5, "lon": -121.5},
+      {"type": "Wildfire", "code": "WF", "name": "SW Europe wildfires (Spain, France, Portugal)", "region": "Europe", "grp": "Europe", "alert": "red", "metric": "EFFIS: 584k ha EU YTD \u00b7 Spain & France records", "date": "2026-08-12", "lat": 40.4, "lon": -4.0},
+      {"type": "Flood", "code": "FL", "name": "Assam / Brahmaputra floods", "region": "India", "grp": "Asia", "alert": "red", "metric": "100+ deaths \u00b7 700k+ displaced", "date": "2026-08-10", "lat": 26.2, "lon": 92.9},
+      {"type": "Flood", "code": "FL", "name": "Monsoon floods & flash floods", "region": "Pakistan", "grp": "Asia", "alert": "red", "metric": "126+ deaths since 26 Jun", "date": "2026-08-05", "lat": 31.5, "lon": 72.5},
+      {"type": "Wildfire", "code": "WF", "name": "SE Europe wildfires (Greece, Balkans)", "region": "Europe", "grp": "Europe", "alert": "orange", "metric": "Active blazes \u00b7 evacuations", "date": "2026-08-14", "lat": 40.6, "lon": 22.9},
+      {"type": "Drought", "code": "DR", "name": "Western & Central Europe drought", "region": "Europe", "grp": "Europe", "alert": "orange", "metric": "Rhine low \u00b7 repeat heatwaves", "date": "2026-08-10", "lat": 50.0, "lon": 8.0},
+      {"type": "Flood", "code": "FL", "name": "Kanto record rainfall & flooding", "region": "Japan", "grp": "Asia", "alert": "orange", "metric": "Record rainfall \u00b7 evacuations", "date": "2026-08-14", "lat": 35.6, "lon": 140.1},
+      {"type": "Tropical cyclone", "code": "TC", "name": "Hurricane Lala", "region": "Central Pacific", "grp": "Americas", "alert": "orange", "metric": "~65 mph \u00b7 nearing Hawaii", "date": "2026-08-17", "lat": 20.4, "lon": -164.3}
+    ],
+    "inference": "Mid-August 2026 is defined by fire and water. Wildfire is the dominant hazard on two continents at once \u2014 the US Northwest at Preparedness Level 5, and a record Mediterranean season (Spain and France both at national records, EFFIS well above its 20-year average). The wet signal runs through South and East Asia, where the Indian and Pakistani monsoons are the deadliest active events. Europe carries both fire and a slow-onset drought; the tropics are quiet, with Hurricane Lala the only significant system. The registry lengthens once the live GDACS feed is wired in \u2014 this snapshot captures the current headline events."
+  }
+}
