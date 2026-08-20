@@ -1,0 +1,695 @@
+<style>
+.heim-d{
+--bg:#0f141c; --panel:#161d28; --panel2:#1c2533; --line:#2a3340;
+--steel:#5b8fc9; --warm:#e25c4a; --cool:#3d9bd4; --neutral:#5fb37e;
+--gold:#e0992f; --purple:#9b7bd4; --txt:#e6ebf2; --mid:#8b97a8; --dim:#5c6675;
+font-family:Georgia,serif; color:var(--txt); max-width:98%; margin:0 auto;
+background:var(--bg); line-height:1.6; border-radius:10px; overflow:hidden;
+}
+.heim-d *,.heim-d *::before,.heim-d *::after{box-sizing:border-box}
+
+/* Masthead */
+.d-mast{background:linear-gradient(135deg,#0c1119,#18222f);padding:24px 26px;border-bottom:2px solid var(--warm)}
+.d-mast-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+.d-eyebrow{font-family:'Courier New',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin:0 0 8px}
+.d-title{font-size:clamp(20px,3vw,28px);font-weight:700;color:#fff;margin:0;line-height:1.15}
+.d-asof{font-family:'Courier New',monospace;font-size:10px;background:rgba(91,143,201,0.15);color:var(--steel);padding:5px 12px;border-radius:3px;white-space:nowrap;letter-spacing:1px}
+.d-mast-sub{font-size:13px;color:var(--mid);margin:10px 0 0;font-style:italic;max-width:760px}
+
+/* Command header */
+.d-cmd{background:var(--panel);padding:22px 26px;border-bottom:1px solid var(--line)}
+.d-cmd-tag{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);margin:0 0 14px}
+.d-hero{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin:0 0 16px}
+.d-state{background:var(--panel2);border-radius:8px;padding:18px;border-left:4px solid var(--cool)}
+.d-state-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin:0 0 8px}
+.d-state-v{font-size:26px;font-weight:700;color:#fff;line-height:1.1;margin:0 0 8px}
+.d-state-d{font-size:13px;color:var(--mid);line-height:1.55;margin:0}
+.d-gauge-wrap{background:var(--panel2);border-radius:8px;padding:16px;display:flex;flex-direction:column;justify-content:center}
+.d-gl{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);text-align:center;margin:0 0 4px}
+.d-gauge-box{position:relative;height:130px}
+.d-gauge-val{text-align:center;font-size:13px;color:var(--steel);font-weight:700;margin:6px 0 0;font-family:'Courier New',monospace}
+.d-alertbreak{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.d-ab{display:flex;flex-direction:column;align-items:center;min-width:52px;padding:6px 10px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)}
+.d-ab-n{font-family:'Courier New',monospace;font-size:20px;font-weight:800;line-height:1}
+.d-ab-l{font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.5px;color:var(--mid);margin-top:3px;text-transform:uppercase}
+.d-regionbar{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 12px}
+.d-regionbtn{font-family:'Courier New',monospace;font-size:11px;font-weight:700;padding:6px 12px;background:transparent;border:1px solid var(--line);border-radius:5px;color:var(--mid);cursor:pointer;transition:all .15s}
+.d-regionbtn:hover{background:var(--panel);color:var(--txt)}
+.d-regionbtn.active{background:var(--steel);color:#fff;border-color:var(--steel)}
+
+/* Metric pills - real light pastel backgrounds, dark text */
+.d-metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 16px}
+.d-metric{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:13px 12px;text-align:center;border-top:3px solid var(--dim)}
+.d-metric.oni-pill{background:#4a1a18;border:1px solid #c0524a;border-top:3px solid #e25c4a;border-radius:6px}
+.d-metric.roni-pill{background:#163320;border:1px solid #3d8050;border-top:3px solid #5fb37e;border-radius:6px}
+.d-metric.nino-pill{background:#3a2a08;border:1px solid #a07020;border-top:3px solid #e0992f;border-radius:6px}
+.d-metric.soi-pill{background:#0f2a40;border:1px solid #2a6090;border-top:3px solid #3d9bd4;border-radius:6px}
+.d-metric.outlook-pill{background:#28184a;border:1px solid #6040a0;border-top:3px solid #9b7bd4;border-radius:6px}
+.d-ml{font-family:'Courier New',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin:0 0 5px}
+.d-mv{font-size:21px;font-weight:700;color:#fff;line-height:1;margin:0;font-family:'Courier New',monospace}
+.d-ms{font-size:10px;color:var(--dim);margin:5px 0 0}
+.d-cyc-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin:0 0 10px}
+.d-cyc{display:flex;gap:5px;margin:0 0 16px}
+.d-cyc-p{flex:1;text-align:center;padding:11px 6px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)}
+.d-cyc-p.active{background:var(--warm);border-color:var(--warm)}
+.d-cyc-n{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:var(--txt);display:block}
+.d-cyc-p.active .d-cyc-n{color:#fff}
+.d-cyc-s{font-size:9px;color:var(--dim);display:block;margin-top:3px}
+.d-cyc-p.active .d-cyc-s{color:rgba(255,255,255,0.85)}
+.d-narr{background:rgba(61,155,212,0.08);border-left:4px solid var(--cool);padding:16px 20px;border-radius:0 6px 6px 0;font-size:15px;line-height:1.65;color:var(--txt)}
+.d-narr-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--cool);display:block;margin:0 0 6px}
+
+/* Top-level section tabs */
+.d-sectabs{display:flex;gap:4px;background:var(--panel2);padding:10px 16px;flex-wrap:wrap;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.d-sectab{font-family:'Courier New',monospace;font-size:12px;font-weight:700;letter-spacing:0.5px;padding:9px 16px;background:transparent;border:1px solid var(--line);border-radius:6px;color:var(--mid);cursor:pointer;transition:all .15s}
+.d-sectab:hover{background:var(--panel);color:var(--txt)}
+.d-sectab.active{background:var(--warm);color:#fff;border-color:var(--warm)}
+
+/* Section panels */
+.d-section{display:none;padding:24px 26px}
+.d-section.active{display:block}
+.d-sec-head{display:flex;align-items:baseline;gap:12px;margin:0 0 4px;padding-bottom:12px;border-bottom:2px solid var(--steel);flex-wrap:wrap}
+.d-sec-num{font-family:'Courier New',monospace;font-size:12px;font-weight:700;color:#fff;background:var(--steel);padding:3px 9px;border-radius:3px;letter-spacing:1px}
+.d-sec-title{font-size:clamp(17px,2.4vw,22px);font-weight:700;color:#fff;margin:0}
+.d-sec-q{font-size:13px;color:var(--mid);font-style:italic;margin:0;flex-basis:100%}
+.d-sec-intro{font-size:14px;color:var(--mid);line-height:1.6;margin:14px 0 18px}
+
+/* Sub-tabs */
+.d-tabhint{font-family:'Courier New',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cool);margin:18px 0 8px;display:flex;align-items:center;gap:6px}
+.d-tabhint::before{content:"\25C6";font-size:8px}
+.d-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.d-tab{font-family:'Courier New',monospace;font-size:13px;font-weight:700;padding:10px 18px;background:var(--panel2);border:1px solid var(--line);border-radius:6px;color:var(--mid);cursor:pointer;transition:all .15s}
+.d-tab:hover{background:#243042;color:var(--txt)}
+.d-tab.active{background:var(--warm);color:#fff;border-color:var(--warm)}
+.d-tabpanel{display:none}
+.d-tabpanel.active{display:block}
+.d-pd{font-size:14px;color:var(--mid);line-height:1.6;margin:0 0 14px}
+.d-chartbox{position:relative;height:300px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;margin:0 0 14px}
+
+/* Analyst Read */
+.d-inf{background:rgba(91,143,201,0.07);border-left:3px solid var(--steel);border-radius:0 6px 6px 0;padding:14px 18px;margin:0 0 8px;font-size:14px;line-height:1.65;color:var(--txt)}
+.d-inf-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--steel);display:block;margin:0 0 7px}
+
+/* Score bars - distinct colored backgrounds */
+.d-scores{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0 0}
+.d-score{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px}
+.d-score.regime-score{background:#3d1a18;border:1px solid #c04030;border-left:4px solid #e25c4a}
+.d-score.regime-score .d-sc-n{color:#f0a090}
+.d-score.coupling-score{background:#0d2540;border:1px solid #2060a0;border-left:4px solid #3d9bd4}
+.d-score.coupling-score .d-sc-n{color:#80c0e8}
+.d-sc-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 8px}
+.d-sc-n{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:var(--txt);text-transform:uppercase}
+.d-sc-v{font-size:18px;font-weight:700;color:#fff;font-family:'Courier New',monospace}
+.d-sc-track{height:10px;background:#0a0e14;border-radius:5px;overflow:hidden}
+.d-sc-fill{height:100%;border-radius:5px}
+.d-sc-i{font-size:12px;color:var(--mid);margin:8px 0 0;font-style:italic}
+
+/* Consensus */
+.d-cons-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+.d-cons-g,.d-peak{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px}
+.d-cons-box{position:relative;height:230px}
+.d-pm-row{margin:0 0 12px}
+.d-pm-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 5px}
+.d-pm-l{font-family:'Courier New',monospace;font-size:11px;color:var(--txt);font-weight:700}
+.d-pm-pct{font-family:'Courier New',monospace;font-size:13px;font-weight:700;color:#fff}
+.d-pm-track{height:9px;background:#0a0e14;border-radius:5px;overflow:hidden}
+.d-pm-fill{height:100%;border-radius:5px}
+
+/* Peak intensity box */
+.d-peak.d-peak-box{background:#2e1a08;border:1px solid #a06020;border-left:4px solid #e0992f}
+.d-peak.d-peak-box .d-gl{color:#e0992f}
+
+/* Tables */
+.d-tblwrap{overflow-x:auto;margin:0 0 14px}
+.d-tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+.d-tbl th{background:linear-gradient(180deg,#1a2a40,#0e1a28);color:#c8d8f0;padding:9px 11px;text-align:left;font-size:10px;font-family:'Courier New',monospace;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid var(--steel)}
+.d-tbl td{padding:9px 11px;border-bottom:1px solid var(--line);color:var(--txt);line-height:1.5}
+.d-tbl tr:nth-child(even) td{background:var(--panel)}
+.d-tbl .yr{font-weight:700;color:#fff}
+.d-tbl .sim{font-family:'Courier New',monospace;font-weight:700;color:var(--warm)}
+.d-rg-n{font-weight:700;color:#fff}
+.d-badge{font-family:'Courier New',monospace;font-size:10px;font-weight:700;padding:3px 9px;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+.d-badge.warm{background:rgba(226,92,74,0.18);color:#f08a7a}
+.d-badge.gold{background:rgba(224,153,47,0.18);color:#f0b860}
+.d-badge.neutral{background:rgba(95,179,126,0.18);color:#82c89c}
+
+/* Timeline */
+.d-tl{margin:0 0 14px}
+.d-tl-box{position:relative;height:240px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;margin:0 0 14px}
+
+/* Monsoon dist */
+.d-dist{margin:0 0 14px}
+.d-dist-row{margin:0 0 11px}
+.d-dist-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 5px}
+.d-dist-l{font-size:13px;color:var(--txt);font-weight:600}
+.d-dist-pct{font-family:'Courier New',monospace;font-size:14px;font-weight:700;color:#fff}
+.d-dist-track{height:11px;background:#0a0e14;border-radius:5px;overflow:hidden}
+.d-dist-fill{height:100%;border-radius:5px}
+
+/* Onset pills - white background */
+.d-onset{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 14px}
+.d-onset-c{background:#ffffff;border:1px solid rgba(61,155,212,0.3);border-radius:8px;padding:16px;text-align:center;border-top:3px solid var(--cool)}
+.d-onset-c.status{border-top-color:var(--neutral);border-color:rgba(95,179,126,0.3)}
+.d-onset-k{font-family:'Courier New',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#4a5a6a;margin:0 0 7px}
+.d-onset-v{font-size:17px;font-weight:700;color:#1a2533;font-family:Georgia,serif;line-height:1.1}
+
+/* Reservoir */
+.d-res{display:grid;grid-template-columns:190px 1fr;gap:16px;align-items:center;margin:0 0 14px}
+.d-res-g{text-align:center;background:#ffffff;border:1px solid rgba(95,179,126,0.3);border-radius:8px;padding:18px}
+.d-res-big{font-size:40px;font-weight:700;color:#1a6640;font-family:Georgia,serif;line-height:1;margin:0}
+.d-res-u{font-family:'Courier New',monospace;font-size:11px;color:#4a6a5a;margin:4px 0 0}
+.d-res-c{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}
+.d-res-bar{margin:0 0 12px}
+.d-res-bt{display:flex;justify-content:space-between;font-size:12px;margin:0 0 4px}
+.d-res-bn{font-family:'Courier New',monospace;color:var(--mid);text-transform:uppercase;letter-spacing:0.5px;font-size:10px}
+.d-res-bv{font-family:'Courier New',monospace;font-weight:700;color:#fff}
+.d-res-track{height:12px;background:#0a0e14;border-radius:6px;overflow:hidden}
+.d-res-fill{height:100%;border-radius:6px}
+
+/* Risk */
+.d-rl{background:rgba(226,92,74,0.08);border:1px solid rgba(226,92,74,0.25);border-left:5px solid var(--warm);border-radius:8px;padding:20px 22px;margin:0 0 16px}
+.d-rl-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin:0 0 12px}
+.d-rl-n{font-size:19px;font-weight:700;color:#fff;margin:0}
+.d-rl-badge{font-family:'Courier New',monospace;font-size:12px;font-weight:700;padding:5px 13px;border-radius:4px;color:#fff;text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.d-rl-trend{font-family:'Courier New',monospace;font-size:11px;color:var(--warm);margin:4px 0 0}
+.d-rl-track{height:12px;background:rgba(0,0,0,0.3);border-radius:6px;overflow:hidden;margin:0 0 14px}
+.d-rl-fill{height:100%;border-radius:6px}
+.d-rl-sum{font-size:15px;line-height:1.65;color:var(--txt);margin:0 0 14px}
+.d-rl-dl{font-family:'Courier New',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--warm);margin:0 0 8px}
+.d-rl-d{margin:0;padding:0;list-style:none}
+.d-rl-d li{font-size:13px;line-height:1.5;color:var(--txt);padding:5px 0 5px 18px;position:relative}
+.d-rl-d li::before{content:"\25B8";position:absolute;left:0;color:var(--warm);font-size:11px}
+.d-risk-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 16px}
+.d-rc{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:14px;border-top:3px solid var(--dim)}
+.d-rc-n{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:var(--txt);letter-spacing:0.3px;margin:0 0 8px;line-height:1.3}
+.d-rc-l{font-size:15px;font-weight:700;margin:0 0 8px}
+.d-rc-track{height:7px;background:#0a0e14;border-radius:4px;overflow:hidden;margin:0 0 10px}
+.d-rc-fill{height:100%;border-radius:4px}
+.d-rc-note{font-size:11px;color:var(--mid);line-height:1.5}
+
+/* Analogs - white background */
+.d-analogs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 16px}
+.d-an{background:#ffffff;border:1px solid #d0d8e4;border-radius:8px;padding:16px;border-top:4px solid var(--steel)}
+.d-an.r1{border-top-color:var(--warm)} .d-an.r2{border-top-color:var(--gold)} .d-an.r3{border-top-color:var(--cool)}
+.d-an-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 10px}
+.d-an-y{font-size:24px;font-weight:700;color:#1a2533}
+.d-an-sv{font-size:20px;font-weight:700;font-family:'Courier New',monospace;color:#c04030;line-height:1}
+.d-an-sl{font-family:'Courier New',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#7a8899}
+.d-an-r{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #d0d8e4;font-size:12px}
+.d-an-r:last-child{border-bottom:none}
+.d-an-k{color:#7a8899;font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase}
+.d-an-v{color:#1a2533;font-weight:600}
+.d-an-v.warm{color:#c04030} .d-an-v.gold{color:#a06820} .d-an-v.neutral{color:#1a6640}
+
+/* Sources - white background */
+.d-source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0 0 8px}
+.d-src{background:#ffffff;border:1px solid #d0d8e4;border-radius:8px;padding:16px 18px;border-left:3px solid var(--cool)}
+.d-src-top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 6px;gap:10px}
+.d-src-n{font-size:15px;font-weight:700;color:#1a2533}
+.d-src-rel{font-family:'Courier New',monospace;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+.d-src-rel.high{background:rgba(95,179,126,0.2);color:#1a6640}
+.d-src-rel.med{background:rgba(224,153,47,0.2);color:#7a4a10}
+.d-src-d{font-size:13px;color:#3a4a5a;line-height:1.5;margin:0 0 8px}
+.d-src-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.d-src-f{font-family:'Courier New',monospace;font-size:10px;color:#6a7a8a;letter-spacing:0.5px}
+.d-src-link{font-family:'Courier New',monospace;font-size:11px;color:var(--steel);text-decoration:none;border-bottom:1px solid #2f4a6b}
+
+/* Footer */
+.d-foot{font-size:11px;color:var(--mid);padding:18px 26px;border-top:1px solid var(--line);background:var(--panel);line-height:1.65;text-align:center;font-style:italic}
+.d-update-badge{display:inline-block;font-family:'Courier New',monospace;font-size:10px;background:var(--warm);color:#fff;padding:3px 9px;border-radius:3px;font-style:normal;letter-spacing:0.5px;margin:0 0 8px}
+
+@media(max-width:760px){
+.d-hero{grid-template-columns:1fr} .d-metrics{grid-template-columns:repeat(2,1fr)}
+.d-cons-wrap{grid-template-columns:1fr} .d-scores{grid-template-columns:1fr}
+.d-risk-grid{grid-template-columns:repeat(2,1fr)} .d-analogs{grid-template-columns:1fr}
+.d-onset{grid-template-columns:1fr} .d-res{grid-template-columns:1fr}
+.d-source-grid{grid-template-columns:1fr} .d-cyc{flex-wrap:wrap} .d-cyc-p{flex-basis:calc(50% - 3px)}
+.d-tab,.d-sectab{font-size:11px;padding:8px 12px}
+}
+.d-rc-v{font-family:'Courier New',monospace;font-size:13px;font-weight:700;color:#fff;margin:2px 0 5px}
+.d-cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:0 0 16px}
+.d-note{background:rgba(224,153,47,0.08);border:1px solid rgba(224,153,47,0.28);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:12px 16px;margin:0 0 16px;font-size:12.5px;line-height:1.6;color:var(--txt)}
+.d-note-l{font-family:'Courier New',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);display:block;margin:0 0 6px}
+.d-conv-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin:0 0 8px}
+.d-conv-head .d-pd{flex:1 1 240px;margin:0}
+.d-stat{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;flex:0 0 auto;max-width:100%}
+.d-stat-cell{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:7px 12px;min-width:74px;text-align:center}
+.d-stat-v{font-family:'Courier New',monospace;font-size:19px;font-weight:700;line-height:1.1;letter-spacing:-0.5px}
+.d-stat-l{font-family:'Courier New',monospace;font-size:8.5px;letter-spacing:0.8px;text-transform:uppercase;color:var(--mid);margin-top:3px}
+.d-stat-basis{flex-basis:100%;font-family:'Courier New',monospace;font-size:9.5px;line-height:1.4;color:var(--mid);text-align:right;opacity:0.85;margin-top:2px}
+.d-stat-note{font-family:'Courier New',monospace;font-size:10px;line-height:1.5;color:var(--mid);text-align:right;background:var(--panel);border:1px dashed var(--line);border-radius:7px;padding:8px 12px;max-width:230px}
+.d-cap{font-family:'Courier New',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--cool);margin:12px 0 6px;display:flex;align-items:center;gap:6px}
+.d-cap::before{content:"\25B8";font-size:9px}
+</style>
+<div class="heim-d">
+
+<!-- ================= MASTHEAD ================= -->
+<div class="d-mast">
+<div class="d-mast-top">
+<div>
+<p class="d-eyebrow">Fenrir Research · Weather Intelligence</p>
+<h1 class="d-title">Heimdall · Weather Events &amp; Patterns Watch</h1>
+</div>
+<span class="d-asof" id="d-asof">AS OF —</span>
+</div>
+<p class="d-mast-sub">A live register of high-impact weather events: what is active now worldwide, and how this year's US severe-storm and wildfire pace compares with climatology. Every panel carries an analyst read, not just data.</p>
+</div>
+
+<!-- ================= COMMAND HEADER ================= -->
+<div class="d-cmd">
+<p class="d-cmd-tag">Command Header · the ten-second read</p>
+<div class="d-hero">
+<div class="d-state" id="d-state-card">
+<p class="d-state-l">Current Status</p>
+<p class="d-state-v" id="d-state-value">—</p>
+<p class="d-state-d" id="d-state-detail">—</p>
+</div>
+<div class="d-gauge-wrap">
+<p class="d-gl">Active Alerts</p>
+<div id="d-alertbreak" class="d-alertbreak"></div>
+</div>
+</div>
+<div class="d-metrics" id="d-metrics"></div>
+<div class="d-narr"><span class="d-narr-l">Fenrir Read</span><span id="d-narrative-text">—</span></div>
+</div>
+
+<!-- ================= SECTION TABS =================
+     To add a section: (1) add a button here, (2) duplicate a section template below,
+     (3) add its JSON file to DATA_FILES, (4) if it has charts, wire a draw call in the
+     section-switch handler. -->
+<div class="d-sectabs" id="d-sectabs">
+<button class="d-sectab active" data-sec="events">Active Events</button>
+<button class="d-sectab" data-sec="convective">Severe Convective</button>
+<button class="d-sectab" data-sec="fire">Wildfire</button>
+<button class="d-sectab" data-sec="sources">Sources</button>
+</div>
+
+<!-- ===== ACTIVE EVENTS · GLOBAL REGISTRY (data: activeevents.json) ===== -->
+<div class="d-section active" id="d-sec-events">
+<div class="d-sec-head"><span class="d-sec-num">01</span><h2 class="d-sec-title">Active Events &middot; Global Registry</h2><p class="d-sec-q">What high-impact weather is active right now — and how severe?</p></div>
+<p class="d-sec-intro" id="d-events-intro"></p>
+<div id="d-events-note"></div>
+<div class="d-regionbar" id="d-events-regions"></div>
+<p class="d-cap">Active events by location &mdash; colour = alert level (red severe &middot; orange significant &middot; green moderate)</p>
+<div class="d-chartbox" style="height:360px"><canvas id="d-events-map"></canvas></div>
+<div class="d-tblwrap"><table class="d-tbl"><thead><tr><th>Type</th><th>Event</th><th>Region</th><th>Alert</th><th>Key metric</th><th>Since</th></tr></thead><tbody id="d-events-tbody"></tbody></table></div>
+<div id="d-events-inf"></div>
+</div>
+
+<!-- ===== TEMPLATE E · PERCENTILE-ENVELOPE CHART + SUB-TABS (data: convective.json) ===== -->
+<div class="d-section" id="d-sec-convective">
+<div class="d-sec-head"><span class="d-sec-num">02</span><h2 class="d-sec-title">Severe Convective &middot; US &middot; SPC</h2><p class="d-sec-q">How does this year's severe-storm pace compare with the climatological envelope?</p></div>
+<p class="d-sec-intro" id="d-convective-intro"></p>
+<div id="d-convective-note"></div>
+<p class="d-tabhint">Tap to switch hazard</p>
+<div class="d-tabs" id="d-convective-tabs"></div>
+<div id="d-convective-panels"></div>
+</div>
+
+<!-- ===== WILDFIRE · NIFC (data: fire.json) ===== -->
+<div class="d-section" id="d-sec-fire">
+<div class="d-sec-head"><span class="d-sec-num">03</span><h2 class="d-sec-title">US Wildfire &middot; NIFC</h2><p class="d-sec-q">How does this year's fire pace compare with the ten-year average?</p></div>
+<p class="d-sec-intro" id="d-fire-intro"></p>
+<div id="d-fire-note"></div>
+<div class="d-metrics" id="d-fire-stat"></div>
+<p class="d-pd" id="d-fire-chart-desc"></p>
+<div class="d-chartbox"><canvas id="d-fire-chart"></canvas></div>
+<div id="d-fire-chart-inf"></div>
+<p class="d-cap" id="d-fire-map-cap">Largest incidents by location &mdash; dot size = acres, colour = red (active) to amber (contained)</p>
+<div class="d-chartbox" style="height:300px"><canvas id="d-fire-map"></canvas></div>
+<p class="d-pd" id="d-fire-inc-desc"></p>
+<div class="d-tblwrap"><table class="d-tbl"><thead><tr id="d-fire-inc-thead"></tr></thead><tbody id="d-fire-inc-tbody"></tbody></table></div>
+<div id="d-fire-inf"></div>
+</div>
+
+<!-- ===== TEMPLATE D · SOURCES (data: sources.json) ===== -->
+<div class="d-section" id="d-sec-sources">
+<div class="d-sec-head"><span class="d-sec-num">04</span><h2 class="d-sec-title">Data Sources &amp; Research Hub</h2><p class="d-sec-q">Where does this come from — and how reliable is it?</p></div>
+<p class="d-sec-intro" id="d-sources-intro"></p>
+<div id="d-source-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px"></div>
+</div>
+
+<div class="d-foot"><span id="d-foot-updated">UPDATED —</span> · Heimdall Watch · Fenrir Research / Yggdrasil Ledger · Analytical commentary, not advice.</div>
+
+</div><!-- /heim-d -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+var DASHBOARD_DATA = {}, D = null;
+/* ---- register every data file here; loader is all-or-nothing ---- */
+var DATA_FILES = ["overview","activeevents","convective","fire","sources"];
+var WORLD_LAND = [[[-67.8,-53.9],[-65.0,-54.7],[-69.2,-55.5],[-74.7,-52.8],[-71.1,-54.1],[-69.3,-52.5],[-67.8,-53.9]],[[145.4,-40.8],[148.3,-40.9],[147.9,-43.2],[146.0,-43.5],[144.7,-41.2],[145.4,-40.8]],[[173.0,-40.9],[174.2,-41.3],[173.1,-43.9],[171.5,-44.2],[169.3,-46.6],[166.7,-46.2],[167.0,-45.1],[173.0,-40.9]],[[174.6,-36.2],[176.8,-37.9],[178.5,-37.7],[175.2,-41.7],[174.9,-39.9],[173.8,-39.5],[174.7,-37.4],[172.6,-34.5],[174.6,-36.2]],[[50.1,-13.6],[50.4,-15.7],[49.7,-15.7],[47.1,-24.9],[45.4,-25.6],[44.0,-25.0],[43.3,-22.1],[44.4,-20.1],[44.4,-16.2],[47.7,-14.6],[49.2,-12.0],[50.1,-13.6]],[[143.6,-13.8],[145.4,-15.0],[146.4,-19.0],[148.8,-20.4],[153.1,-26.1],[152.9,-31.6],[150.0,-37.4],[146.3,-39.0],[145.0,-37.9],[143.6,-38.8],[140.6,-38.0],[139.6,-36.1],[138.1,-35.6],[138.2,-34.4],[136.8,-35.3],[137.8,-32.9],[136.0,-34.9],[134.3,-32.6],[131.3,-31.5],[126.1,-32.2],[123.7,-33.9],[119.9,-34.0],[118.0,-35.1],[115.0,-34.2],[115.7,-31.6],[113.3,-26.1],[114.2,-26.3],[113.4,-24.4],[114.1,-21.8],[114.2,-22.5],[116.7,-20.7],[120.9,-19.7],[125.7,-14.2],[127.1,-13.8],[129.6,-15.0],[130.6,-12.5],[132.6,-12.1],[132.4,-11.1],[136.5,-11.9],[135.5,-15.0],[140.2,-17.7],[142.5,-10.7],[143.6,-13.8]],[[124.4,-10.1],[123.5,-10.2],[125.1,-8.7],[127.3,-8.4],[124.4,-10.1]],[[108.6,-6.8],[110.8,-6.5],[115.7,-8.4],[105.4,-6.9],[106.1,-5.9],[108.6,-6.8]],[[152.0,-5.5],[150.2,-6.3],[148.3,-5.7],[150.8,-5.5],[151.5,-4.2],[152.3,-4.3],[152.0,-5.5]],[[134.1,-1.2],[135.5,-3.4],[138.3,-1.7],[144.6,-3.9],[147.6,-6.1],[147.2,-7.4],[150.7,-10.6],[147.9,-10.1],[144.7,-7.6],[142.6,-9.3],[137.6,-8.4],[138.7,-7.3],[137.9,-5.4],[133.7,-3.5],[133.0,-4.1],[132.0,-2.8],[133.7,-2.2],[130.5,-0.9],[132.4,-0.4],[134.1,-1.2]],[[125.2,1.4],[123.7,0.2],[120.2,0.2],[120.9,-1.4],[123.3,-0.6],[121.5,-1.9],[123.2,-5.3],[122.2,-5.3],[122.7,-4.5],[121.5,-4.6],[121.0,-2.6],[120.4,-5.5],[119.4,-5.4],[118.8,-2.8],[120.0,0.6],[125.2,1.4]],[[105.8,-5.9],[102.6,-4.2],[95.3,5.5],[97.5,5.2],[103.8,0.1],[103.4,-0.7],[106.1,-3.1],[105.8,-5.9]],[[117.9,1.8],[119.0,0.9],[117.8,0.8],[116.1,-4.0],[110.2,-2.9],[109.1,-0.5],[109.7,2.0],[111.2,1.9],[113.0,3.1],[116.7,6.9],[119.2,5.4],[117.3,3.2],[117.9,1.8]],[[126.4,8.4],[125.4,5.6],[123.6,7.8],[121.9,7.2],[123.5,8.7],[125.5,9.0],[125.4,9.8],[126.4,8.4]],[[81.2,6.2],[79.9,6.8],[80.1,9.8],[81.8,7.5],[81.2,6.2]],[[121.3,18.5],[122.2,18.5],[122.5,17.1],[121.7,14.3],[124.0,13.8],[124.1,12.5],[120.6,13.9],[121.0,14.5],[120.1,15.0],[119.9,16.4],[121.3,18.5]],[[-72.6,19.9],[-68.3,18.6],[-71.4,17.6],[-74.5,18.3],[-72.3,18.7],[-73.4,19.6],[-72.6,19.9]],[[-79.7,22.8],[-74.2,20.3],[-77.8,19.9],[-77.1,20.4],[-78.7,21.6],[-81.8,22.6],[-85.0,21.9],[-82.3,23.2],[-79.7,22.8]],[[141.0,37.1],[140.3,35.1],[135.8,33.5],[135.1,34.6],[131.0,33.9],[132.0,33.1],[131.3,31.5],[130.2,31.4],[129.4,33.3],[132.6,35.4],[135.7,35.5],[136.7,37.3],[137.4,36.8],[139.4,38.2],[139.9,40.6],[141.4,41.4],[141.9,39.2],[141.0,37.1]],[[143.9,44.2],[145.3,44.4],[145.5,43.3],[140.0,41.6],[142.0,45.6],[143.9,44.2]],[[-123.5,48.5],[-125.7,48.8],[-128.4,50.8],[-125.8,50.3],[-123.5,48.5]],[[-56.1,50.7],[-56.8,49.8],[-53.5,49.2],[-53.1,46.7],[-54.2,46.8],[-54.2,47.8],[-55.4,46.9],[-59.3,47.6],[-57.4,50.7],[-55.4,51.6],[-56.1,50.7]],[[143.6,50.7],[144.7,49.0],[143.2,49.3],[142.6,47.9],[143.5,46.1],[142.7,46.7],[142.1,46.0],[142.2,54.2],[143.6,50.7]],[[-6.8,52.3],[-10.0,51.8],[-9.2,52.9],[-9.7,53.9],[-6.7,55.2],[-5.7,54.6],[-6.8,52.3]],[[-3.0,58.6],[-4.1,57.6],[-2.0,57.7],[-3.1,56.0],[1.7,52.7],[1.4,51.3],[-5.2,50.0],[-3.4,51.4],[-5.3,52.0],[-4.2,52.3],[-4.6,53.5],[-2.9,54.0],[-4.8,54.8],[-5.0,55.8],[-5.6,55.3],[-6.1,56.8],[-5.0,58.6],[-3.0,58.6]],[[-85.2,65.7],[-80.1,63.7],[-87.2,63.5],[-85.2,65.7]],[[-14.5,66.5],[-13.6,65.1],[-18.7,63.5],[-22.8,64.0],[-21.8,64.4],[-24.0,64.9],[-22.2,65.4],[-24.3,65.6],[-22.1,66.4],[-20.6,65.7],[-14.5,66.5]],[[-175.0,66.6],[-171.9,66.9],[-169.9,66.0],[-172.5,65.4],[-173.0,64.3],[-178.7,66.1],[-179.9,65.9],[-180,65.0],[-180,69.0],[-175.0,66.6]],[[-95.6,69.1],[-99.8,69.4],[-98.2,70.1],[-95.6,69.1]],[[-90.5,69.5],[-90.6,68.5],[-89.2,69.3],[-87.4,67.2],[-85.5,69.9],[-82.6,69.7],[-81.3,69.2],[-82.0,68.1],[-81.3,67.6],[-83.3,66.4],[-85.8,66.6],[-87.3,64.8],[-93.2,62.0],[-94.7,58.9],[-93.2,58.8],[-92.3,57.1],[-82.3,55.1],[-82.1,53.3],[-79.9,51.2],[-78.6,52.6],[-79.8,54.7],[-76.5,56.5],[-78.5,58.8],[-77.3,59.9],[-78.1,62.3],[-73.8,62.4],[-69.6,61.1],[-69.3,59.0],[-67.6,58.2],[-64.6,60.3],[-61.4,57.0],[-61.8,56.3],[-57.3,54.6],[-55.7,52.1],[-60.0,50.2],[-66.4,50.2],[-71.1,46.8],[-65.1,49.2],[-64.2,48.7],[-65.1,48.1],[-64.5,46.2],[-61.5,45.9],[-60.5,47.0],[-59.8,45.9],[-65.4,43.5],[-66.2,44.5],[-64.4,45.3],[-67.1,45.1],[-70.7,43.0],[-70.0,41.6],[-73.7,40.9],[-71.9,40.9],[-74.0,40.8],[-74.9,38.9],[-75.5,39.5],[-75.1,38.4],[-75.9,37.2],[-76.3,39.2],[-76.3,38.1],[-77.0,38.2],[-75.7,35.6],[-81.3,31.4],[-80.4,25.2],[-81.7,25.9],[-84.1,30.1],[-89.2,30.3],[-89.2,29.3],[-90.2,29.1],[-93.8,29.7],[-96.6,28.3],[-97.9,22.4],[-96.3,19.3],[-94.4,18.1],[-92.0,18.7],[-90.8,19.3],[-90.3,21.0],[-87.1,21.5],[-88.9,15.9],[-83.4,15.3],[-83.8,11.1],[-81.4,8.8],[-79.6,9.6],[-76.8,8.6],[-74.9,11.1],[-71.8,12.4],[-71.1,12.1],[-71.9,11.4],[-71.7,9.1],[-71.4,11.0],[-69.9,12.2],[-68.2,10.6],[-61.9,10.7],[-62.4,9.9],[-57.1,6.0],[-54.0,5.8],[-51.3,4.2],[-50.0,1.7],[-50.4,-0.1],[-48.6,-0.2],[-48.6,-1.2],[-47.8,-0.6],[-44.9,-1.6],[-44.6,-2.7],[-40.0,-2.9],[-35.6,-5.1],[-34.7,-7.3],[-35.1,-9.0],[-38.7,-13.1],[-39.3,-17.9],[-40.9,-21.9],[-47.6,-24.9],[-48.9,-28.7],[-53.8,-34.4],[-56.2,-34.9],[-58.4,-33.9],[-56.8,-36.9],[-59.2,-38.7],[-62.3,-38.8],[-62.7,-41.0],[-65.1,-41.1],[-65.0,-42.1],[-63.5,-42.6],[-65.2,-43.5],[-65.6,-45.0],[-67.3,-45.6],[-67.6,-46.3],[-65.6,-47.2],[-66.0,-48.1],[-69.1,-50.7],[-68.2,-52.3],[-70.8,-52.9],[-71.0,-53.8],[-74.9,-52.3],[-75.6,-48.7],[-74.1,-46.9],[-75.6,-46.6],[-74.4,-44.1],[-73.2,-44.5],[-72.7,-42.4],[-74.3,-43.2],[-73.2,-39.3],[-73.6,-37.2],[-71.4,-32.4],[-70.2,-19.8],[-71.5,-17.4],[-76.0,-14.6],[-79.8,-7.2],[-81.2,-6.1],[-81.4,-4.7],[-79.8,-2.7],[-81.0,-2.2],[-80.9,-1.1],[-77.1,3.8],[-78.2,8.3],[-79.6,8.9],[-80.9,7.2],[-85.7,9.9],[-87.5,13.3],[-91.2,13.9],[-94.7,16.2],[-96.6,15.7],[-103.5,18.3],[-105.5,19.9],[-106.0,22.8],[-112.2,29.0],[-113.1,31.2],[-114.8,31.8],[-114.7,30.2],[-109.4,23.2],[-110.0,22.8],[-112.2,24.7],[-112.3,26.0],[-115.1,27.7],[-114.2,28.6],[-117.3,33.0],[-120.6,34.6],[-124.4,40.3],[-123.9,45.5],[-124.7,48.2],[-122.6,47.1],[-122.8,49.0],[-127.4,50.8],[-127.9,52.3],[-134.1,58.1],[-147.1,60.9],[-151.7,59.2],[-150.6,61.3],[-158.4,56.0],[-164.8,54.4],[-157.7,57.6],[-157.0,58.9],[-162.0,58.7],[-161.9,59.6],[-163.8,59.8],[-166.1,61.5],[-164.6,63.1],[-160.8,63.8],[-161.5,64.4],[-160.8,64.8],[-165.0,64.4],[-168.1,65.7],[-164.5,66.6],[-161.7,66.1],[-166.8,68.4],[-156.6,71.4],[-136.5,68.9],[-128.1,70.5],[-125.8,69.5],[-121.5,69.8],[-113.9,68.4],[-115.3,67.9],[-108.9,67.4],[-107.8,67.9],[-108.8,68.3],[-108.2,68.7],[-106.2,68.8],[-101.5,67.6],[-97.7,68.6],[-96.1,68.2],[-96.1,67.3],[-94.2,69.1],[-96.5,70.1],[-95.2,71.9],[-91.5,70.2],[-92.4,69.7],[-90.5,69.5]],[[-114.2,73.1],[-114.7,72.7],[-109.9,73.0],[-108.2,71.7],[-108.4,73.1],[-106.5,73.1],[-104.5,71.0],[-101.1,69.6],[-102.7,69.5],[-102.4,68.8],[-113.3,68.5],[-117.3,70.0],[-112.4,70.4],[-117.9,70.5],[-118.4,70.9],[-116.1,71.3],[-119.4,71.6],[-117.9,72.7],[-114.2,73.1]],[[-86.6,73.2],[-85.8,72.5],[-82.3,73.8],[-80.7,72.1],[-77.8,72.7],[-74.1,71.3],[-72.2,71.6],[-67.0,69.2],[-68.8,68.7],[-61.9,66.9],[-63.9,65.0],[-68.0,66.3],[-64.7,63.4],[-65.0,62.7],[-68.8,63.7],[-66.2,61.9],[-74.8,64.7],[-77.7,64.2],[-78.6,64.6],[-77.9,65.3],[-74.0,65.5],[-72.9,67.7],[-79.0,70.2],[-84.9,70.0],[-89.9,71.2],[-89.4,73.1],[-85.8,73.8],[-86.6,73.2]],[[-100.4,73.8],[-97.4,73.8],[-98.1,73.0],[-96.5,72.6],[-96.7,71.7],[-99.3,71.4],[-102.5,72.5],[-100.4,72.7],[-101.5,73.4],[-100.4,73.8]],[[-93.2,72.8],[-95.4,72.1],[-96.0,73.4],[-90.5,73.9],[-93.2,72.8]],[[-120.5,71.4],[-123.1,70.9],[-125.9,71.9],[-123.9,73.7],[-124.9,74.3],[-115.5,73.5],[-120.5,71.4]],[[145.1,75.6],[144.3,74.8],[139.0,74.6],[137.0,75.3],[138.8,76.1],[145.1,75.6]],[[-98.5,76.7],[-97.7,76.3],[-98.2,75],[-102.5,75.6],[-102.6,76.3],[-98.5,76.7]],[[-108.2,76.2],[-105.7,75.5],[-112.2,74.4],[-113.9,74.7],[-111.8,75.2],[-117.7,75.2],[-115.4,76.5],[-109.1,75.5],[-110.5,76.4],[-108.2,76.2]],[[57.5,70.7],[53.7,70.8],[51.5,72.0],[55.6,75.1],[68.9,76.5],[58.5,74.3],[55.4,72.4],[57.5,70.7]],[[-94.7,77.1],[-89.2,75.6],[-81.1,75.7],[-79.8,74.9],[-89.8,74.5],[-97.1,76.8],[-94.7,77.1]],[[-116.2,77.6],[-117.1,76.5],[-122.9,76.1],[-116.2,77.6]],[[107.0,77.0],[114.1,75.8],[109.4,74.2],[123.2,73.0],[123.3,73.7],[127.0,73.6],[131.3,70.8],[132.3,71.8],[139.9,71.5],[139.1,72.4],[140.5,72.8],[149.5,72.2],[153.0,70.8],[159.0,70.9],[160.9,69.4],[167.8,69.6],[169.6,68.7],[170.8,69.0],[170.5,70.1],[175.7,69.9],[180,69.0],[180,65.0],[177.4,64.6],[179.2,62.3],[173.7,61.7],[170.3,59.9],[168.9,60.6],[163.5,59.9],[162.0,58.2],[163.2,57.6],[162.1,54.9],[160.4,54.3],[156.8,51.0],[155.4,55.4],[155.9,56.8],[163.7,61.1],[164.5,62.6],[160.1,60.5],[159.3,61.8],[156.7,61.4],[154.2,59.8],[155.0,59.1],[142.2,59.0],[135.1,54.7],[138.2,53.8],[139.9,54.2],[141.4,52.2],[140.1,48.4],[138.2,46.3],[134.9,43.4],[132.3,43.3],[127.5,39.8],[129.5,36.8],[129.1,35.1],[126.5,34.4],[126.1,36.7],[126.9,36.9],[124.7,38.1],[125.3,39.6],[121.1,38.9],[122.2,40.4],[121.6,40.9],[118.0,39.2],[117.5,38.7],[118.9,37.4],[122.4,37.5],[119.2,34.9],[121.9,31.7],[121.7,28.2],[118.7,24.5],[115.9,22.8],[110.8,21.4],[110.4,20.3],[108.5,21.7],[105.9,19.8],[109.3,13.4],[109.2,11.7],[105.2,8.6],[105.1,9.9],[100.1,13.4],[99.2,9.2],[103.0,5.5],[104.2,1.3],[101.4,2.8],[100.1,6.5],[98.5,8.4],[98.3,7.8],[98.8,11.4],[97.2,16.9],[95.4,15.7],[94.2,16.0],[94.3,18.2],[91.4,22.8],[87.0,21.5],[86.5,20.2],[80.3,15.9],[79.9,10.4],[77.5,8.0],[73.5,16.0],[72.6,21.4],[70.5,20.9],[66.4,25.4],[57.4,25.7],[56.5,27.1],[54.7,26.5],[51.5,27.9],[50.1,30.1],[48.0,30.0],[50.8,24.8],[51.6,25.8],[51.8,24.0],[54.0,24.1],[56.4,26.4],[56.8,24.2],[59.8,22.3],[57.7,18.9],[55.3,17.2],[48.7,14.0],[43.5,12.6],[42.6,16.8],[39.1,21.3],[38.5,23.7],[34.6,28.1],[34.9,29.5],[33.9,27.6],[32.4,29.9],[35.5,23.1],[36.9,22.0],[37.5,18.6],[43.3,12.4],[42.7,11.7],[44.6,10.4],[51.1,12.0],[51.0,10.6],[47.7,4.2],[40.3,-2.6],[39.2,-4.7],[38.8,-6.5],[40.5,-10.8],[40.8,-14.7],[39.5,-16.7],[34.8,-19.8],[35.6,-23.7],[32.6,-25.7],[32.2,-28.8],[28.2,-32.8],[25.8,-33.9],[19.6,-34.8],[18.4,-34.1],[18.2,-31.7],[15.2,-27.1],[14.3,-22.1],[11.8,-18.1],[13.7,-10.7],[11.9,-5.0],[8.8,-1.1],[9.4,3.7],[8.5,4.8],[5.9,4.3],[4.3,6.3],[-2.0,4.7],[-9.0,4.8],[-12.4,7.3],[-16.6,12.2],[-17.6,14.7],[-16.1,18.1],[-17.0,21.9],[-14.4,26.3],[-9.6,29.9],[-9.3,32.6],[-5.9,35.8],[-2.2,35.2],[1.5,36.6],[9.5,37.4],[11.1,36.9],[10.3,33.8],[19.1,30.3],[20.1,32.2],[21.5,32.8],[28.9,30.9],[31.0,31.6],[33.8,31.0],[36.0,34.6],[36.2,36.7],[27.6,36.7],[26.2,39.5],[29.2,41.2],[33.5,42.0],[38.3,40.9],[41.7,42.0],[36.7,45.2],[39.1,47.3],[35.0,46.3],[36.3,45.1],[33.9,44.4],[32.5,45.3],[33.3,46.1],[30.7,46.6],[27.7,42.6],[28.8,41.1],[22.6,40.3],[24.0,37.7],[23.1,37.9],[23.2,36.4],[22.5,36.4],[19.4,40.3],[19.5,41.7],[13.1,45.7],[12.3,45.4],[12.6,44.1],[18.5,40.2],[16.9,40.4],[17.1,38.9],[16.1,38.0],[15.4,40.0],[8.9,44.4],[6.5,43.1],[3.1,43.1],[3.0,41.9],[0.8,41.0],[0.1,38.7],[-2.1,36.7],[-5.4,35.9],[-6.5,36.9],[-8.9,36.9],[-9.4,43.0],[-1.4,44.0],[-1.2,46.0],[-4.6,48.7],[-1.6,48.6],[-1.9,49.8],[1.3,50.1],[4.7,53.1],[8.1,53.5],[8.8,54.0],[8.5,57.1],[10.6,57.7],[10.9,56.5],[9.7,55.5],[10.9,54.0],[19.7,54.4],[21.3,55.2],[21.6,57.4],[24.1,57.0],[24.4,58.4],[23.3,59.2],[29.1,60.0],[22.9,59.8],[21.3,60.7],[21.5,63.2],[25.4,65.1],[22.2,65.7],[21.4,64.4],[17.8,62.7],[17.1,61.3],[18.8,60.1],[16.8,58.7],[15.9,56.1],[12.9,55.4],[10.4,59.5],[8.4,58.3],[5.7,58.6],[5.0,62.0],[10.5,64.5],[14.8,67.8],[24.5,71.0],[28.2,71.2],[31.3,70.5],[30.0,70.2],[31.1,69.6],[36.5,69.1],[41.1,67.5],[41.1,66.8],[38.4,66.0],[33.2,66.6],[34.8,65.9],[34.9,64.4],[37.0,63.8],[36.5,64.8],[37.2,65.1],[39.6,64.5],[40.4,64.8],[39.8,65.5],[42.1,66.5],[43.9,66.1],[44.5,66.8],[43.5,68.6],[46.3,68.3],[46.8,67.7],[45.6,67.0],[46.3,66.7],[53.7,68.9],[54.5,68.8],[53.5,68.2],[58.8,68.9],[59.9,68.3],[61.1,68.9],[60.0,69.5],[60.6,69.9],[68.5,68.1],[69.2,68.6],[66.9,69.5],[66.7,71.0],[69.2,72.8],[72.6,72.8],[71.8,71.4],[72.8,70.4],[72.6,69.0],[73.7,68.4],[71.3,66.3],[72.4,66.2],[75.1,67.8],[74.9,69.0],[73.6,69.6],[74.4,70.6],[73.1,71.4],[74.9,72.1],[74.7,72.8],[75.7,72.3],[75.3,71.3],[76.4,71.2],[75.9,71.9],[77.6,72.3],[81.5,71.8],[80.5,73.6],[86.8,73.9],[86.0,74.5],[87.2,75.1],[100.8,76.4],[104.4,77.7],[107.0,77.0]],[[24.7,77.9],[20.7,77.7],[22.9,78.5],[24.7,77.9]],[[-100.1,78.3],[-105.2,78.4],[-104.2,78.7],[-105.5,79.3],[-100.1,78.3]],[[105.1,78.3],[99.4,77.9],[102.1,79.3],[105.1,78.3]],[[18.3,79.7],[21.5,79.0],[15.9,76.8],[10.4,79.7],[18.3,79.7]],[[25.4,80.4],[27.4,80.1],[23.0,79.4],[17.4,80.3],[25.4,80.4]],[[99.9,78.9],[95.0,79.0],[91.2,80.3],[95.9,81.3],[100.2,79.8],[99.9,78.9]],[[-87.0,79.7],[-85.8,79.3],[-90.8,78.2],[-96.7,80.2],[-92.4,81.3],[-87.0,79.7]],[[-68.5,83.1],[-61.9,82.6],[-67.7,81.5],[-65.5,81.5],[-71.2,79.8],[-76.9,79.3],[-75.4,78.5],[-79.8,77.2],[-77.9,76.8],[-80.6,76.2],[-89.5,76.5],[-87.8,77.2],[-88.3,77.9],[-85.0,77.5],[-88.0,78.4],[-85.1,79.3],[-86.9,80.3],[-81.8,80.5],[-87.6,80.5],[-91.6,81.9],[-68.5,83.1]],[[-27.1,83.5],[-20.8,82.7],[-31.9,82.2],[-22.1,81.7],[-23.2,81.2],[-15.8,81.9],[-12.2,81.3],[-20.0,80.2],[-17.7,80.1],[-19.7,78.8],[-19.7,77.6],[-18.5,77.0],[-21.7,76.6],[-19.8,76.1],[-19.6,75.2],[-20.7,75.2],[-19.4,74.3],[-23.6,73.3],[-22.3,72.2],[-24.8,72.3],[-21.8,70.7],[-25.5,71.4],[-25.2,70.8],[-26.4,70.2],[-22.3,70.1],[-39.8,65.5],[-42.8,62.7],[-43.4,60.1],[-48.3,60.9],[-51.6,63.6],[-54.0,67.2],[-50.9,69.9],[-54.7,69.6],[-54.4,70.8],[-51.4,70.6],[-55.8,71.7],[-54.7,72.6],[-58.6,75.5],[-68.5,76.1],[-71.4,77.0],[-66.8,77.4],[-73.3,78.0],[-65.7,79.4],[-68.0,80.1],[-62.2,81.3],[-62.7,81.8],[-50.4,82.4],[-44.5,81.7],[-46.8,82.6],[-27.1,83.5]]];
+
+function showLoadError(which){
+var banner = document.createElement("div");
+banner.style.cssText = "background:#3a1414;border:1px solid #e25c4a;color:#f0b8b0;padding:14px 18px;border-radius:6px;margin:16px 26px;font-family:'Courier New',monospace;font-size:12px;line-height:1.6";
+banner.innerHTML = "&#9888; Could not load data file: <strong>data/" + which + ".json</strong>.<br>Host it on a web server (e.g. GitHub Pages) and the data will load.";
+var dash = document.querySelector(".heim-d");
+if(dash) dash.insertBefore(banner, dash.querySelector(".d-sectabs"));
+}
+function bust(url){ return url + "?v=" + Date.now(); }
+
+(function loadAll(){
+var loaded = 0, failed = false;
+DATA_FILES.forEach(function(name){
+fetch(bust("data/" + name + ".json"))
+.then(function(r){ if(!r.ok) throw new Error(name); return r.json(); })
+.then(function(obj){
+Object.keys(obj).forEach(function(k){ DASHBOARD_DATA[k] = obj[k]; });
+loaded++;
+if(loaded === DATA_FILES.length && !failed){ renderDashboard(); }
+})
+.catch(function(){ if(!failed){ failed = true; showLoadError(name); } });
+});
+})();
+
+function renderDashboard(){
+D = DASHBOARD_DATA;
+var F = "'Courier New',monospace", GRID = "#2a3340", charts = {};
+var HAS_CHART = (typeof Chart !== "undefined");
+function $(id){ return document.getElementById(id); }
+function infBox(text){ return '<div class="d-inf"><span class="d-inf-l">Analyst Read</span>' + text + '</div>'; }
+var COL = { warm:"#e25c4a", cool:"#3d9bd4", neutral:"#5fb37e", gold:"#e0992f", purple:"#9b7bd4", steel:"#5b8fc9", dim:"#5c6675" };
+function colr(c){ return (c && c.charAt(0) === "#") ? c : (COL[c] || COL.dim); }
+
+if(HAS_CHART){
+Chart.defaults.color = "#c8d2e0";
+Chart.defaults.font.family = F;
+Chart.register({ id:"thr", afterDraw:function(chart){
+var lines = chart.options._thr; if(!lines) return;
+var ys = chart.scales.y, xa = chart.chartArea; if(!ys || !xa) return;
+var c = chart.ctx;
+lines.forEach(function(L){
+var y = ys.getPixelForValue(L.y); if(y < xa.top || y > xa.bottom) return;
+c.save(); c.strokeStyle = L.c; c.lineWidth = 1; c.setLineDash([4,3]);
+c.beginPath(); c.moveTo(xa.left, y); c.lineTo(xa.right, y); c.stroke(); c.setLineDash([]);
+c.fillStyle = L.c; c.font = "10px " + F; c.textAlign = "right";
+c.fillText(L.t, xa.right - 4, y - 3); c.restore();
+});
+}});
+}
+
+/* ---------- Command Header ---------- */
+$("d-asof").textContent = "AS OF " + D.meta.asOf.toUpperCase();
+$("d-foot-updated").textContent = "UPDATED " + D.meta.lastUpdated.toUpperCase();
+$("d-state-value").textContent = D.state.label;
+$("d-state-detail").textContent = D.state.detail;
+$("d-narrative-text").textContent = D.narrative;
+var rs = D.state.regimeScore;
+$("d-state-card").style.borderLeftColor = (rs < 30 ? "#3d9bd4" : (rs > 70 ? "#e25c4a" : "#e0992f"));
+(function(){ var h = "";
+D.metrics.forEach(function(m){ var c = colr(m.cls);
+h += '<div class="d-metric" style="border-top-color:' + c + '"><p class="d-ml">' + m.label + '</p>'
++ '<p class="d-mv" style="color:' + c + '">' + m.value + '</p><p class="d-ms">' + m.sub + '</p></div>'; });
+$("d-metrics").innerHTML = h; })();
+
+function renderAlerts(){
+var counts = { red:0, orange:0, green:0 };
+((D.activeEvents && D.activeEvents.rows) || []).forEach(function(r){ if(counts[r.alert] != null) counts[r.alert]++; });
+var defs = [["red","#e25c4a","Red"],["orange","#e0992f","Orange"],["green","#5fb37e","Green"]];
+var h = "";
+defs.forEach(function(d){ h += '<div class="d-ab"><span class="d-ab-n" style="color:' + d[1] + '">' + counts[d[0]] + '</span><span class="d-ab-l">' + d[2] + '</span></div>'; });
+var total = counts.red + counts.orange + counts.green;
+h += '<div class="d-ab"><span class="d-ab-n" style="color:#c8d2e0">' + total + '</span><span class="d-ab-l">Tracked</span></div>';
+if($("d-alertbreak")) $("d-alertbreak").innerHTML = h; }
+
+/* ---------- generic chart builder: line/bar, one or many series ---------- */
+function buildChart(ctx, cfg){
+var isBar = (cfg.type === "bar");
+var ds = (cfg.series || []).map(function(s){ var col = colr(s.color);
+return { label:s.name, data:s.data, backgroundColor: isBar ? col : "transparent",
+borderColor: col, borderWidth: isBar ? 0 : 2, tension:0.3, fill:false,
+pointRadius: isBar ? 0 : 2, pointBackgroundColor: col }; });
+var opts = { responsive:true, maintainAspectRatio:false,
+plugins:{ legend:{ display: ds.length > 1, labels:{ font:{family:F,size:11}, color:"#c8d2e0", boxWidth:14 } },
+tooltip:{ titleFont:{family:F}, bodyFont:{family:F} } },
+scales:{ x:{ grid:{display:false}, ticks:{ font:{family:F,size:10}, color:"#aab4c2" } },
+y:{ title:{ display: !!cfg.yTitle, text: cfg.yTitle || "", font:{family:F,size:10}, color:"#aab4c2" },
+ticks:{ font:{family:F,size:10}, color:"#aab4c2" }, grid:{ color:GRID } } } };
+if(cfg.thresholds){ opts._thr = cfg.thresholds; }
+if(cfg.yMin != null){ opts.scales.y.min = cfg.yMin; }
+if(cfg.yMax != null){ opts.scales.y.max = cfg.yMax; }
+return new Chart(ctx, { type: cfg.type || "line", data:{ labels:cfg.labels, datasets:ds }, options:opts });
+}
+
+/* ---------- stat block: percentile + deviation from median (top-right of a hazard tab) ---------- */
+function ordinal(n){ var s = ["th","st","nd","rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+function fmtNum(n){ return (n == null) ? "\u2014" : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+function statHTML(s){
+if(!s) return "";
+if(s.sourced === false){
+return '<div class="d-stat"><div class="d-stat-note">Climatological envelope \u00b7<br>' + (s.basis || "exact figures via WCM ingestion") + '</div></div>';
+}
+function cell(val, lab, col){ return '<div class="d-stat-cell"><div class="d-stat-v" style="color:' + col + '">' + val + '</div><div class="d-stat-l">' + lab + '</div></div>'; }
+var devPos = (s.dev >= 0), devC = devPos ? "#e25c4a" : "#5fb37e";
+var h = '<div class="d-stat">';
+if(s.pctl != null) h += cell((s.pctl >= 100 ? "\u003e99th" : ordinal(s.pctl)), "pctl vs 10-yr", "#e0992f");
+if(s.dev != null) h += cell((devPos ? "+" : "") + s.dev + "%", "vs " + (s.medLabel || "median"), devC);
+if(s.ytd != null) h += cell(fmtNum(s.ytd), (s.monthLabel ? s.monthLabel + " ytd" : "ytd"), "#c8d2e0");
+if(s.basis) h += '<span class="d-stat-basis">' + s.basis + '</span>';
+h += '</div>';
+return h;
+}
+
+/* ---------- percentile-envelope chart: nested bands + median + current-year ---------- */
+function toRgba(c, a){ var h = colr(c).replace("#", "");
+if(h.length === 3){ h = h.split("").map(function(x){ return x + x; }).join(""); }
+var r = parseInt(h.substr(0,2),16), g = parseInt(h.substr(2,2),16), b = parseInt(h.substr(4,2),16);
+return "rgba(" + r + "," + g + "," + b + "," + a + ")"; }
+function buildBandChart(ctx, cfg){
+/* palette: interdecile = light sky blue, IQR = bright sky blue, median = dotted black, 2026 = orange + markers */
+var decileFill = cfg.decileFill || "rgba(125,199,245,0.16)";
+var iqrFill = cfg.iqrFill || "rgba(46,170,240,0.38)";
+var medC = colr(cfg.medianColor || "#000000"), curC = colr(cfg.currentColor || "#f5943d");
+var base = { borderWidth:0, pointRadius:0, tension:0.25 };
+var ds = [];
+/* interdecile band: invisible p10 baseline, then p90 filled down to it */
+ds.push(Object.assign({ label:"_p10", data:cfg.p10, fill:false, backgroundColor:"transparent" }, base));
+ds.push(Object.assign({ label:cfg.decileLabel || "10\u201390th pct", data:cfg.p90, fill:"-1", backgroundColor:decileFill }, base));
+/* IQR band: invisible p25 baseline, then p75 filled down to it (drawn on top) */
+ds.push(Object.assign({ label:"_p25", data:cfg.p25, fill:false, backgroundColor:"transparent" }, base));
+ds.push(Object.assign({ label:cfg.iqrLabel || "25\u201375th pct (IQR)", data:cfg.p75, fill:"-1", backgroundColor:iqrFill }, base));
+/* median (dotted black) */
+ds.push({ label:cfg.medianLabel || "Median", data:cfg.median, borderColor:medC, backgroundColor:medC, borderWidth:2, borderDash:[3,3], pointRadius:0, tension:0.25, fill:false });
+/* current year (orange, bold, markers) */
+ds.push({ label:cfg.currentLabel || "Current year", data:cfg.current, borderColor:curC, backgroundColor:curC, borderWidth:3, pointRadius:3, pointBackgroundColor:curC, tension:0.25, fill:false, spanGaps:false });
+function keep(txt){ return txt && txt.charAt(0) !== "_"; }
+var opts = { responsive:true, maintainAspectRatio:false,
+plugins:{ legend:{ display:true, labels:{ font:{family:F,size:11}, color:"#c8d2e0", boxWidth:14,
+filter:function(item){ return keep(item.text); } } },
+tooltip:{ titleFont:{family:F}, bodyFont:{family:F},
+filter:function(it){ return it.dataset && keep(it.dataset.label); } } },
+scales:{ x:{ grid:{display:false}, ticks:{ font:{family:F,size:10}, color:"#aab4c2" } },
+y:{ beginAtZero:true, title:{ display: !!cfg.yTitle, text: cfg.yTitle || "", font:{family:F,size:10}, color:"#aab4c2" },
+ticks:{ font:{family:F,size:10}, color:"#aab4c2" }, grid:{ color:GRID } } } };
+return new Chart(ctx, { type:"line", data:{ labels:cfg.labels, datasets:ds }, options:opts });
+}
+
+/* ---------- SECTION 01 · Active Events (global registry + world map) ---------- */
+function alertColor(a){ return a === "red" ? "#e25c4a" : a === "orange" ? "#e0992f" : a === "green" ? "#5fb37e" : "#5b8fc9"; }
+function alertRank(a){ return a === "red" ? 3 : a === "orange" ? 2 : a === "green" ? 1 : 0; }
+var EV_REGION = "All";
+function evRows(){ var A = D.activeEvents; if(!A) return [];
+var r = (A.rows || []).slice().sort(function(x, y){ return alertRank(y.alert) - alertRank(x.alert); });
+return EV_REGION === "All" ? r : r.filter(function(x){ return x.grp === EV_REGION; }); }
+function renderEventsTable(){
+var body = "";
+evRows().forEach(function(r){ var c = alertColor(r.alert);
+body += '<tr>'
++ '<td><span style="display:inline-block;padding:1px 7px;border-radius:4px;background:' + c + '22;color:' + c + ';font-weight:700;font-size:10px">' + r.type + '</span></td>'
++ '<td class="sim">' + r.name + '</td><td>' + (r.region || "") + '</td>'
++ '<td style="white-space:nowrap;color:' + c + ';font-weight:700">\u25CF ' + (r.alert || "").toUpperCase() + '</td>'
++ '<td>' + (r.metric || "") + '</td>'
++ '<td style="white-space:nowrap;color:#8b97a8">' + (r.date || "") + '</td></tr>'; });
+if(!evRows().length) body = '<tr><td colspan="6" style="color:#8b97a8;text-align:center;padding:14px">No tracked events in this region.</td></tr>';
+$("d-events-tbody").innerHTML = body; }
+/* shared basemap: graticule + real continent outlines (WORLD_LAND), clipped to the plot */
+function drawWorld(chart, step){
+var xa = chart.chartArea, sx = chart.scales.x, sy = chart.scales.y, c = chart.ctx; if(!xa || !sx || !sy) return;
+c.save();
+c.beginPath(); c.rect(xa.left, xa.top, xa.right - xa.left, xa.bottom - xa.top); c.clip();
+c.fillStyle = "#1b2734"; c.strokeStyle = "#35506a"; c.lineWidth = 0.6;
+WORLD_LAND.forEach(function(ring){ c.beginPath();
+ring.forEach(function(p, i){ var X = sx.getPixelForValue(p[0]), Y = sy.getPixelForValue(p[1]); if(i === 0) c.moveTo(X, Y); else c.lineTo(X, Y); });
+c.closePath(); c.fill(); c.stroke(); });
+c.strokeStyle = "rgba(90,120,150,0.13)"; c.lineWidth = 1; var g = step || 30;
+for(var lon = -180; lon <= 180; lon += g){ var px = sx.getPixelForValue(lon); if(px < xa.left - 1 || px > xa.right + 1) continue; c.beginPath(); c.moveTo(px, xa.top); c.lineTo(px, xa.bottom); c.stroke(); }
+for(var lat = -90; lat <= 90; lat += g){ var py = sy.getPixelForValue(lat); if(py < xa.top - 1 || py > xa.bottom + 1) continue; c.beginPath(); c.moveTo(xa.left, py); c.lineTo(xa.right, py); c.stroke(); }
+c.restore(); }
+(function(){ var A = D.activeEvents; if(!A) return;
+$("d-events-intro").textContent = A.intro || "";
+if(A.note) $("d-events-note").innerHTML = '<div class="d-note"><span class="d-note-l">Snapshot &amp; source</span>' + A.note + '</div>';
+var rb = ""; (A.regions || ["All"]).forEach(function(rg){ rb += '<button class="d-regionbtn' + (rg === "All" ? " active" : "") + '" data-rg="' + rg + '">' + rg + '</button>'; });
+$("d-events-regions").innerHTML = rb;
+renderEventsTable();
+if(A.inference) $("d-events-inf").innerHTML = infBox(A.inference);
+})();
+if($("d-events-regions")){
+$("d-events-regions").addEventListener("click", function(e){ var b = e.target.closest(".d-regionbtn"); if(!b) return;
+EV_REGION = b.getAttribute("data-rg");
+$("d-events-regions").querySelectorAll(".d-regionbtn").forEach(function(x){ x.classList.remove("active"); }); b.classList.add("active");
+renderEventsTable(); drawEventsMap(); postHeight(); });
+}
+function drawEventsMap(){ if(!HAS_CHART) return;
+var A = D.activeEvents; var ctx = $("d-events-map"); if(!A || !ctx) return;
+if(charts.eventsmap){ charts.eventsmap.destroy(); charts.eventsmap = null; }
+var groups = { red:[], orange:[], green:[] };
+evRows().forEach(function(r){ (groups[r.alert] || groups.green).push({ x:r.lon, y:r.lat, _d:r }); });
+function dset(a, col){ return { label:a, data:groups[a] || [], backgroundColor:col, borderColor:"#0b0f14", borderWidth:1,
+pointRadius:(a === "red" ? 8 : a === "orange" ? 6 : 5), pointHoverRadius:(a === "red" ? 10 : 8) }; }
+var worldBg = { id:"worldbg", beforeDatasetsDraw:function(chart){ drawWorld(chart, 30); } };
+charts.eventsmap = new Chart(ctx, { type:"scatter",
+data:{ datasets:[dset("red","#e25c4a"), dset("orange","#e0992f"), dset("green","#5fb37e")] },
+options:{ responsive:true, maintainAspectRatio:false,
+plugins:{ legend:{ display:false },
+tooltip:{ titleFont:{family:F}, bodyFont:{family:F},
+callbacks:{ label:function(it){ var d = it.raw._d; return d.name + "  (" + d.type + " \u00b7 " + (d.alert||"").toUpperCase() + ")"; },
+afterLabel:function(it){ var d = it.raw._d; return (d.metric || "") + (d.date ? "  \u00b7 " + d.date : ""); } } } },
+scales:{ x:{ min:-180, max:180, grid:{display:false}, ticks:{display:false}, border:{display:false} },
+y:{ min:-58, max:82, grid:{display:false}, ticks:{display:false}, border:{display:false} } } },
+plugins:[worldBg] });
+}
+
+/* ---------- SECTION 03 · US Wildfire (NIFC stat + pace curve + incident map + register) ---------- */
+function containColor(pct){ var t = (pct == null ? 0 : pct) / 100;
+var r = Math.round(226 + (217 - 226) * t), g = Math.round(92 + (178 - 92) * t), b = Math.round(74 + (58 - 74) * t);
+return "rgb(" + r + "," + g + "," + b + ")"; }
+(function(){ var W = D.fire; if(!W) return;
+$("d-fire-intro").textContent = W.intro || "";
+if(W.note) $("d-fire-note").innerHTML = '<div class="d-note"><span class="d-note-l">Source</span>' + W.note + '</div>';
+if(W.stat){ var s = W.stat;
+var cells = [ ["Acres burned YTD", s.acres, s.acresSub, "#e25c4a"],
+["Fires YTD", s.fires, s.firesSub, "#e0992f"],
+["Of 10-yr average", s.pctAvg, s.pctSub, "#e0992f"],
+["Preparedness Level", s.pl, s.plSub, "#e25c4a"] ];
+var h = ""; cells.forEach(function(c){
+h += '<div class="d-metric" style="border-top-color:' + c[3] + '"><p class="d-ml">' + c[0] + '</p>'
++ '<p class="d-mv" style="color:' + c[3] + '">' + c[1] + '</p><p class="d-ms">' + (c[2] || "") + '</p></div>'; });
+$("d-fire-stat").innerHTML = h; }
+if(W.cumulative){ $("d-fire-chart-desc").textContent = W.cumulative.desc || "";
+if(W.cumulative.inference) $("d-fire-chart-inf").innerHTML = infBox(W.cumulative.inference); }
+if(W.incidents){ $("d-fire-inc-desc").textContent = W.incidents.desc || "";
+var headers = ["Incident", "Acres", "Contain", "Dates", "Structures", "Deaths", "Cause"];
+$("d-fire-inc-thead").innerHTML = headers.map(function(x){ return "<th>" + x + "</th>"; }).join("");
+var rows = (W.incidents.rows || []).slice().sort(function(a, b){ return (b.acres || 0) - (a.acres || 0); });
+var rr = "";
+rows.forEach(function(r){ var cc = containColor(r.contain);
+var cont = (r.contain == null) ? '<span style="color:#e25c4a">active</span>' : (r.contain + "%");
+var dates = (r.start || "") + (r.end ? (" \u2192 " + r.end) : "");
+var deaths = r.deaths ? '<span style="color:#e25c4a;font-weight:700">' + r.deaths + '</span>' : "0";
+rr += '<tr>'
++ '<td class="sim">' + r.name + ' <span style="color:#8b97a8;font-weight:400">\u00b7 ' + r.state + '</span></td>'
++ '<td style="white-space:nowrap">' + fmtNum(r.acres) + '</td>'
++ '<td style="white-space:nowrap;color:' + cc + ';font-weight:700">' + cont + '</td>'
++ '<td style="white-space:nowrap;color:#8b97a8">' + dates + '</td>'
++ '<td>' + r.structures + '</td><td>' + deaths + '</td><td>' + r.cause + '</td></tr>'; });
+$("d-fire-inc-tbody").innerHTML = rr; }
+if(W.inference) $("d-fire-inf").innerHTML = infBox(W.inference);
+})();
+function drawFire(){ if(!HAS_CHART || charts.fire || !D.fire || !D.fire.cumulative) return;
+charts.fire = buildChart($("d-fire-chart"), D.fire.cumulative); }
+function drawFireMap(){ if(!HAS_CHART || charts.firemap) return;
+var W = D.fire; var ctx = $("d-fire-map"); if(!W || !ctx || !W.incidents) return;
+var rows = (W.incidents.rows || []).filter(function(r){ return r.lat != null && r.lon != null; });
+var maxA = 0; rows.forEach(function(r){ if(r.acres && r.acres > maxA) maxA = r.acres; });
+var pts = rows.map(function(r){ return { x:r.lon, y:r.lat, _d:r }; });
+var cols = rows.map(function(r){ return containColor(r.contain); });
+var radii = rows.map(function(r){ return 4 + 14 * Math.sqrt((r.acres || 0) / (maxA || 1)); });
+var fireWorld = { id:"fireworld", beforeDatasetsDraw:function(chart){ drawWorld(chart, 10); } };
+charts.firemap = new Chart(ctx, { type:"scatter",
+data:{ datasets:[{ data:pts, backgroundColor:cols, borderColor:"#0b0f14", borderWidth:1, pointRadius:radii,
+pointHoverRadius:radii.map(function(r){ return r + 2; }) }] },
+options:{ responsive:true, maintainAspectRatio:false,
+plugins:{ legend:{ display:false },
+tooltip:{ titleFont:{family:F}, bodyFont:{family:F},
+callbacks:{ label:function(it){ var d = it.raw._d; return d.name + " (" + d.state + ")"; },
+afterLabel:function(it){ var d = it.raw._d; return fmtNum(d.acres) + " ac \u00b7 " + (d.contain == null ? "active" : d.contain + "% contained"); } } } },
+scales:{ x:{ min:-126, max:-66, grid:{display:false}, ticks:{display:false}, border:{display:false} },
+y:{ min:24, max:50, grid:{display:false}, ticks:{display:false}, border:{display:false} } } },
+plugins:[fireWorld] });
+}
+
+/* ---------- SECTION · Severe Convective (percentile envelope + sub-tabs) ---------- */
+(function(){ var C = D.convective; if(!C) return;
+$("d-convective-intro").textContent = C.intro || "";
+if(C.note) $("d-convective-note").innerHTML = '<div class="d-note"><span class="d-note-l">Data provenance</span>' + C.note + '</div>';
+var tabs = "", panels = "";
+(C.tabs || []).forEach(function(t, i){ var a = i === 0 ? " active" : "";
+tabs += '<button class="d-tab' + a + '" data-conv="' + t.id + '">' + t.label + '</button>';
+panels += '<div class="d-tabpanel' + a + '" data-convpanel="' + t.id + '">'
++ '<div class="d-conv-head"><p class="d-pd">' + (t.desc || "") + '</p>' + statHTML(t.stat) + '</div>'
++ '<p class="d-cap">Cumulative running total \u2014 2026 vs the 10-year envelope</p>'
++ '<div class="d-chartbox"><canvas id="d-conv-cum-' + t.id + '"></canvas></div>'
++ (t.monthly ? '<p class="d-cap">Monthly counts \u2014 2026 vs the 10-year monthly distribution</p>'
++ '<div class="d-chartbox"><canvas id="d-conv-mon-' + t.id + '"></canvas></div>'
++ (t.monthly.partialNote ? '<p class="d-stat-basis" style="text-align:left;margin:0 0 10px">' + t.monthly.partialNote + '</p>' : "")
+: '<p class="d-stat-basis" style="text-align:left;margin:8px 0 12px">Monthly distribution and the vs-median stat for this hazard populate from the IEM refresh \u2014 run <code>build_convective.py</code>.</p>')
++ (t.inference ? infBox(t.inference) : "") + '</div>'; });
+$("d-convective-tabs").innerHTML = tabs;
+$("d-convective-panels").innerHTML = panels;
+})();
+if($("d-convective-tabs")){
+$("d-convective-tabs").addEventListener("click", function(e){
+var btn = e.target.closest(".d-tab"); if(!btn) return;
+var id = btn.getAttribute("data-conv");
+$("d-convective-tabs").querySelectorAll(".d-tab").forEach(function(t){ t.classList.remove("active"); });
+$("d-convective-panels").querySelectorAll(".d-tabpanel").forEach(function(p){ p.classList.remove("active"); });
+btn.classList.add("active");
+document.querySelector('[data-convpanel="' + id + '"]').classList.add("active");
+drawConvectiveTab(id); postHeight();
+});
+}
+function drawConvectiveTab(id){ if(!HAS_CHART) return;
+var t = (D.convective.tabs || []).filter(function(x){ return x.id === id; })[0]; if(!t) return;
+if(!charts["conv-cum-" + id]){ var c1 = $("d-conv-cum-" + id); if(c1) charts["conv-cum-" + id] = buildBandChart(c1, t); }
+if(!charts["conv-mon-" + id] && t.monthly){ var c2 = $("d-conv-mon-" + id); if(c2) charts["conv-mon-" + id] = buildBandChart(c2, t.monthly); }
+}
+function drawConvective(){ var first = (D.convective.tabs || [])[0]; if(first) drawConvectiveTab(first.id); }
+
+/* ---------- SECTION 04 · Sources ---------- */
+(function(){ var S = D.sources; if(!S) return;
+$("d-sources-intro").textContent = S.intro || "";
+var h = "";
+(S.items || []).forEach(function(s){ var host = "";
+try { host = s.url.replace(/^https?:\/\//, "").split("/")[0]; } catch(e){ host = s.url; }
+h += '<div class="d-src"><div class="d-src-top"><span class="d-src-n">' + s.name + '</span>'
++ '<span class="d-src-rel">' + s.rel + '</span></div>'
++ '<p class="d-src-d">' + s.desc + '</p><div class="d-src-meta"><span class="d-src-f">\u21BB ' + s.freq + '</span>'
++ '<a class="d-src-link" href="' + s.url + '" target="_blank" rel="noopener">' + host + '</a></div></div>'; });
+$("d-source-grid").innerHTML = h;
+})();
+
+/* ---------- section-tab switch (wire chart draws here) ---------- */
+$("d-sectabs").addEventListener("click", function(e){
+var btn = e.target.closest(".d-sectab"); if(!btn) return;
+var id = btn.getAttribute("data-sec");
+$("d-sectabs").querySelectorAll(".d-sectab").forEach(function(t){ t.classList.remove("active"); });
+document.querySelectorAll(".d-section").forEach(function(s){ s.classList.remove("active"); });
+btn.classList.add("active");
+$("d-sec-" + id).classList.add("active");
+if(id === "convective") drawConvective();
+if(id === "fire"){ drawFire(); drawFireMap(); }
+if(id === "events") drawEventsMap();
+postHeight();
+});
+
+/* ---------- init ---------- */
+renderAlerts();
+if(HAS_CHART){ drawEventsMap(); }
+else {
+document.querySelectorAll(".d-chartbox").forEach(function(b){
+b.innerHTML = '<p style="font-family:' + F + ';font-size:12px;color:#8b97a8;text-align:center;padding-top:40px">Chart library unavailable.</p>'; });
+}
+}
+
+function postHeight(){
+var dash = document.querySelector('.heim-d'); if(!dash) return;
+var h = dash.scrollHeight;
+if(window.parent && window.parent !== window){ window.parent.postMessage({ heimDashHeight: h }, "*"); }
+}
+window.addEventListener('message', function(e){ if(e.data && e.data.requestHeight){ postHeight(); } });
+window.addEventListener('load', function(){ setTimeout(postHeight, 500); });
+window.addEventListener('resize', function(){ setTimeout(postHeight, 100); });
+document.addEventListener('click', function(){ setTimeout(postHeight, 200); });
+if(typeof ResizeObserver !== 'undefined'){ var ro = new ResizeObserver(function(){ postHeight(); }); var d2 = document.querySelector('.heim-d'); if(d2) ro.observe(d2); }
+</script>
