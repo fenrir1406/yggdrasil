@@ -1,0 +1,40 @@
+{
+  "fire": {
+    "intro": "The US wildfire season as a running database: year-to-date scale against the ten-year norm, the pace curve, a map of the season's largest incidents, and the incident register itself. Represented as stat-map-and-table rather than a percentile band \u2014 NIFC publishes a clean year-to-date-versus-average figure, so that is what this shows.",
+    "asOf": "16 Aug 2026",
+    "note": "National year-to-date fires and acres are read from NIFC's Incident Management Situation Report (SIT-209); the 10-year same-date average is NIFC's own comparison. The incident register is curated from NIFC, InciWeb, Cal Fire and state agencies. Run <code>fetch_fire.py</code> to refresh the stat and pace curve.",
+    "stat": {
+      "acres": "7.22M", "acresSub": "acres burned YTD",
+      "fires": "48,960", "firesSub": "fires YTD (129% of avg)",
+      "pctAvg": "169%", "pctSub": "of 10-yr average, acres",
+      "pl": "5 / 5", "plSub": "National Preparedness Level"
+    },
+    "cumulative": {
+      "desc": "Cumulative acres burned in 2026 versus the 10-year average for the same calendar date, at NIFC reporting waypoints. 2026 has run above the norm all year, and the gap widened into the August peak.",
+      "type": "line", "yTitle": "million acres (cumulative)",
+      "labels": ["11 May", "31 May", "21 Jul", "13 Aug", "16 Aug"],
+      "series": [
+        {"name": "2026 acres burned (YTD)", "data": [1.88, 2.41, 4.0, 6.4, 7.22], "color": "warm"},
+        {"name": "10-yr average (same date)", "data": [1.05, 1.24, 3.01, 4.2, 4.27], "color": "steel"}
+      ],
+      "inference": "Every waypoint sits above the ten-year line. 2026 opened at nearly double the average through spring, and although the average catches up through the summer ramp, the absolute gap widened to roughly three million acres by mid-August \u2014 the season crossed 7.2 million acres with the traditional peak still underway."
+    },
+    "incidents": {
+      "desc": "The season's largest and most consequential incidents, February to August. Dot size on the map scales with acres; colour runs from red (active / low containment) to amber (contained).",
+      "rows": [
+        {"name": "Morrill Fire", "state": "Nebraska", "acres": 642029, "contain": 100, "start": "12 Mar", "end": "Mar 2026", "structures": "\u2014", "deaths": 1, "cause": "Electrical pole sparks; extreme winds", "lat": 41.7, "lon": -103.6},
+        {"name": "Ranger Road Fire", "state": "Kansas", "acres": 283283, "contain": 100, "start": "17 Feb", "end": "Feb 2026", "structures": "\u2014", "deaths": 0, "cause": "Wind-driven grass fire (under investigation)", "lat": 38.6, "lon": -100.9},
+        {"name": "Aspen Acres Fire", "state": "Colorado", "acres": 100244, "contain": 61, "start": "29 Jun", "end": "ongoing", "structures": "850+ (319 homes)", "deaths": 0, "cause": "Under investigation", "lat": 38.0, "lon": -105.0},
+        {"name": "Crosswhite Fire (Rowe Creek Complex)", "state": "Oregon", "acres": 100000, "contain": null, "start": "Jul 2026", "end": "ongoing", "structures": "\u2014", "deaths": 0, "cause": "Lightning", "lat": 44.8, "lon": -120.0},
+        {"name": "Meade Lake Complex", "state": "Kansas", "acres": 92733, "contain": 100, "start": "14 May", "end": "May 2026", "structures": "\u2014", "deaths": 0, "cause": "Under investigation", "lat": 37.3, "lon": -100.4},
+        {"name": "Widemouth 2 Fire", "state": "Utah", "acres": 84000, "contain": 0, "start": "late Jul", "end": "ongoing", "structures": "\u2014", "deaths": 0, "cause": "Lightning", "lat": 38.5, "lon": -111.5},
+        {"name": "Santa Rosa Island Fire", "state": "California", "acres": 18379, "contain": 100, "start": "15 May", "end": "late May 2026", "structures": 3, "deaths": 0, "cause": "Human", "lat": 33.95, "lon": -120.1},
+        {"name": "Sandy Fire", "state": "California", "acres": 2183, "contain": 100, "start": "18 May", "end": "27 May", "structures": 1, "deaths": 0, "cause": "Under investigation", "lat": 34.25, "lon": -118.74},
+        {"name": "Spokane Complex", "state": "Washington", "acres": null, "contain": null, "start": "Aug 2026", "end": "ongoing", "structures": "700+", "deaths": 0, "cause": "Under investigation", "lat": 47.66, "lon": -117.43},
+        {"name": "Upriver Fire", "state": "Washington", "acres": null, "contain": 100, "start": "16 Jun", "end": "24 Jun", "structures": 18, "deaths": 0, "cause": "Human (specifics not released)", "lat": 47.7, "lon": -117.3},
+        {"name": "Snyder Fire", "state": "Utah", "acres": null, "contain": 100, "start": "27 Jun", "end": "Jul 2026", "structures": "\u2014", "deaths": 3, "cause": "Under investigation (firefighter fatalities)", "lat": 38.3, "lon": -112.4}
+      ]
+    },
+    "inference": "Fire is the defining US hazard of 2026: an early, fast start (the Morrill and Ranger Road grass fires set records before spring) that never let up, a Northwest- and Rockies-centred August peak, and the national system at its highest readiness level. The register also carries the season's human cost \u2014 the Morrill Fire and the three firefighters lost on the Snyder Fire \u2014 that the aggregate acreage figure hides."
+  }
+}
