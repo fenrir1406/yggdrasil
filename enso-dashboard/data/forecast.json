@@ -1,105 +1,105 @@
 {
   "consensus": {
     "peak": {
-      "elnino": 99,
-      "neutral": 1,
+      "elnino": 100,
+      "neutral": 0,
       "lanina": 0
     },
     "intensity": [
       {
-        "label": "Super / V.Strong (≥+2.0°C)",
-        "pct": 91,
+        "label": "Historic (≥+2.5°C RONI)",
+        "pct": 75,
+        "color": "#6d28d9"
+      },
+      {
+        "label": "Very strong (≥+2.0°C)",
+        "pct": 20,
         "color": "#9b7bd4"
       },
       {
         "label": "Strong (+1.5–2.0)",
-        "pct": 7,
+        "pct": 4,
         "color": "#e25c4a"
       },
       {
-        "label": "Moderate (+1.0–1.5)",
+        "label": "Moderate or less (<+1.5)",
         "pct": 1,
         "color": "#e0992f"
-      },
-      {
-        "label": "Weak (+0.5–1.0)",
-        "pct": 1,
-        "color": "#3d9bd4"
       }
     ],
     "agencies": [
       {
         "name": "NOAA CPC",
         "outlook": "El Niño Advisory",
-        "prob": "99%",
-        "peak": "Historic 69% · V.Strong >90%",
+        "prob": "100%",
+        "peak": ">90% very strong; 75% historic",
         "dur": "Through early spring 2027",
         "conf": "Very High"
       },
       {
-        "name": "IRI/Columbia",
-        "outlook": "Intensifying",
-        "prob": "~99%",
-        "peak": "Very Strong",
-        "dur": "Peak OND 2026",
+        "name": "IRI/CCSR",
+        "outlook": "All 22 models v.strong",
+        "prob": "100%",
+        "peak": "Very Strong (many >+3°C)",
+        "dur": "El Niño 100% SON→FMA",
         "conf": "Very High"
       },
       {
         "name": "ECMWF",
-        "outlook": "El Niño (record?)",
-        "prob": "~99%",
+        "outlook": "Record-challenging",
+        "prob": "~100%",
         "peak": "Super (>+3°C)",
-        "dur": "Peak late autumn",
+        "dur": "Peak SON–DJF",
         "conf": "Very High"
       },
       {
         "name": "NCEP CFSv2",
-        "outlook": "Extreme",
-        "prob": "~99%",
+        "outlook": "Intensify thru 2026",
+        "prob": "~100%",
         "peak": ">+3°C (record?)",
         "dur": "Weakens into spring 2027",
         "conf": "High"
       },
       {
-        "name": "CCSR/IRI ens.",
-        "outlook": "23 of 26 v.strong",
-        "prob": "~99%",
-        "peak": "Very Strong",
-        "dur": "Every model holds El Niño",
+        "name": "Dyn. + stat.",
+        "outlook": "22/22 v.strong SON–DJF",
+        "prob": "100%",
+        "peak": "Very Strong+",
+        "dur": "Strong-mod thru MAM'27",
         "conf": "Very High"
       }
     ],
-    "consensusInference": "The dispersion has collapsed to near-unanimity, and NOAA's August 13 outlook made the record scenario its base case: a 69% chance the event exceeds every El Niño since 1950 on the relative index (RONI ≥ +2.5°C for OND 2026), alongside a greater-than-90% chance of a very strong peak. IRI's mid-July ensemble had 23 of 26 models very strong at OND with every model holding El Niño throughout — exceptional agreement. The debate has narrowed from 'does it join the Super club' to 'by how much does it break the record': ECMWF and CFSv2 point beyond +3°C on the standard scale, while the RONI lens — which nets out background warming, the more honest gauge NOAA now co-standardises — still clears +2.5°C at better-than-even odds. When the models agree this tightly and the official outlook favours a record, only the magnitude ceiling is open.",
+    "consensusInference": "The CPC's September 10 outlook raised the historic-event probability to 75% (from 69% in August): a 75% chance the 3-month RONI reaches ≥+2.5°C during Oct–Dec, which would exceed every El Niño since 1950, alongside a >90% chance of a very strong event. IRI's mid-September plume is unanimous — all 22 models (13 dynamical, 9 statistical) forecast very strong from SON 2026 through DJF, with many projecting Niño 3.4 above +3.0°C, beyond IRI's highest defined category. El Niño probability is 100% from SON 2026 through FMA 2027, with zero assigned to neutral or La Niña. The debate is settled to a single question: whether 2026 sets an outright record — and CPC now puts that at 3-in-4 on the relative index.",
     "timeline": {
       "labels": [
-        "Aug'26",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-        "Jan'27",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul"
+        "SON'26",
+        "OND",
+        "NDJ",
+        "DJF",
+        "JFM'27",
+        "FMA",
+        "MAM",
+        "AMJ",
+        "MJJ",
+        "JJA",
+        "JAS",
+        "ASO"
       ],
       "values": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
         99,
-        99,
-        98,
-        98,
-        97,
-        96,
-        93,
-        87,
-        76,
-        60,
-        44,
-        32
+        90,
+        61,
+        42,
+        30,
+        22
       ],
-      "inference": "Read the shape carefully: this is the probability that El Niño is present in each month, not its strength. It sits near-certain (98–99%) through autumn and winter 2026, then declines through spring–summer 2027 — that fall is the expected end-of-event decay, not a weakening now. El Niño peaks in NH winter and fades the following spring; the ensembles project weakening into spring 2027. Meanwhile the strength probability is at its ceiling (>90% very-strong). Both hold: near-certain to persist through the 2026–27 winter, very likely to peak very strong, and expected to decay through 2027."
+      "inference": "These are official IRI probabilities that El Niño is present in each 3-month season, not its strength. El Niño probability is 100% from SON 2026 through FMA 2027, then 99% (MAM), 90% (AMJ) and 61% (MJJ 2027), with no probability assigned to neutral or La Niña through FMA. The sharp decline in spring–summer 2027 is the expected end-of-event decay — consistent with the tendency of strong events to weaken rapidly after peak — not a weakening now. Strength is at its ceiling (75% historic, >90% very strong). Both hold: near-certain through the 2026–27 winter, likely to peak at record strength, and expected to fade through 2027."
     }
   }
 }
