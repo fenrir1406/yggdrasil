@@ -1,43 +1,43 @@
 {
   "meta": {
-    "asOf": "August 14, 2026",
-    "lastUpdated": "August 14, 2026"
+    "asOf": "September 29, 2026",
+    "lastUpdated": "September 29, 2026 (CPC Sep 10 / IRI Sep 21)"
   },
   "state": {
-    "label": "El Niño Advisory · Record-Class Odds Favored",
-    "detail": "El Niño is intensifying toward a potentially historic peak. The weekly Niño 3.4 reached +2.6°C in early August. NOAA's Aug 13 discussion puts very-strong odds above 90% for the Oct–Dec peak and, for the first time, a 69% chance the event exceeds every El Niño since 1950 (RONI ≥ +2.5°C).",
-    "regimeScore": 93,
+    "label": "El Niño Advisory · Approaching Historic",
+    "detail": "El Niño strengthened further through August–September, with SST anomalies exceeding +3.0°C in the eastern equatorial Pacific. CPC (Sep 10) holds a >90% chance of a very strong event this fall–winter and a 75% chance of a historic event (≥+2.5°C on 3-month RONI) during Oct–Dec that would exceed any El Niño since 1950.",
+    "regimeScore": 94,
     "cyclePhase": 1
   },
   "metrics": [
     {
       "label": "ONI",
-      "value": "+1.4",
-      "sub": "°C · MJJ, official",
+      "value": "+2.0",
+      "sub": "°C · JJA, rising",
       "dir": "pos"
     },
     {
       "label": "RONI",
-      "value": "+1.0",
-      "sub": "°C · MJJ, official",
+      "value": "+2.3",
+      "sub": "°C · 3-mo (rel.)",
       "dir": "pos"
     },
     {
       "label": "Niño 3.4",
-      "value": "+2.6",
-      "sub": "°C · wk, Aug 5",
+      "value": "+2.5",
+      "sub": "°C · Aug monthly",
       "dir": "pos"
     },
     {
       "label": "SOI",
-      "value": "−2.4",
-      "sub": "Jul · ~2σ, coupled",
+      "value": "−20",
+      "sub": "30-day, strongly –",
       "dir": "pos"
     },
     {
-      "label": "Record Odds",
-      "value": "69%",
-      "sub": "OND · RONI ≥+2.5",
+      "label": "Outlook",
+      "value": "Very Strong",
+      "sub": "75% historic OND",
       "dir": "pos"
     }
   ],
@@ -52,12 +52,12 @@
     },
     {
       "name": "PEAK",
-      "sub": "Oct–Jan"
+      "sub": "Oct–Jan (near)"
     },
     {
       "name": "DECAY",
       "sub": "spring 2027"
     }
   ],
-  "narrative": "NOAA's August 13 discussion escalated the event from very strong to potentially historic. The weekly Niño 3.4 index reached +2.6°C in early August — up from +2.1°C in mid-July, +1.7°C in June and +0.5°C in late May — while the official May–July ONI printed +1.39°C and RONI +1.0°C. The decisive new number is on strength: NOAA now assigns a greater-than-90% chance of a very strong peak in Oct–Dec and, for the first time, a 69% chance the event exceeds every El Niño back to 1950 on the relative index (RONI ≥ +2.5°C). The framing has flipped accordingly — the live question is no longer whether 2026 joins the Super club but whether it leads it, with a new all-time record now the central expectation rather than the tail. Atmospheric coupling is emphatic: the July SOI ran near −2.4 (about two standard deviations) and MEI.v2 hit +2.41, the highest June–July value in the record back to 1979. Real-world confirmation keeps arriving — NOAA holds below-normal Atlantic hurricane-season odds near 75%, and India's monsoon, after a severe June, recovered sharply in July to near-normal. The residual uncertainty is now narrow: the exact magnitude of the autumn–winter maximum and how far past the 2015–16 mark it prints."
+  "narrative": "El Niño has intensified into a very strong event that is now approaching historic magnitude. Per the CPC's September 10 discussion, SST anomalies exceeded +3.0°C in the eastern equatorial Pacific; the August monthly Niño indices were +2.52°C (Niño-3.4), +2.5°C (Niño-3) and +3.4°C (Niño-1+2, above +4°C for six straight weeks), while Niño-4 fell to +0.1°C — a strongly east-weighted structure. The weekly Niño 3.4 centred on September 16 reached +3.0°C. Subsurface anomalies remain above +10°C at depth. CPC now carries a 75% chance of a historic event exceeding +2.5°C on the 3-month RONI during Oct–Dec — up from 69% in August — which would surpass every El Niño since 1950, and a >90% chance of a very strong event through fall–winter. IRI's mid-September plume has all 22 models at very strong SON–DJF, many projecting Niño 3.4 above +3.0°C, with El Niño probability 100% through FMA 2027. A positive IOD has now emerged (forecast strongly positive Sep–Dec), the co-occurring mode that historically softens El Niño's monsoon-suppressing effect. The debate is no longer whether or how strong — only whether 2026 sets an outright record."
 }
