@@ -8,17 +8,17 @@
     "intensity": [
       {
         "label": "Historic (≥+2.5°C RONI)",
-        "pct": 75,
+        "pct": 83,
         "color": "#6d28d9"
       },
       {
         "label": "Very strong (≥+2.0°C)",
-        "pct": 20,
+        "pct": 14,
         "color": "#9b7bd4"
       },
       {
         "label": "Strong (+1.5–2.0)",
-        "pct": 4,
+        "pct": 2,
         "color": "#e25c4a"
       },
       {
@@ -32,48 +32,47 @@
         "name": "NOAA CPC",
         "outlook": "El Niño Advisory",
         "prob": "100%",
-        "peak": ">90% very strong; 75% historic",
-        "dur": "Through early spring 2027",
+        "peak": "83% historic (≥+2.5 RONI)",
+        "dur": ">83% strong–v.strong to JFM'27",
         "conf": "Very High"
       },
       {
         "name": "IRI/CCSR",
-        "outlook": "All 22 models v.strong",
+        "outlook": "All 27 models v.strong",
         "prob": "100%",
-        "peak": "Very Strong (many >+3°C)",
-        "dur": "El Niño 100% SON→FMA",
+        "peak": "Peak ~+3.5°C OND–NDJ",
+        "dur": "El Niño 100% OND→MAM'27",
         "conf": "Very High"
       },
       {
         "name": "ECMWF",
         "outlook": "Record-challenging",
         "prob": "~100%",
-        "peak": "Super (>+3°C)",
-        "dur": "Peak SON–DJF",
+        "peak": "Super (>+3.5°C)",
+        "dur": "Peak OND–NDJ",
         "conf": "Very High"
       },
       {
         "name": "NCEP CFSv2",
-        "outlook": "Intensify thru 2026",
+        "outlook": "Near record",
         "prob": "~100%",
-        "peak": ">+3°C (record?)",
+        "peak": ">+3°C",
         "dur": "Weakens into spring 2027",
         "conf": "High"
       },
       {
         "name": "Dyn. + stat.",
-        "outlook": "22/22 v.strong SON–DJF",
+        "outlook": "~10 models ≥+3.5°C",
         "prob": "100%",
         "peak": "Very Strong+",
         "dur": "Strong-mod thru MAM'27",
         "conf": "Very High"
       }
     ],
-    "consensusInference": "The CPC's September 10 outlook raised the historic-event probability to 75% (from 69% in August): a 75% chance the 3-month RONI reaches ≥+2.5°C during Oct–Dec, which would exceed every El Niño since 1950, alongside a >90% chance of a very strong event. IRI's mid-September plume is unanimous — all 22 models (13 dynamical, 9 statistical) forecast very strong from SON 2026 through DJF, with many projecting Niño 3.4 above +3.0°C, beyond IRI's highest defined category. El Niño probability is 100% from SON 2026 through FMA 2027, with zero assigned to neutral or La Niña. The debate is settled to a single question: whether 2026 sets an outright record — and CPC now puts that at 3-in-4 on the relative index.",
+    "consensusInference": "The CPC's October 8 outlook lifted the historic-event probability to 83% (from 75% in September and 69% in August): an 83% chance the 3-month RONI reaches ≥+2.5°C during Oct–Dec, exceeding every El Niño since 1950, with 70% for Nov–Jan. IRI's mid-October plume is unanimous — all 27 models forecast very strong from OND through DJF, the multimodel average peaks near +3.5°C, and about 10 models reach or exceed +3.5°C, beyond IRI's highest category. El Niño probability is 100% from OND 2026 through MAM 2027. The forecast has converged completely; the only remaining question is the size of the record, with 2015-16's +2.6°C ONI peak the mark to beat.",
     "timeline": {
       "labels": [
-        "SON'26",
-        "OND",
+        "OND'26",
         "NDJ",
         "DJF",
         "JFM'27",
@@ -83,7 +82,8 @@
         "MJJ",
         "JJA",
         "JAS",
-        "ASO"
+        "ASO",
+        "SON"
       ],
       "values": [
         100,
@@ -92,14 +92,14 @@
         100,
         100,
         100,
-        99,
-        90,
-        61,
-        42,
-        30,
-        22
+        92,
+        60,
+        37,
+        25,
+        20,
+        18
       ],
-      "inference": "These are official IRI probabilities that El Niño is present in each 3-month season, not its strength. El Niño probability is 100% from SON 2026 through FMA 2027, then 99% (MAM), 90% (AMJ) and 61% (MJJ 2027), with no probability assigned to neutral or La Niña through FMA. The sharp decline in spring–summer 2027 is the expected end-of-event decay — consistent with the tendency of strong events to weaken rapidly after peak — not a weakening now. Strength is at its ceiling (75% historic, >90% very strong). Both hold: near-certain through the 2026–27 winter, likely to peak at record strength, and expected to fade through 2027."
+      "inference": "These are official IRI probabilities that El Niño is present in each 3-month season, not its strength. El Niño probability is 100% from OND 2026 through MAM 2027, then 92% (AMJ), 60% (MJJ) and 37% (JJA 2027, when ENSO-neutral becomes most likely at 51%). The decline through spring–summer 2027 is the expected end-of-event decay, consistent with strong events weakening rapidly after peak — not a weakening now. Strength is at its ceiling (83% historic). Both hold: near-certain through the 2026–27 winter, projected to peak near +3.5°C, and expected to fade to neutral by mid-2027."
     }
   }
 }
