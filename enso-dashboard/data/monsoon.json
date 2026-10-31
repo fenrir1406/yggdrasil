@@ -1,86 +1,92 @@
 {
   "monsoon": {
     "forecast": {
-      "desc": "The June–September season ended below normal. After the driest June in over a decade (~40% deficit), strong July–August recovery narrowed the seasonal shortfall to roughly the low teens. The +IOD that emerged late supported the back half; IMD's final performance figures were released September 29.",
+      "desc": "The June–September season has closed. India ended ~13% below normal — its worst monsoon since 2015 — after the driest June in over a decade, a strong July–August recovery, and a renewed late-season fade. The positive IOD softened the back half but could not pull the season to normal against the intensifying El Niño.",
       "dist": [
         {
           "label": "Deficient (<90%)",
-          "pct": 30,
+          "pct": 100,
           "color": "#c0392b"
         },
         {
           "label": "Below Normal (90–96%)",
-          "pct": 40,
+          "pct": 0,
           "color": "#e0992f"
         },
         {
           "label": "Normal (96–104%)",
-          "pct": 27,
+          "pct": 0,
           "color": "#5fb37e"
         },
         {
           "label": "Above Normal (>104%)",
-          "pct": 3,
+          "pct": 0,
           "color": "#3d9bd4"
         }
       ],
-      "inference": "The season ended better than the June collapse implied but below normal overall — a genuine recovery story. July's low-pressure systems drove a strong rebound, August held, and an emerging positive IOD supported late-season rainfall, narrowing the seasonal deficit from ~40% at end-June to the low teens by season's end. The +IOD proved the meaningful offset the spring analysis anticipated only as a possibility: it counteracted part of the intensifying El Niño's suppression, much as it did in 1997. The residue is a below-normal but not catastrophic season, with the deficit concentrated in the persistent east/northeast and southern-peninsula laggards rather than the core grain belt."
+      "inference": "The season realised its downside. India finished at roughly 87% of LPA — about 13% below normal and the worst monsoon since the 2015 El Niño — landing in the deficient category (<90%) that the spring forecast had flagged at elevated odds. The recovery narrative held only partway: a strong July–August rebound narrowed the June collapse, but late-season rainfall faded again and the seasonal deficit widened back toward 13% by September 30. The co-developing positive IOD was a genuine offset — without it the deficit would likely have been deeper — but it was not enough to overcome a near-historic El Niño. This is now a realised outcome, not a forecast."
     },
     "seasonal": {
-      "desc": "The season swung dramatically: the driest June in over a decade, a strong July–August recovery, and a +IOD-supported close. The El Niño peak arrives after the monsoon, in the autumn–winter window.",
+      "desc": "Final monthly arc of the 2026 season: the driest June in over a decade, a strong July–August recovery, then a renewed September fade that left the season ~13% below normal overall.",
       "labels": [
         "June",
         "July",
         "August",
-        "Sep"
+        "Sept"
       ],
       "weak": [
         10,
         60,
         55,
-        45
+        40
       ],
       "moderate": [
         0,
         30,
         35,
-        40
+        35
       ],
       "strong": [
         90,
         10,
         10,
-        15
+        25
       ],
-      "inference": "The season inverted the textbook script and then partly recovered. It suppressed rainfall early (a severe June, contrary to the 'monsoon escapes the peak' thesis), then rebounded strongly in July–August as low-pressure systems formed and a positive IOD emerged. The two opposing drivers — an intensifying, near-record El Niño pushing toward suppression versus a +IOD supporting rainfall — fought to a below-normal but manageable outcome. With the monsoon now ending, the El Niño peak moves fully into the post-monsoon Oct–Dec window, where it bears on the northeast monsoon and rabi reservoir refill rather than the main kharif season."
+      "inference": "The season's arc was a tug-of-war that the El Niño ultimately won on points. June collapsed (~40% deficit, driest in over a decade); July–August rebounded strongly as low-pressure systems formed and the positive IOD emerged, narrowing the shortfall to single digits; then September faded again, leaving the season ~13% below normal. The textbook 'Super El Niño peaks after the monsoon' held only loosely — the event strengthened early enough to suppress June and to cap the recovery. With the season closed, the El Niño peak now moves fully into the post-monsoon window, bearing on the Oct–Dec northeast monsoon and rabi reservoir refill."
     },
     "onset": {
       "desc": "IMD declared Kerala onset on June 4 — three days later than the June 1 normal, and against pre-season forecasts of an early arrival. Onset stalled at both ends for nearly two weeks.",
       "normalDate": "Jun 1",
       "forecastDate": "Jun 4 (actual)",
       "status": "Late (+3 days)",
-      "inference": "The late onset (June 4) was the leading edge of the June collapse, but it proved a poor guide to the season: the monsoon recovered sharply in July–August despite the poor start, underscoring that onset timing correlates weakly with the seasonal total. The season's arc — late and dry, then strongly recovering — is a reminder that intraseasonal drivers (low-pressure systems, MJO, IOD) can override the ENSO base case over a monsoon's course."
+      "inference": "In hindsight the late onset (June 4) was the leading edge of a below-normal season, but a poor guide to its shape: the monsoon recovered sharply in July–August before fading again. Onset timing correlated weakly with the ~13% seasonal deficit — the season was decided by the intraseasonal tug-of-war between the strengthening El Niño and the offsetting positive IOD, not by the start date."
     },
     "reservoir": {
-      "desc": "Live storage across major reservoirs vs the 10-year average. The July–August recovery replenished storage substantially after the June drawdown, leaving the buffer comfortably above average heading into the rabi season.",
-      "current": 52.0,
+      "desc": "Live storage across major reservoirs vs the 10-year average at season's end. National storage held near/above average on the July–August recovery, but the picture is sharply regional — southern reservoirs ended around 43% below their average.",
+      "current": 49.0,
       "tenYrAvg": 38.0,
-      "inference": "The buffer that made this a price story rather than a supply-collapse story ends the season in good shape. The strong July–August rains rebuilt storage well above the ten-year average, easing the June drawdown and supporting rabi-season irrigation. Supply is well buffered; the residual risk is price transmission on the specific crops hit by June's deficit and the uneven regional distribution — pulses and oilseeds — where a below-normal seasonal total still argues for watchfulness on food inflation into the Oct–Dec window as the El Niño peaks."
+      "inference": "The national buffer masks a severe regional split. Aggregate live storage ended near or above the ten-year average thanks to the July–August rains over central and northwest India — but southern reservoirs closed roughly 43% below average, the legacy of a peninsula that stayed deficient all season. For the south, the Oct–Dec northeast monsoon now becomes critical for rabi irrigation and drinking water — and an El Niño typically enhances northeast-monsoon rainfall, a potential reprieve for exactly the region the southwest monsoon failed. Food-price risk concentrates in the crops and states tied to the deficient south and east rather than the recovered north."
     },
     "regional": {
-      "desc": "End-of-season regional picture. Central India and the northwest recovered strongly from the June deficit; east/northeast India and the southern peninsula were the persistent laggards throughout.",
+      "desc": "Final regional outcome. Central India and the northwest recovered strongly from the June deficit; the southern peninsula and east/northeast India stayed deficient all season and drove the ~13% national shortfall.",
       "rows": [
         {
           "region": "Central India (MP, Chhattisgarh)",
           "risk": "Low",
           "cls": "neutral",
-          "note": "June −50% → July +33%; ended near/above normal"
+          "note": "June −50% → strong recovery; ended near normal"
         },
         {
           "region": "Northwest (Punjab, Haryana, Raj.)",
           "risk": "Low",
           "cls": "neutral",
-          "note": "Strong recovery from June deficit"
+          "note": "Recovered well from the June deficit"
+        },
+        {
+          "region": "South Peninsula (TN, Kerala, AP)",
+          "risk": "High",
+          "cls": "warm",
+          "note": "Deficient all season; reservoirs ~43% below avg"
         },
         {
           "region": "East & Northeast (Bihar, Jharkhand)",
@@ -89,19 +95,13 @@
           "note": "Persistent laggard; ended deficient"
         },
         {
-          "region": "South Peninsula (TN, Kerala, AP)",
-          "risk": "High",
-          "cls": "warm",
-          "note": "Below normal both halves; NE monsoon next"
-        },
-        {
           "region": "Maharashtra / Gujarat",
           "risk": "Moderate",
           "cls": "gold",
           "note": "Mixed; interior dry zones lagged"
         }
       ],
-      "inference": "The regional picture reorganised over the season. Central India — the core rain-fed belt and the worst-hit region in June (~50% deficit) — swung to a July excess and ended near or above normal, the single biggest positive of the recovery; the northwest similarly rebounded. The persistent laggards are east/northeast India and the southern peninsula, which stayed below normal throughout. For the peninsula the focus now shifts to the Oct–Dec northeast monsoon, which an El Niño typically enhances — a potential offset for the region that lagged most this season."
+      "inference": "The national ~13% deficit was driven by the south and east, not the grain belt. Central India and the northwest recovered from the June collapse to finish near normal, but the southern peninsula and east/northeast India stayed deficient throughout — and southern reservoirs ended around 43% below average, a genuine water-stress concern into the dry season. The focus for the south now shifts to the Oct–Dec northeast monsoon, which an El Niño typically enhances; a wet northeast monsoon would be the offset the region needs, while a second failure would compound the deficit materially."
     }
   }
 }
